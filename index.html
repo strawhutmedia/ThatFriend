@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>That Friend - Official Film Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">THAT FRIEND</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">HOME</a></li>
+                <li><a href="#about" class="nav-link">ABOUT</a></li>
+                <li><a href="#cast" class="nav-link">CAST</a></li>
+                <li><a href="#news" class="nav-link">NEWS</a></li>
+                <li><a href="#trailer" class="nav-link">TRAILER</a></li>
+                <li><a href="#credits" class="nav-link">CREDITS</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <canvas id="particles"></canvas>
+        <div class="hero-content">
+            <div class="poster-container">
+                <img src="assets/poster.jpg" alt="That Friend Poster" class="poster" id="poster">
+                <div class="poster-glow"></div>
+            </div>
+            <h1 class="title-main">THAT FRIEND</h1>
+            <p class="tagline">An indie bromance comedy</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('trailer')">Watch Trailer</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('about')">Learn More</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>Scroll to explore</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title reveal">About the Film</h2>
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <p class="lead">
+                        <strong>That Friend</strong> is an indie bromance comedy that explores the complexities of friendship,
+                        loyalty, and the hilarious moments that define our closest relationships.
+                    </p>
+                    <p>
+                        Directed by the emerging filmmaking duo Will Sterling and Alex Wall, this film brings
+                        together an incredible cast to tell a story that's both heartwarming and laugh-out-loud funny.
+                    </p>
+                    <div class="film-details">
+                        <div class="detail-item">
+                            <h4>Genre</h4>
+                            <p>Comedy, Bromance</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Production</h4>
+                            <p>December 2024</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Producer</h4>
+                            <p>Straw Hut Media</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cast Section -->
+    <section id="cast" class="cast">
+        <div class="container">
+            <h2 class="section-title reveal">Cast & Crew</h2>
+            <div class="cast-grid">
+                <div class="cast-card reveal">
+                    <div class="cast-image-placeholder">
+                        <div class="cast-initial">HG</div>
+                    </div>
+                    <div class="cast-info">
+                        <h3>Harvey Guillen</h3>
+                        <p class="role">Lead Actor</p>
+                        <div class="cast-bio">
+                            Known for his Emmy-nominated role in "What We Do in the Shadows"
+                        </div>
+                    </div>
+                </div>
+                <div class="cast-card reveal">
+                    <div class="cast-image-placeholder">
+                        <div class="cast-initial">BL</div>
+                    </div>
+                    <div class="cast-info">
+                        <h3>Billie Lourd</h3>
+                        <p class="role">Actor</p>
+                        <div class="cast-bio">
+                            Star of "American Horror Story" and "Scream Queens"
+                        </div>
+                    </div>
+                </div>
+                <div class="cast-card reveal">
+                    <div class="cast-image-placeholder">
+                        <div class="cast-initial">JB</div>
+                    </div>
+                    <div class="cast-info">
+                        <h3>Josh Brener</h3>
+                        <p class="role">Actor</p>
+                        <div class="cast-bio">
+                            Known for "Silicon Valley" and "The Internship"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crew-section">
+                <h3 class="subsection-title reveal">Filmmakers</h3>
+                <div class="crew-grid">
+                    <div class="crew-card reveal">
+                        <h4>Will Sterling</h4>
+                        <p>Director</p>
+                    </div>
+                    <div class="crew-card reveal">
+                        <h4>Alex Wall</h4>
+                        <p>Director</p>
+                    </div>
+                    <div class="crew-card reveal">
+                        <h4>Ryan Tillotson</h4>
+                        <p>Producer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="news">
+        <div class="container">
+            <h2 class="section-title reveal">Latest News</h2>
+            <div class="news-grid">
+                <article class="news-card reveal">
+                    <div class="news-date">October 2024</div>
+                    <h3>Billie Lourd Joins 'That Friend' Comedy Movie</h3>
+                    <p>
+                        Billie Lourd is starring in the comedy 'That Friend' opposite Harvey Guillen and Josh Brener.
+                        The film is produced by Ryan Tillotson and Straw Hut Media.
+                    </p>
+                    <a href="https://deadline.com/2024/10/billie-lourd-that-friend-1236107779/"
+                       target="_blank"
+                       class="news-link">
+                       Read full article on Deadline →
+                    </a>
+                    <div class="news-source">Source: Deadline</div>
+                </article>
+
+                <article class="news-card reveal">
+                    <div class="news-date">July 2024</div>
+                    <h3>Harvey Guillen To Topline 'That Friend' Comedy</h3>
+                    <p>
+                        Harvey Guillen has signed on to star in 'That Friend,' an indie bromance comedy from
+                        emerging filmmakers Will Sterling and Alex Wall. Production was slated to begin in December,
+                        with Ryan Tillotson and Straw Hut Media producing.
+                    </p>
+                    <a href="https://deadline.com/2024/07/harvey-guillen-to-topline-that-friend-comedy-will-sterling-alex-wall-1236023305/"
+                       target="_blank"
+                       class="news-link">
+                       Read full article on Deadline →
+                    </a>
+                    <div class="news-source">Source: Deadline</div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trailer Section -->
+    <section id="trailer" class="trailer">
+        <div class="container">
+            <h2 class="section-title reveal">Trailer</h2>
+            <div class="trailer-container reveal">
+                <div class="trailer-placeholder">
+                    <div class="play-icon">▶</div>
+                    <p class="trailer-text">Trailer Coming Soon</p>
+                    <p class="trailer-subtext">Check back for exclusive first look</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credits Section -->
+    <section id="credits" class="credits">
+        <div class="container">
+            <h2 class="section-title reveal">Credits</h2>
+            <div class="credits-content reveal">
+                <div class="credits-column">
+                    <h3>Directors</h3>
+                    <ul>
+                        <li>Will Sterling</li>
+                        <li>Alex Wall</li>
+                    </ul>
+
+                    <h3>Producers</h3>
+                    <ul>
+                        <li>Ryan Tillotson</li>
+                        <li>Harvey Guillen</li>
+                    </ul>
+
+                    <h3>Production Company</h3>
+                    <ul>
+                        <li>Straw Hut Media</li>
+                    </ul>
+                </div>
+
+                <div class="credits-column">
+                    <h3>Cast</h3>
+                    <ul>
+                        <li>Harvey Guillen</li>
+                        <li>Billie Lourd</li>
+                        <li>Josh Brener</li>
+                    </ul>
+
+                    <h3>Additional Credits</h3>
+                    <ul>
+                        <li class="credit-editable" contenteditable="false">Click "Add Credits" to customize</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="btn btn-secondary add-credits-btn" onclick="toggleEditMode()">
+                Edit Credits
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">THAT FRIEND</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#cast">Cast</a>
+                    <a href="#news">News</a>
+                    <a href="#credits">Credits</a>
+                </div>
+                <div class="footer-social">
+                    <p>Follow the journey</p>
+                    <!-- Social media links can be added here -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024-2025 That Friend. Produced by Straw Hut Media. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
