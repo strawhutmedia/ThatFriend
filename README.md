@@ -4,7 +4,9 @@ An interactive, modern website for the indie bromance comedy "That Friend" - pro
 
 ## About the Film
 
-**That Friend** is an indie bromance comedy directed by Will Sterling and Alex Wall, starring Harvey Guillen, Billie Lourd, and Josh Brener. The film explores the complexities of friendship, loyalty, and the hilarious moments that define our closest relationships.
+**That Friend** is an indie bromance comedy directed by Will Sterling and Alex Wall, starring Harvey Guillen, Billie Lourd, Josh Brener, and Miles Gutierrez-Riley.
+
+When Paul (Harvey Guillen) crashes his best friend Henry's (Josh Brener) romantic weekend in Palm Springs with his new girlfriend Penny (Billie Lourd), what starts as an innocent visit spirals into mayhem after Paul's drug-laced cigarettes disappear into a stranger's hands.
 
 ## Website Features
 
@@ -153,8 +155,10 @@ ThatFriend/
 ## Credits & Sources
 
 ### Film Information
-- [Billie Lourd Joins 'That Friend' - Deadline](https://deadline.com/2024/10/billie-lourd-that-friend-1236107779/)
-- [Harvey Guillen To Topline 'That Friend' - Deadline](https://deadline.com/2024/07/harvey-guillen-to-topline-that-friend-comedy-will-sterling-alex-wall-1236023305/)
+- [Billie Lourd Joins 'That Friend' - Deadline (October 2024)](https://deadline.com/2024/10/billie-lourd-that-friend-1236107779/)
+- [Josh Brener Joins Harvey Guillen - Deadline (August 2024)](https://deadline.com/2024/08/josh-brener-joins-harvey-guillen-that-friend-comedy-1236044797/)
+- [Harvey Guillen To Topline 'That Friend' - Deadline (July 2024)](https://deadline.com/2024/07/harvey-guillen-to-topline-that-friend-comedy-will-sterling-alex-wall-1236023305/)
+- [That Friend on IMDb](https://www.imdb.com/title/tt33041195/)
 
 ### Design Inspiration
 Modern film websites with interactive elements and smooth animations, following 2025 web design trends.
