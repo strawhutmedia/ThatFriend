@@ -37,7 +37,7 @@ class ParticleEffect {
 
             this.ctx.beginPath();
             this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(255, 107, 53, ${particle.opacity})`;
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
             this.ctx.fill();
 
             // Draw connections
@@ -48,7 +48,7 @@ class ParticleEffect {
 
                 if (distance < 100) {
                     this.ctx.beginPath();
-                    this.ctx.strokeStyle = `rgba(255, 107, 53, ${0.1 * (1 - distance / 100)})`;
+                    this.ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 * (1 - distance / 100)})`;
                     this.ctx.lineWidth = 1;
                     this.ctx.moveTo(particle.x, particle.y);
                     this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
