@@ -116,15 +116,11 @@ body {
     flex-wrap: wrap;
 }
 
-.laurel {
-    display: inline-block;
-    border: 2px solid var(--gold);
-    padding: 0.6rem 1.5rem;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1rem;
-    letter-spacing: 3px;
-    color: var(--gold);
-    text-align: center;
+.epk-laurel-img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 
 .epk-cover-poster {
