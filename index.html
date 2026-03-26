@@ -4,26 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>That Friend - Official Film Website</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="logo">THAT FRIEND</div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">HOME</a></li>
-                <li><a href="#about" class="nav-link">ABOUT</a></li>
-                <li><a href="#cast" class="nav-link">CAST</a></li>
-                <li><a href="#news" class="nav-link">NEWS</a></li>
-                <li><a href="#trailer" class="nav-link">TRAILER</a></li>
-                <li><a href="#credits" class="nav-link">CREDITS</a></li>
-                <li><a href="epk.html" class="nav-link epk-link">EPK</a></li>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">THAT FRIEND</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="press.html">Press</a></li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -31,389 +26,57 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background"></div>
-        <canvas id="particles"></canvas>
+    <!-- Hero with video loop background -->
+    <section class="hero">
+        <!-- Video placeholder - replace src with actual video file -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/reel.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-fallback"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="poster-container">
-                <img src="assets/poster.jpg" alt="That Friend Poster" class="poster" id="poster">
-                <div class="poster-glow"></div>
+            <div class="laurels">
+                <div class="laurel">OFFICIAL SELECTION &bull; 2026 TRIBECA FESTIVAL</div>
             </div>
-            <h1 class="title-main">THAT FRIEND</h1>
-            <p class="tagline">Everyone has... That Friend</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="scrollToSection('trailer')">Watch Trailer</button>
-                <button class="btn btn-secondary" onclick="scrollToSection('about')">Learn More</button>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <p>Scroll to explore</p>
+            <div class="hero-tagline-bubble">Everyone has...</div>
+            <h1 class="hero-title">THAT FRIEND</h1>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title reveal">About the Film</h2>
-            <div class="about-content">
-                <div class="about-text reveal">
-                    <p class="lead">
-                        <strong>That Friend</strong> is an indie bromance comedy about Paul (Harvey Guill&eacute;n) —
-                        you know, <em>that friend</em> whose invitation for "one drink" seems harmless but
-                        inevitably leads to chaotic consequences.
-                    </p>
-                    <p>
-                        When Paul crashes his best friend Henry's (Josh Brener) romantic weekend in Palm Springs
-                        with his new girlfriend Penny (Billie Lourd), what starts as an innocent visit spirals
-                        into mayhem after Paul's drug-laced cigarettes disappear into a stranger's hands.
-                    </p>
-                    <p>
-                        Directed by the emerging filmmaking duo Will Sterling and Alex Wall in their feature debut,
-                        this film explores the hilarious and complex dynamics of friendship, loyalty, and the
-                        chaos we create for the people we love most.
-                    </p>
-                    <div class="film-details">
-                        <div class="detail-item">
-                            <h4>Genre</h4>
-                            <p>Comedy, Bromance</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Status</h4>
-                            <p>Post-Production</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Producer</h4>
-                            <p>Straw Hut Media</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Poster -->
+    <section class="poster-section">
+        <div class="poster-frame">
+            <img src="assets/poster.jpg" alt="That Friend - Official Poster">
         </div>
     </section>
 
-    <!-- Cast Section -->
-    <section id="cast" class="cast">
-        <div class="container">
-            <h2 class="section-title reveal">Cast & Crew</h2>
-            <div class="cast-grid">
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">HG</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Harvey Guill&eacute;n</h3>
-                        <p class="role">Paul</p>
-                        <div class="cast-bio">
-                            Known for his Emmy-nominated role in "What We Do in the Shadows"
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">BL</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Billie Lourd</h3>
-                        <p class="role">Penny</p>
-                        <div class="cast-bio">
-                            Star of "American Horror Story" and "Scream Queens"
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">JB</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Josh Brener</h3>
-                        <p class="role">Henry</p>
-                        <div class="cast-bio">
-                            Known for "Silicon Valley" and "The Internship"
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">MG</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Miles Gutierrez-Riley</h3>
-                        <p class="role">Spencer</p>
-                        <div class="cast-bio">
-                            Rising star joining the ensemble cast
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">RA</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Rose Abdoo</h3>
-                        <p class="role">Maryann</p>
-                        <div class="cast-bio">
-                            Known for "Gilmore Girls" and "Reno 911!"
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">LL</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Lauren Lapkus</h3>
-                        <p class="role">Jessa</p>
-                        <div class="cast-bio">
-                            Known for "Orange Is the New Black" and "The Wrong Missy"
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">MH</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Mary Holland</h3>
-                        <p class="role">Michelle</p>
-                        <div class="cast-bio">
-                            Known for "Happiest Season" and "Veep"
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">NB</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Neil Brown Jr.</h3>
-                        <p class="role">Bill</p>
-                        <div class="cast-bio">
-                            Known for "SEAL Team" and "Straight Outta Compton"
-                        </div>
-                    </div>
-                </div>
-                <div class="cast-card reveal">
-                    <div class="cast-image-placeholder">
-                        <div class="cast-initial">R</div>
-                    </div>
-                    <div class="cast-info">
-                        <h3>Retta</h3>
-                        <p class="role">Christine</p>
-                        <div class="cast-bio">
-                            Known for "Parks and Recreation" and "Good Girls"
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="crew-section">
-                <h3 class="subsection-title reveal">Filmmakers &amp; Crew</h3>
-                <div class="crew-grid">
-                    <div class="crew-card reveal">
-                        <h4>Alex Wall</h4>
-                        <p>Writer / Director</p>
-                    </div>
-                    <div class="crew-card reveal">
-                        <h4>Will Sterling</h4>
-                        <p>Writer / Director</p>
-                    </div>
-                    <div class="crew-card reveal">
-                        <h4>Ryan Tillotson</h4>
-                        <p>Producer</p>
-                    </div>
-                    <div class="crew-card reveal">
-                        <h4>Michael Amico</h4>
-                        <p>Director of Photography</p>
-                    </div>
-                    <div class="crew-card reveal">
-                        <h4>Josh Land</h4>
-                        <p>Editor</p>
-                    </div>
-                    <div class="crew-card reveal">
-                        <h4>Dillon Baldassero</h4>
-                        <p>Music</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- News Section -->
-    <section id="news" class="news">
-        <div class="container">
-            <h2 class="section-title reveal">Latest News</h2>
-            <div class="news-grid">
-                <article class="news-card reveal">
-                    <div class="news-date">October 2024</div>
-                    <h3>Billie Lourd Joins 'That Friend' Comedy Movie</h3>
-                    <p>
-                        Billie Lourd is starring in the comedy 'That Friend' opposite Harvey Guill&eacute;n and Josh Brener.
-                        The film is produced by Ryan Tillotson and Straw Hut Media.
-                    </p>
-                    <a href="https://deadline.com/2024/10/billie-lourd-that-friend-1236107779/"
-                       target="_blank"
-                       class="news-link">
-                       Read full article on Deadline →
-                    </a>
-                    <div class="news-source">Source: Deadline</div>
-                </article>
-
-                <article class="news-card reveal">
-                    <div class="news-date">August 2024</div>
-                    <h3>Josh Brener Joins Harvey Guill&eacute;n In 'That Friend' Comedy</h3>
-                    <p>
-                        Josh Brener has joined Harvey Guill&eacute;n in the indie bromance comedy 'That Friend.'
-                        Brener and Guill&eacute;n previously starred together in 'The Internship,' the 2013 comedy.
-                        Production began in December in Los Angeles and Palm Springs.
-                    </p>
-                    <a href="https://deadline.com/2024/08/josh-brener-joins-harvey-guillen-that-friend-comedy-1236044797/"
-                       target="_blank"
-                       class="news-link">
-                       Read full article on Deadline →
-                    </a>
-                    <div class="news-source">Source: Deadline</div>
-                </article>
-
-                <article class="news-card reveal">
-                    <div class="news-date">July 2024</div>
-                    <h3>Harvey Guill&eacute;n To Topline 'That Friend' Comedy</h3>
-                    <p>
-                        Harvey Guill&eacute;n has signed on to star in 'That Friend,' an indie bromance comedy from
-                        emerging filmmakers Will Sterling and Alex Wall. Production was slated to begin in December,
-                        with Ryan Tillotson and Straw Hut Media producing.
-                    </p>
-                    <a href="https://deadline.com/2024/07/harvey-guillen-to-topline-that-friend-comedy-will-sterling-alex-wall-1236023305/"
-                       target="_blank"
-                       class="news-link">
-                       Read full article on Deadline →
-                    </a>
-                    <div class="news-source">Source: Deadline</div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trailer Section -->
-    <section id="trailer" class="trailer">
-        <div class="container">
-            <h2 class="section-title reveal">Trailer</h2>
-            <div class="trailer-container reveal">
-                <div class="trailer-placeholder">
-                    <div class="play-icon">▶</div>
-                    <p class="trailer-text">Trailer Coming Soon</p>
-                    <p class="trailer-subtext">Check back for exclusive first look</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Credits Section -->
-    <section id="credits" class="credits">
-        <div class="container">
-            <h2 class="section-title reveal">Credits</h2>
-            <div class="credits-content reveal">
-                <div class="credits-column">
-                    <h3>Written &amp; Directed by</h3>
-                    <ul>
-                        <li>Alex Wall</li>
-                        <li>Will Sterling</li>
-                    </ul>
-
-                    <h3>Produced by</h3>
-                    <ul>
-                        <li>Ryan Tillotson</li>
-                    </ul>
-
-                    <h3>Executive Producers</h3>
-                    <ul>
-                        <li>Troy Hoffman</li>
-                        <li>Levi Chambers</li>
-                        <li>Stephen Markley</li>
-                        <li>Harvey Guill&eacute;n</li>
-                        <li>Billie Lourd</li>
-                        <li>Josh Brener</li>
-                        <li>Retta</li>
-                    </ul>
-
-                    <h3>Producers</h3>
-                    <ul>
-                        <li>Alex Wall</li>
-                        <li>Will Sterling</li>
-                    </ul>
-
-                    <h3>Co-Producer</h3>
-                    <ul>
-                        <li>Kristi Lugo</li>
-                    </ul>
-                </div>
-
-                <div class="credits-column">
-                    <h3>Cast</h3>
-                    <ul>
-                        <li>Harvey Guill&eacute;n</li>
-                        <li>Billie Lourd</li>
-                        <li>Josh Brener</li>
-                        <li>Miles Gutierrez-Riley</li>
-                        <li>Rose Abdoo</li>
-                        <li>Alok Vaid-Menon</li>
-                        <li>Lauren Lapkus</li>
-                        <li>Mary Holland</li>
-                    </ul>
-
-                    <h3>With</h3>
-                    <ul>
-                        <li>Neil Brown Jr.</li>
-                        <li>Retta</li>
-                    </ul>
-
-                    <h3>Key Crew</h3>
-                    <ul>
-                        <li>Michael Amico &mdash; Director of Photography</li>
-                        <li>Josh Land &mdash; Editor</li>
-                        <li>Dillon Baldassero &mdash; Music</li>
-                        <li>Lucia Lopez &mdash; Production Designer</li>
-                        <li>Kristi Lugo &mdash; Casting Director</li>
-                        <li>Scarlett McDonald &mdash; Music Supervisor</li>
-                    </ul>
-
-                    <h3>Production</h3>
-                    <ul>
-                        <li>A Bolo Production</li>
-                        <li>in association with Straw Hut Media</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">THAT FRIEND</div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#cast">Cast</a>
-                    <a href="#news">News</a>
-                    <a href="#credits">Credits</a>
-                    <a href="epk.html">Press Kit (EPK)</a>
-                </div>
-                <div class="footer-social">
-                    <p>Follow the journey</p>
-                    <!-- Social media links can be added here -->
-                </div>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>That Friend</h4>
+                <p>A Bolo Production<br>in association with Straw Hut Media</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024-2025 That Friend. Produced by Straw Hut Media. All rights reserved.</p>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Home</a><br>
+                <a href="about.html">About</a><br>
+                <a href="press.html">Press</a><br>
+                <a href="epk.html">EPK</a>
             </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Ryan Tillotson, Producer<br>Straw Hut Media</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024&ndash;2025 That Friend. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

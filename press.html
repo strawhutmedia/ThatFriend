@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press - That Friend</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">THAT FRIEND</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="press.html" class="active">Press</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1 class="page-title">Press</h1>
+        <p class="page-subtitle">Latest news &amp; coverage</p>
+    </div>
+
+    <div class="press-grid">
+        <div class="press-card">
+            <span class="press-source">Deadline</span>
+            <div class="press-date">October 2024</div>
+            <h3>Billie Lourd Joins 'That Friend' Comedy Movie</h3>
+            <p>Billie Lourd is starring in the comedy 'That Friend' opposite Harvey Guill&eacute;n and Josh Brener. The film is produced by Ryan Tillotson and Straw Hut Media.</p>
+            <a href="https://deadline.com/2024/10/billie-lourd-that-friend-1236107779/" target="_blank" class="press-link">Read on Deadline &rarr;</a>
+        </div>
+
+        <div class="press-card">
+            <span class="press-source">Deadline</span>
+            <div class="press-date">August 2024</div>
+            <h3>Josh Brener Joins Harvey Guill&eacute;n In 'That Friend' Comedy</h3>
+            <p>Josh Brener has joined Harvey Guill&eacute;n in the indie bromance comedy 'That Friend.' Brener and Guill&eacute;n previously starred together in 'The Internship.'</p>
+            <a href="https://deadline.com/2024/08/josh-brener-joins-harvey-guillen-that-friend-comedy-1236044797/" target="_blank" class="press-link">Read on Deadline &rarr;</a>
+        </div>
+
+        <div class="press-card">
+            <span class="press-source">Deadline</span>
+            <div class="press-date">July 2024</div>
+            <h3>Harvey Guill&eacute;n To Topline 'That Friend' Comedy</h3>
+            <p>Harvey Guill&eacute;n has signed on to star in 'That Friend,' an indie bromance comedy from emerging filmmakers Will Sterling and Alex Wall.</p>
+            <a href="https://deadline.com/2024/07/harvey-guillen-to-topline-that-friend-comedy-will-sterling-alex-wall-1236023305/" target="_blank" class="press-link">Read on Deadline &rarr;</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>That Friend</h4>
+                <p>A Bolo Production<br>in association with Straw Hut Media</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="press.html">Press</a>
+                <a href="epk.html">EPK</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Ryan Tillotson, Producer<br>Straw Hut Media</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024&ndash;2025 That Friend. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
