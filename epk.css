@@ -108,6 +108,25 @@ body {
     background: var(--teal-dark);
 }
 
+.epk-laurels {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.laurel {
+    display: inline-block;
+    border: 2px solid var(--gold);
+    padding: 0.6rem 1.5rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-align: center;
+}
+
 .epk-cover-poster {
     max-width: 600px;
     margin: 0 auto;
