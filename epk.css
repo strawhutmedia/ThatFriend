@@ -287,6 +287,100 @@ body {
     font-size: 1rem;
 }
 
+/* Crew subheadings */
+.crew-subheading {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: var(--dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(77, 184, 196, 0.2);
+}
+
+/* Full Cast - two column layout */
+.epk-full-cast .cast-table {
+    columns: 2;
+    column-gap: 2rem;
+}
+
+.epk-full-cast .cast-row {
+    display: flex;
+    gap: 1rem;
+    break-inside: avoid;
+    grid-template-columns: none;
+}
+
+.epk-full-cast .actor-name {
+    min-width: 180px;
+}
+
+/* Songs */
+.songs-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-entry {
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid rgba(77, 184, 196, 0.1);
+}
+
+.song-entry:last-child {
+    border-bottom: none;
+}
+
+.song-title {
+    display: block;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.2rem;
+}
+
+.song-detail {
+    display: block;
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+/* Locations */
+.locations-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.location {
+    background: var(--accent-bg);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    border-left: 3px solid var(--primary);
+}
+
+.equipment-list {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+/* Alternating section backgrounds */
+.epk-production {
+    background: var(--light);
+}
+
+.epk-songs {
+    background: var(--white);
+}
+
+.epk-locations {
+    background: var(--light);
+}
+
 /* Press Coverage */
 .epk-press {
     background: var(--light);
