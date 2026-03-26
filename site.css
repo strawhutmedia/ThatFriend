@@ -116,12 +116,16 @@ a:hover { color: var(--orange-dark); }
 
 .hero-video {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    width: 177.78vh; /* 16:9 ratio */
+    min-width: 100%;
+    height: 100vh;
+    min-height: 56.25vw; /* 16:9 ratio */
+    transform: translate(-50%, -50%);
+    border: 0;
     opacity: 0.5;
+    pointer-events: none;
 }
 
 .hero-video-fallback {
@@ -153,21 +157,14 @@ a:hover { color: var(--orange-dark); }
 .laurels {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
     margin-bottom: 2rem;
 }
 
-.laurel {
-    display: inline-block;
-    border: 2px solid var(--white);
-    padding: 0.5rem 1.5rem;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 0.95rem;
-    letter-spacing: 3px;
-    color: var(--white);
-    background: rgba(0,0,0,0.15);
-    backdrop-filter: blur(4px);
+.laurel-img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 
 .hero-title {
