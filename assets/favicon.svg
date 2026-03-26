@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5ec9d5"/>
+      <stop offset="100%" stop-color="#4DB8C4"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="url(#sky)"/>
+  <!-- Palm tree trunk -->
+  <path d="M30 58 L32 34 L34 58 Z" fill="#8B6914" opacity="0.9"/>
+  <!-- Palm fronds -->
+  <path d="M32 32 C28 28 18 26 14 30 C20 24 28 24 32 28Z" fill="#2d8a5e"/>
+  <path d="M32 32 C32 26 28 16 22 14 C28 18 30 24 32 28Z" fill="#3a9d6a"/>
+  <path d="M32 32 C36 28 46 26 50 30 C44 24 36 24 32 28Z" fill="#2d8a5e"/>
+  <path d="M32 32 C32 26 36 16 42 14 C36 18 34 24 32 28Z" fill="#3a9d6a"/>
+  <path d="M32 32 C34 26 40 20 46 20 C40 22 36 26 32 28Z" fill="#35945f"/>
+  <!-- Orange speech bubble -->
+  <ellipse cx="22" cy="46" rx="12" ry="8" fill="#FF8C42"/>
+  <path d="M28 52 L32 58 L26 51Z" fill="#FF8C42"/>
+  <!-- TF text in bubble -->
+  <text x="22" y="49" font-family="Arial,sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle">TF</text>
+</svg>
