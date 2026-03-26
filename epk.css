@@ -1,4 +1,5 @@
 /* EPK Styles - That Friend Electronic Press Kit */
+/* Inspired by The Mason Ring EPK - dark cinematic teal layout */
 
 /* Reset */
 *, *::before, *::after {
@@ -8,14 +9,17 @@
 }
 
 :root {
-    --primary: #4DB8C4;
-    --secondary: #FF8C42;
+    --teal-dark: #1a3a4a;
+    --teal-mid: #1f4a5a;
+    --teal-light: #2a5a6a;
+    --cream: #f0e6d3;
+    --gold: #c9a96e;
+    --white: #ffffff;
+    --orange: #FF8C42;
     --green: #68B684;
-    --dark: #2C3E50;
-    --gray: #5A6C7D;
-    --light: #F8FAFB;
-    --accent-bg: #E8F7F9;
-    --white: #FFFFFF;
+    --text-light: #d4cfc5;
+    --text-dim: #8a9aa5;
+    --border-teal: rgba(74, 160, 180, 0.25);
 }
 
 html {
@@ -24,34 +28,33 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: var(--white);
-    color: var(--dark);
-    line-height: 1.6;
+    background: var(--teal-dark);
+    color: var(--cream);
+    line-height: 1.7;
 }
 
-/* Navigation */
+/* Navigation - screen only */
 .epk-nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(26, 58, 74, 0.95);
     backdrop-filter: blur(10px);
     z-index: 100;
-    border-bottom: 3px solid var(--primary);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-bottom: 2px solid var(--gold);
 }
 
 .epk-nav-inner {
-    max-width: 1100px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 0.8rem 2rem;
+    padding: 0.7rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .back-link {
-    color: var(--primary);
+    color: var(--gold);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
@@ -59,25 +62,25 @@ body {
 }
 
 .back-link:hover {
-    color: var(--green);
+    color: var(--cream);
 }
 
 .epk-nav-title {
     font-family: 'Bebas Neue', cursive;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     letter-spacing: 3px;
-    color: var(--dark);
+    color: var(--cream);
 }
 
 .btn-download {
-    background: var(--secondary);
+    background: var(--orange);
     color: white;
     border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s;
     text-transform: uppercase;
@@ -86,245 +89,435 @@ body {
 
 .btn-download:hover {
     background: #e67a30;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+    transform: translateY(-1px);
 }
 
 /* Main Content */
 .epk-main {
-    max-width: 1100px;
+    max-width: 900px;
     margin: 0 auto;
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
-/* Hero */
-.epk-hero {
-    background: linear-gradient(135deg, var(--primary) 0%, #5EC9D5 100%);
-    padding: 3rem;
-    color: white;
+/* ============================================
+   SECTION 1: COVER / POSTER
+   ============================================ */
+.epk-cover {
+    text-align: center;
+    padding: 2rem 2rem 1rem;
+    background: var(--teal-dark);
 }
 
-.epk-hero-inner {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 3rem;
-    align-items: center;
+.epk-cover-poster {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.epk-poster img {
+.epk-cover-poster img {
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-    border: 3px solid rgba(255, 255, 255, 0.5);
-}
-
-.epk-hero-text h1 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 4.5rem;
-    letter-spacing: 6px;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.epk-subtitle {
-    font-size: 1.3rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    letter-spacing: 2px;
-    opacity: 0.9;
-}
-
-.epk-quick-facts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.fact {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 0.8rem 1rem;
     border-radius: 8px;
-    border-left: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.fact-label {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.8;
-    margin-bottom: 0.2rem;
-    font-weight: 600;
-}
-
-.fact-value {
-    font-weight: 700;
-    font-size: 0.95rem;
-}
-
-.fact-value a {
-    color: white;
-    text-decoration: underline;
-}
-
-/* Sections */
+/* ============================================
+   SECTION 2: LOGLINE + SYNOPSIS + TRAILER
+   ============================================ */
 .epk-section {
-    padding: 3rem;
-    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
+    padding: 3rem 3rem;
+    background: var(--teal-mid);
+    border-bottom: 1px solid var(--border-teal);
+}
+
+.epk-section-dark {
+    background: var(--teal-dark);
 }
 
 .epk-section h2 {
     font-family: 'Bebas Neue', cursive;
-    font-size: 2.2rem;
-    letter-spacing: 4px;
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    color: var(--cream);
+    text-align: center;
     margin-bottom: 1.5rem;
-    color: var(--primary);
-    border-bottom: 3px solid var(--primary);
-    display: inline-block;
-    padding-bottom: 0.3rem;
+}
+
+.epk-section h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 /* Logline */
-.epk-logline {
-    background: var(--light);
-}
-
-.epk-logline blockquote {
-    font-size: 1.25rem;
+.epk-logline-text {
+    font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--dark);
-    border-left: 4px solid var(--secondary);
-    padding-left: 1.5rem;
-    font-style: italic;
+    color: var(--cream);
+    text-align: justify;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 /* Synopsis */
-.epk-synopsis p {
-    font-size: 1.05rem;
+.epk-synopsis-text {
+    font-size: 0.95rem;
     line-height: 1.9;
-    color: var(--gray);
+    color: var(--text-light);
+    text-align: justify;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.epk-synopsis-text p {
     margin-bottom: 1rem;
 }
 
-.epk-synopsis p:last-child {
-    margin-bottom: 0;
+/* Quick facts bar */
+.epk-facts-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1.5rem 0;
+    margin: 1.5rem 0;
+    border-top: 1px solid var(--border-teal);
+    border-bottom: 1px solid var(--border-teal);
 }
 
-/* Cast Table */
-.cast-table {
+.epk-fact {
+    text-align: center;
+}
+
+.epk-fact-label {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.epk-fact-value {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--cream);
+}
+
+.epk-fact-value a {
+    color: var(--cream);
+    text-decoration: underline;
+}
+
+/* Trailer placeholder */
+.epk-trailer-section {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.epk-trailer-thumb {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid var(--border-teal);
+}
+
+.epk-trailer-thumb img {
+    width: 100%;
+    display: block;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.epk-trailer-thumb:hover img {
+    opacity: 0.9;
+}
+
+.trailer-play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   SECTION 3: DIRECTOR'S STATEMENT
+   ============================================ */
+.epk-statement-text {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--text-light);
+    text-align: justify;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.epk-statement-text p {
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   SECTION 4: PRODUCTION STILLS
+   ============================================ */
+.epk-stills {
+    padding: 0;
+    background: var(--teal-mid);
+}
+
+.epk-stills-grid {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 4px;
 }
 
-.cast-row {
-    display: grid;
-    grid-template-columns: 200px 100px 1fr;
-    gap: 1rem;
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
+.epk-stills-grid img {
+    width: 100%;
+    display: block;
+}
+
+.still-placeholder {
+    background: var(--teal-light);
+    aspect-ratio: 16/9;
+    display: flex;
     align-items: center;
-    transition: background 0.3s;
-}
-
-.cast-row:hover {
-    background: var(--accent-bg);
-}
-
-.cast-row:last-child {
-    border-bottom: none;
-}
-
-.actor-name {
-    font-weight: 700;
-    color: var(--dark);
-    font-size: 1rem;
-}
-
-.role-name {
-    color: var(--secondary);
-    font-weight: 600;
-    text-transform: uppercase;
+    justify-content: center;
+    color: var(--text-dim);
     font-size: 0.85rem;
-    letter-spacing: 1px;
+    font-style: italic;
+    border: 1px dashed var(--border-teal);
 }
 
-.actor-known {
-    color: var(--gray);
-    font-size: 0.9rem;
+/* ============================================
+   SECTION 5+: FILMMAKER BIOS
+   ============================================ */
+.bio-entry {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: start;
+}
+
+.bio-entry.bio-right {
+    grid-template-columns: 1fr 200px;
+}
+
+.bio-photo {
+    width: 200px;
+    height: 250px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--teal-light);
+    border: 1px dashed var(--border-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
     font-style: italic;
 }
 
-/* Crew Table */
-.crew-table {
-    display: flex;
-    flex-direction: column;
+.bio-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.crew-row {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 1rem;
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
-    align-items: center;
+.bio-text h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--cream);
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
-.crew-row:last-child {
-    border-bottom: none;
-}
-
-.crew-role {
-    font-weight: 700;
-    color: var(--primary);
+.bio-text .bio-role {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
     text-transform: uppercase;
+}
+
+.bio-text p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    text-align: justify;
+}
+
+/* ============================================
+   SECTION: CAST BIOS
+   ============================================ */
+.cast-bio-entry {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    align-items: start;
+}
+
+.cast-bio-entry.cast-right {
+    grid-template-columns: 1fr 180px;
+}
+
+.cast-bio-photo {
+    width: 180px;
+    height: 220px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--teal-light);
+    border: 1px dashed var(--border-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.cast-bio-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cast-bio-text h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--cream);
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.cast-bio-text .cast-character {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+}
+
+.cast-bio-text p {
     font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    text-align: justify;
+}
+
+/* ============================================
+   SECTION: FULL CREDITS (two-column table)
+   ============================================ */
+.credits-block {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+.credits-block h3 {
+    text-align: center;
+}
+
+.credit-line {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.25rem 0;
+    font-size: 0.82rem;
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.crew-name {
-    color: var(--dark);
-    font-size: 1rem;
+.credit-role {
+    text-align: right;
+    flex: 1;
+    color: var(--gold);
+    font-weight: 700;
 }
 
-/* Crew subheadings */
-.crew-subheading {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    color: var(--dark);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid rgba(77, 184, 196, 0.2);
+.credit-name {
+    text-align: left;
+    flex: 1;
+    color: var(--cream);
+    font-weight: 600;
 }
 
-/* Full Cast - two column layout */
-.epk-full-cast .cast-table {
-    columns: 2;
-    column-gap: 2rem;
+/* ============================================
+   SECTION: PRESS
+   ============================================ */
+.press-entry {
+    margin-bottom: 0.8rem;
 }
 
-.epk-full-cast .cast-row {
-    display: flex;
-    gap: 1rem;
-    break-inside: avoid;
-    grid-template-columns: none;
+.press-entry a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
 }
 
-.epk-full-cast .actor-name {
-    min-width: 180px;
+.press-entry a:hover {
+    color: var(--cream);
 }
 
-/* Songs */
+.press-entry .press-url {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    margin-top: 0.1rem;
+    word-break: break-all;
+}
+
+/* ============================================
+   SECTION: TECH SPECS
+   ============================================ */
+.tech-specs-list {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.tech-spec {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.tech-spec-label {
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.tech-spec-value {
+    color: var(--cream);
+}
+
+/* ============================================
+   SECTION: SONGS
+   ============================================ */
 .songs-list {
-    display: flex;
-    flex-direction: column;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 .song-entry {
-    padding: 0.8rem 1.2rem;
-    border-bottom: 1px solid rgba(77, 184, 196, 0.1);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(74, 160, 180, 0.1);
 }
 
 .song-entry:last-child {
@@ -332,223 +525,192 @@ body {
 }
 
 .song-title {
-    display: block;
     font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 0.2rem;
+    color: var(--cream);
+    font-size: 0.9rem;
 }
 
 .song-detail {
-    display: block;
-    color: var(--gray);
-    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-size: 0.8rem;
     line-height: 1.5;
 }
 
-/* Locations */
+/* ============================================
+   SECTION: LOCATIONS
+   ============================================ */
 .locations-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
 }
 
 .location {
-    background: var(--accent-bg);
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    background: rgba(74, 160, 180, 0.15);
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
     font-weight: 600;
-    color: var(--dark);
-    border-left: 3px solid var(--primary);
+    font-size: 0.85rem;
+    color: var(--cream);
+    border-left: 3px solid var(--gold);
+    letter-spacing: 0.5px;
 }
 
-.equipment-list {
-    color: var(--gray);
-    font-size: 0.9rem;
+.equipment-text {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-align: center;
     line-height: 1.8;
 }
 
-/* Alternating section backgrounds */
-.epk-production {
-    background: var(--light);
+/* ============================================
+   SECTION: CONTACT / CLOSING
+   ============================================ */
+.epk-closing {
+    text-align: center;
+    padding: 4rem 3rem;
+    background: var(--teal-dark);
 }
 
-.epk-songs {
-    background: var(--white);
-}
-
-.epk-locations {
-    background: var(--light);
-}
-
-/* Press Coverage */
-.epk-press {
-    background: var(--light);
-}
-
-.press-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.press-item {
-    display: grid;
-    grid-template-columns: 100px 1fr 120px;
-    gap: 1rem;
-    padding: 1.2rem;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
-    transition: all 0.3s;
-    align-items: center;
-}
-
-.press-item:hover {
-    background: var(--accent-bg);
-    padding-left: 1.8rem;
-}
-
-.press-item:last-child {
-    border-bottom: none;
-}
-
-.press-source {
-    font-weight: 700;
-    color: var(--secondary);
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-.press-title {
-    color: var(--dark);
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.press-date {
-    color: var(--gray);
-    font-size: 0.85rem;
-    text-align: right;
-}
-
-/* Contact */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.contact-card {
-    background: var(--accent-bg);
-    padding: 1.5rem;
-    border-radius: 10px;
-    border-left: 4px solid var(--primary);
-}
-
-.contact-card h3 {
+.epk-closing-title {
     font-family: 'Bebas Neue', cursive;
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    color: var(--primary);
+    font-size: 4rem;
+    letter-spacing: 6px;
+    color: var(--cream);
+    margin-bottom: 2rem;
+}
+
+.epk-contact-info {
+    margin-top: 1.5rem;
+}
+
+.epk-contact-info h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: var(--gold);
     margin-bottom: 0.5rem;
 }
 
-.contact-card p {
-    color: var(--gray);
-    font-size: 0.95rem;
-    line-height: 1.6;
+.epk-contact-info p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.epk-contact-info a {
+    color: var(--gold);
+    text-decoration: none;
 }
 
 /* Footer */
 .epk-footer {
-    padding: 2rem 3rem;
+    padding: 1.5rem 3rem;
     text-align: center;
-    color: var(--gray);
-    font-size: 0.85rem;
-    border-top: 3px solid var(--primary);
-    background: var(--dark);
-    color: #B0C4DE;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border-teal);
+    background: var(--teal-dark);
 }
 
-.epk-footer-link {
-    margin-top: 0.5rem;
-}
-
-.epk-footer-link a {
-    color: var(--primary);
+.epk-footer a {
+    color: var(--gold);
     text-decoration: none;
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 768px) {
-    .epk-hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .epk-poster {
-        max-width: 280px;
-        margin: 0 auto;
-    }
-
-    .epk-hero-text h1 {
-        font-size: 3rem;
-    }
-
-    .epk-quick-facts {
-        grid-template-columns: 1fr;
-    }
-
     .epk-section {
         padding: 2rem 1.5rem;
     }
 
-    .cast-row {
-        grid-template-columns: 1fr;
-        gap: 0.3rem;
+    .epk-section h2 {
+        font-size: 2rem;
     }
 
-    .crew-row {
+    .bio-entry,
+    .bio-entry.bio-right {
         grid-template-columns: 1fr;
-        gap: 0.3rem;
+        text-align: center;
     }
 
-    .press-item {
-        grid-template-columns: 1fr;
-        gap: 0.3rem;
+    .bio-photo {
+        margin: 0 auto 1rem;
     }
 
-    .press-date {
-        text-align: left;
+    .bio-text p,
+    .bio-text .bio-role {
+        text-align: center;
+    }
+
+    .cast-bio-entry,
+    .cast-bio-entry.cast-right {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .cast-bio-photo {
+        margin: 0 auto 1rem;
+    }
+
+    .cast-bio-text p,
+    .cast-bio-text .cast-character {
+        text-align: center;
+    }
+
+    .credit-line {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .credit-role,
+    .credit-name {
+        text-align: center;
+    }
+
+    .epk-facts-bar {
+        gap: 1rem;
     }
 
     .epk-nav-inner {
-        padding: 0.6rem 1rem;
+        padding: 0.5rem 1rem;
         gap: 0.5rem;
     }
 
     .epk-nav-title {
         display: none;
     }
+
+    .epk-closing-title {
+        font-size: 2.5rem;
+    }
 }
 
 @media (max-width: 480px) {
-    .epk-hero {
-        padding: 2rem 1rem;
-    }
-
-    .epk-hero-text h1 {
-        font-size: 2.5rem;
-        letter-spacing: 3px;
-    }
-
     .epk-section h2 {
         font-size: 1.8rem;
     }
+
+    .epk-logline-text {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .epk-synopsis-text,
+    .epk-statement-text {
+        text-align: left;
+    }
 }
 
-/* Print Styles - for downloadable PDF */
+/* ============================================
+   PRINT STYLES
+   ============================================ */
 @media print {
     .epk-nav {
         display: none;
@@ -556,56 +718,89 @@ body {
 
     .epk-main {
         padding-top: 0;
+        max-width: 100%;
     }
 
-    .epk-hero {
-        background: var(--primary) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+    body {
+        background: white;
+        color: #333;
+        font-size: 10pt;
     }
 
-    .epk-hero-inner {
-        grid-template-columns: 250px 1fr;
-    }
-
-    .epk-poster img {
-        box-shadow: none;
-    }
-
-    .epk-section {
-        padding: 1.5rem 2rem;
+    .epk-section,
+    .epk-section-dark,
+    .epk-cover,
+    .epk-stills,
+    .epk-closing {
+        background: white !important;
+        color: #333 !important;
+        border-bottom: 1px solid #ddd;
         break-inside: avoid;
     }
 
-    .epk-logline,
-    .epk-press {
-        background: var(--light) !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+    .epk-section h2 {
+        color: #1a3a4a !important;
     }
 
-    .press-item:hover,
-    .cast-row:hover {
-        background: none;
-        padding-left: 1.2rem;
+    .epk-section h3,
+    .bio-text .bio-role,
+    .cast-bio-text .cast-character,
+    .credit-role,
+    .epk-fact-label,
+    .tech-spec-label,
+    .press-entry a,
+    .epk-contact-info h3 {
+        color: #1a3a4a !important;
+    }
+
+    .epk-logline-text,
+    .epk-synopsis-text,
+    .epk-statement-text,
+    .bio-text p,
+    .cast-bio-text p,
+    .credit-name,
+    .epk-fact-value,
+    .tech-spec-value,
+    .song-title,
+    .song-detail,
+    .location,
+    .equipment-text,
+    .epk-contact-info p,
+    .bio-text h3,
+    .cast-bio-text h3 {
+        color: #333 !important;
+    }
+
+    .epk-cover-poster img {
+        max-width: 400px;
+        box-shadow: none;
+    }
+
+    .still-placeholder {
+        display: none;
+    }
+
+    .epk-closing-title {
+        color: #1a3a4a !important;
+        font-size: 3rem;
     }
 
     .epk-footer {
-        background: var(--dark) !important;
-        color: #B0C4DE !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        background: white !important;
+        color: #666 !important;
+        border-top: 1px solid #ddd;
+    }
+
+    .epk-footer a {
+        color: #1a3a4a !important;
     }
 
     a {
         text-decoration: none !important;
     }
 
-    body {
-        font-size: 11pt;
-    }
-
-    .epk-hero-text h1 {
-        font-size: 3rem;
+    .location {
+        background: #f0f0f0 !important;
+        border-left-color: #1a3a4a !important;
     }
 }
