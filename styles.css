@@ -107,6 +107,23 @@ body {
     width: 100%;
 }
 
+.epk-link {
+    background: var(--secondary-color);
+    color: white !important;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem !important;
+}
+
+.epk-link:hover {
+    background: #e67a30;
+    color: white !important;
+}
+
+.epk-link::after {
+    display: none !important;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;

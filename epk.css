@@ -1,0 +1,517 @@
+/* EPK Styles - That Friend Electronic Press Kit */
+
+/* Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4DB8C4;
+    --secondary: #FF8C42;
+    --green: #68B684;
+    --dark: #2C3E50;
+    --gray: #5A6C7D;
+    --light: #F8FAFB;
+    --accent-bg: #E8F7F9;
+    --white: #FFFFFF;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* Navigation */
+.epk-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 3px solid var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.epk-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: var(--green);
+}
+
+.epk-nav-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    color: var(--dark);
+}
+
+.btn-download {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-download:hover {
+    background: #e67a30;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+}
+
+/* Main Content */
+.epk-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 70px;
+}
+
+/* Hero */
+.epk-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #5EC9D5 100%);
+    padding: 3rem;
+    color: white;
+}
+
+.epk-hero-inner {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.epk-poster img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.epk-hero-text h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 4.5rem;
+    letter-spacing: 6px;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.epk-subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+.epk-quick-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.fact {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border-left: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.fact-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.fact-value {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.fact-value a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Sections */
+.epk-section {
+    padding: 3rem;
+    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
+}
+
+.epk-section h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+/* Logline */
+.epk-logline {
+    background: var(--light);
+}
+
+.epk-logline blockquote {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--dark);
+    border-left: 4px solid var(--secondary);
+    padding-left: 1.5rem;
+    font-style: italic;
+}
+
+/* Synopsis */
+.epk-synopsis p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+
+.epk-synopsis p:last-child {
+    margin-bottom: 0;
+}
+
+/* Cast Table */
+.cast-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.cast-row {
+    display: grid;
+    grid-template-columns: 200px 100px 1fr;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.cast-row:hover {
+    background: var(--accent-bg);
+}
+
+.cast-row:last-child {
+    border-bottom: none;
+}
+
+.actor-name {
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 1rem;
+}
+
+.role-name {
+    color: var(--secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.actor-known {
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Crew Table */
+.crew-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.crew-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
+    align-items: center;
+}
+
+.crew-row:last-child {
+    border-bottom: none;
+}
+
+.crew-role {
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.crew-name {
+    color: var(--dark);
+    font-size: 1rem;
+}
+
+/* Press Coverage */
+.epk-press {
+    background: var(--light);
+}
+
+.press-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.press-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 120px;
+    gap: 1rem;
+    padding: 1.2rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(77, 184, 196, 0.15);
+    transition: all 0.3s;
+    align-items: center;
+}
+
+.press-item:hover {
+    background: var(--accent-bg);
+    padding-left: 1.8rem;
+}
+
+.press-item:last-child {
+    border-bottom: none;
+}
+
+.press-source {
+    font-weight: 700;
+    color: var(--secondary);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.press-title {
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.press-date {
+    color: var(--gray);
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+/* Contact */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-card {
+    background: var(--accent-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+}
+
+.contact-card h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Footer */
+.epk-footer {
+    padding: 2rem 3rem;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+    border-top: 3px solid var(--primary);
+    background: var(--dark);
+    color: #B0C4DE;
+}
+
+.epk-footer-link {
+    margin-top: 0.5rem;
+}
+
+.epk-footer-link a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .epk-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .epk-poster {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .epk-hero-text h1 {
+        font-size: 3rem;
+    }
+
+    .epk-quick-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .epk-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .cast-row {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+    }
+
+    .crew-row {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+    }
+
+    .press-item {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+    }
+
+    .press-date {
+        text-align: left;
+    }
+
+    .epk-nav-inner {
+        padding: 0.6rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .epk-nav-title {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .epk-hero {
+        padding: 2rem 1rem;
+    }
+
+    .epk-hero-text h1 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+    }
+
+    .epk-section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Print Styles - for downloadable PDF */
+@media print {
+    .epk-nav {
+        display: none;
+    }
+
+    .epk-main {
+        padding-top: 0;
+    }
+
+    .epk-hero {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .epk-hero-inner {
+        grid-template-columns: 250px 1fr;
+    }
+
+    .epk-poster img {
+        box-shadow: none;
+    }
+
+    .epk-section {
+        padding: 1.5rem 2rem;
+        break-inside: avoid;
+    }
+
+    .epk-logline,
+    .epk-press {
+        background: var(--light) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .press-item:hover,
+    .cast-row:hover {
+        background: none;
+        padding-left: 1.2rem;
+    }
+
+    .epk-footer {
+        background: var(--dark) !important;
+        color: #B0C4DE !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    body {
+        font-size: 11pt;
+    }
+
+    .epk-hero-text h1 {
+        font-size: 3rem;
+    }
+}
