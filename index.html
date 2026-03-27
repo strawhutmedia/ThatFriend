@@ -42,7 +42,7 @@
 
     <!-- Poster -->
     <section class="poster-section">
-        <div class="poster-frame">
+        <div class="poster-frame reveal">
             <img src="assets/poster.jpg" alt="That Friend - Official Poster">
         </div>
     </section>
@@ -93,6 +93,16 @@
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
         });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

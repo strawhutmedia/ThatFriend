@@ -31,7 +31,7 @@
     </div>
 
     <!-- Synopsis -->
-    <div class="content-section">
+    <div class="content-section reveal">
         <h2>Synopsis</h2>
         <p><strong>That Friend</strong> is an indie bromance comedy about Paul (Harvey Guill&eacute;n) &mdash; you know, <em>that friend</em> whose invitation for &ldquo;one drink&rdquo; seems harmless but inevitably leads to chaotic consequences.</p>
         <p>When Paul crashes his best friend Henry's (Josh Brener) romantic weekend in Palm Springs with his new girlfriend Penny (Billie Lourd), what starts as an innocent visit spirals into mayhem after Paul's drug-laced cigarettes disappear into a stranger's hands.</p>
@@ -45,10 +45,10 @@
     </div>
 
     <!-- Cast -->
-    <div class="content-section" style="text-align:center;">
+    <div class="content-section reveal" style="text-align:center;">
         <h2>Cast</h2>
     </div>
-    <div class="cast-grid">
+    <div class="cast-grid reveal">
         <div class="cast-card"><div class="cast-photo"><img src="https://placehold.co/300x400/1a3a4a/ffffff?text=Harvey+Guill%C3%A9n" alt="Harvey Guillén"></div><h3>Harvey Guill&eacute;n</h3><div class="role">Paul</div></div>
         <div class="cast-card"><div class="cast-photo"><img src="https://placehold.co/300x400/1a3a4a/ffffff?text=Billie+Lourd" alt="Billie Lourd"></div><h3>Billie Lourd</h3><div class="role">Penny</div></div>
         <div class="cast-card"><div class="cast-photo"><img src="https://placehold.co/300x400/1a3a4a/ffffff?text=Josh+Brener" alt="Josh Brener"></div><h3>Josh Brener</h3><div class="role">Henry</div></div>
@@ -62,10 +62,10 @@
     </div>
 
     <!-- Key Crew -->
-    <div class="content-section" style="text-align:center;">
+    <div class="content-section reveal" style="text-align:center;">
         <h2>Key Crew</h2>
     </div>
-    <div class="crew-grid">
+    <div class="crew-grid reveal">
         <div class="crew-item"><span class="crew-role">Written &amp; Directed by</span><span class="crew-name">Alex Wall &amp; Will Sterling</span></div>
         <div class="crew-item"><span class="crew-role">Produced by</span><span class="crew-name">Ryan Tillotson</span></div>
         <div class="crew-item"><span class="crew-role">Executive Producers</span><span class="crew-name">Troy Hoffman, Levi Chambers, Stephen Markley</span></div>
@@ -77,7 +77,7 @@
     </div>
 
     <!-- EPK Download -->
-    <div class="epk-download">
+    <div class="epk-download reveal">
         <h2>Electronic Press Kit</h2>
         <p>Download the full EPK with complete credits, cast &amp; crew bios, song credits, and more.</p>
         <a href="epk.html" class="btn-epk">View EPK</a>
@@ -129,6 +129,13 @@
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
         });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

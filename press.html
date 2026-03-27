@@ -31,7 +31,7 @@
     </div>
 
     <div class="press-grid">
-        <a href="https://deadline.com/2024/10/billie-lourd-that-friend-1236107779/" target="_blank" class="press-card">
+        <a href="https://deadline.com/2024/10/billie-lourd-that-friend-1236107779/" target="_blank" class="press-card reveal">
             <span class="press-source">Deadline</span>
             <div class="press-date">October 2024</div>
             <h3>Billie Lourd Joins 'That Friend' Comedy Movie</h3>
@@ -39,7 +39,7 @@
             <span class="press-link">Read on Deadline &rarr;</span>
         </a>
 
-        <a href="https://deadline.com/2024/08/josh-brener-joins-harvey-guillen-that-friend-comedy-1236044797/" target="_blank" class="press-card">
+        <a href="https://deadline.com/2024/08/josh-brener-joins-harvey-guillen-that-friend-comedy-1236044797/" target="_blank" class="press-card reveal">
             <span class="press-source">Deadline</span>
             <div class="press-date">August 2024</div>
             <h3>Josh Brener Joins Harvey Guill&eacute;n In 'That Friend' Comedy</h3>
@@ -47,7 +47,7 @@
             <span class="press-link">Read on Deadline &rarr;</span>
         </a>
 
-        <a href="https://deadline.com/2024/07/harvey-guillen-to-topline-that-friend-comedy-will-sterling-alex-wall-1236023305/" target="_blank" class="press-card">
+        <a href="https://deadline.com/2024/07/harvey-guillen-to-topline-that-friend-comedy-will-sterling-alex-wall-1236023305/" target="_blank" class="press-card reveal">
             <span class="press-source">Deadline</span>
             <div class="press-date">July 2024</div>
             <h3>Harvey Guill&eacute;n To Topline 'That Friend' Comedy</h3>
@@ -102,6 +102,13 @@
         document.getElementById('hamburger').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
         });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
