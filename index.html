@@ -63,29 +63,25 @@
                 <a href="press.html">Press</a><br>
                 <a href="epk.html">EPK</a>
             </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>Ryan Tillotson, Producer<br>Straw Hut Media</p>
+            <div class="footer-col footer-col-form">
+                <h4>Get in Touch</h4>
+                <form action="https://formspree.io/f/xnjondvq" method="POST" class="contact-form">
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <select name="subject">
+                        <option value="" disabled selected>Subject</option>
+                        <option value="Press Inquiry">Press Inquiry</option>
+                        <option value="Distribution">Distribution</option>
+                        <option value="Screening Request">Screening Request</option>
+                        <option value="General">General</option>
+                    </select>
+                    <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                    <button type="submit" class="btn-contact">Send Message</button>
+                </form>
             </div>
-        </div>
-        <div class="footer-contact-form">
-            <h4>Get in Touch</h4>
-            <form action="https://formspree.io/f/xnjondvq" method="POST" class="contact-form">
-                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-                <div class="form-row">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                </div>
-                <select name="subject">
-                    <option value="" disabled selected>Subject</option>
-                    <option value="Press Inquiry">Press Inquiry</option>
-                    <option value="Distribution">Distribution</option>
-                    <option value="Screening Request">Screening Request</option>
-                    <option value="General">General</option>
-                </select>
-                <textarea name="message" placeholder="Message" rows="3" required></textarea>
-                <button type="submit" class="btn-contact">Send Message</button>
-            </form>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2024&ndash;2025 That Friend. All rights reserved.</p>
