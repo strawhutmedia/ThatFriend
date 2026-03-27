@@ -265,9 +265,16 @@ a:hover { color: var(--orange-dark); }
 }
 
 /* ---- POSTER SECTION ---- */
+.hero-poster-spacer {
+    height: 6rem;
+    background: var(--sky);
+    position: relative;
+    z-index: 5;
+}
+
 .poster-section {
     background: var(--sky);
-    padding: 8rem 2rem 6rem;
+    padding: 0 2rem 6rem;
     text-align: center;
     position: relative;
     z-index: 5;
@@ -413,6 +420,38 @@ a:hover { color: var(--orange-dark); }
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255,140,66,0.5);
+}
+
+/* Production Stills */
+.stills-section {
+    background: var(--sky);
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.stills-section h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    letter-spacing: 4px;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--orange);
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+.stills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.stills-grid img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
 }
 
 /* Cast grid */
@@ -751,6 +790,10 @@ a:hover { color: var(--orange-dark); }
 
     .cast-grid {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .stills-grid {
+        grid-template-columns: 1fr;
     }
 }
 
