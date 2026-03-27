@@ -503,10 +503,11 @@ a:hover { color: var(--orange-dark); }
     padding: 0.4rem 0;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     font-size: 0.85rem;
+    gap: 1rem;
 }
 
-.crew-item .crew-role { color: var(--orange); font-weight: 700; }
-.crew-item .crew-name { color: var(--text-soft); }
+.crew-item .crew-role { color: var(--orange); font-weight: 700; white-space: nowrap; }
+.crew-item .crew-name { color: var(--text-soft); text-align: right; }
 
 /* ---- PRESS PAGE ---- */
 .press-grid {
