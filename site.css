@@ -267,7 +267,7 @@ a:hover { color: var(--orange-dark); }
 /* ---- POSTER SECTION ---- */
 .poster-section {
     background: var(--sky);
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
     text-align: center;
 }
 
