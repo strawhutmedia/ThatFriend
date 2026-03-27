@@ -724,11 +724,19 @@ body {
 }
 
 /* ============================================
-   PRINT STYLES
+   PRINT / PDF STYLES
    ============================================ */
 @media print {
+    /* Force color printing */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* Hide nav and download button */
     .epk-nav {
-        display: none;
+        display: none !important;
     }
 
     .epk-main {
@@ -736,86 +744,149 @@ body {
         max-width: 100%;
     }
 
+    /* Keep all original colors */
     body {
-        background: white;
-        color: #333;
         font-size: 10pt;
+        line-height: 1.5;
     }
 
+    /* ---- PAGE BREAK RULES ---- */
+    /* Force page break before marked sections */
+    .print-break {
+        page-break-before: always !important;
+        break-before: page !important;
+    }
+
+    /* Cover = page 1 */
+    .epk-cover {
+        page-break-after: always;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Each major section starts on a new page */
     .epk-section,
-    .epk-section-dark,
-    .epk-cover,
-    .epk-stills,
-    .epk-closing {
-        background: white !important;
-        color: #333 !important;
-        border-bottom: 1px solid #ddd;
+    .epk-section-dark {
+        page-break-before: auto;
+        page-break-inside: avoid;
+    }
+
+    /* Force new pages for key sections */
+    .epk-section:has(> h2:first-child) {
+        page-break-before: auto;
+    }
+
+    /* Prevent orphaned headings */
+    h2, h3 {
+        page-break-after: avoid;
+    }
+
+    /* Keep bio entries together */
+    .bio-entry,
+    .cast-bio-entry {
+        page-break-inside: avoid;
         break-inside: avoid;
     }
 
-    .epk-section h2 {
-        color: #1a3a4a !important;
+    /* Keep credit blocks together */
+    .credits-block h3 {
+        page-break-after: avoid;
     }
 
-    .epk-section h3,
-    .bio-text .bio-role,
-    .cast-bio-text .cast-character,
-    .credit-role,
-    .epk-fact-label,
-    .tech-spec-label,
-    .press-entry a,
-    .epk-contact-info h3 {
-        color: #1a3a4a !important;
+    /* Production stills - fit nicely on pages */
+    .epk-stills {
+        page-break-before: always;
+        page-break-inside: avoid;
     }
 
-    .epk-logline-text,
-    .epk-synopsis-text,
-    .epk-statement-text,
-    .bio-text p,
-    .cast-bio-text p,
-    .credit-name,
-    .epk-fact-value,
-    .tech-spec-value,
-    .song-title,
-    .song-detail,
-    .location,
-    .equipment-text,
-    .epk-contact-info p,
-    .bio-text h3,
-    .cast-bio-text h3 {
-        color: #333 !important;
+    .epk-stills-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
     }
 
+    .epk-stills-grid img {
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    /* Song credits - keep together and compact */
+    .songs-list {
+        columns: 2;
+        column-gap: 2rem;
+    }
+
+    .song-entry {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        padding: 0.2rem 0;
+        font-size: 8pt;
+    }
+
+    /* Credits section - two columns */
+    .credits-block {
+        columns: 2;
+        column-gap: 2rem;
+    }
+
+    .credit-line {
+        break-inside: avoid;
+    }
+
+    .credits-block h3 {
+        column-span: all;
+        break-after: avoid;
+    }
+
+    /* Tech specs, locations, press - keep compact */
+    .tech-specs-list,
+    .locations-list {
+        page-break-inside: avoid;
+    }
+
+    /* Closing page */
+    .epk-closing {
+        page-break-before: always;
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Poster sizing for print */
     .epk-cover-poster img {
-        max-width: 400px;
-        box-shadow: none;
+        max-width: 350px;
+        max-height: 500px;
     }
 
-    .still-placeholder {
-        display: none;
+    /* Bio photos for print */
+    .bio-photo img,
+    .cast-bio-photo img {
+        max-height: 200px;
     }
 
-    .epk-closing-title {
-        color: #1a3a4a !important;
-        font-size: 3rem;
-    }
-
-    .epk-footer {
-        background: white !important;
-        color: #666 !important;
-        border-top: 1px solid #ddd;
-    }
-
-    .epk-footer a {
-        color: #1a3a4a !important;
-    }
-
+    /* Remove hover effects */
     a {
         text-decoration: none !important;
     }
 
-    .location {
-        background: #f0f0f0 !important;
-        border-left-color: #1a3a4a !important;
+    /* Footer */
+    .epk-footer {
+        page-break-before: avoid;
+        font-size: 8pt;
+    }
+
+    /* Page margins */
+    @page {
+        margin: 0.5in;
+        size: letter;
+    }
+
+    /* First page no top margin for cover */
+    @page :first {
+        margin-top: 0;
     }
 }
