@@ -574,7 +574,7 @@ body {
 }
 
 .equipment-text {
-    color: var(--text-dim);
+    color: var(--cream);
     font-size: 0.85rem;
     text-align: center;
     line-height: 1.8;
