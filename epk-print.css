@@ -291,17 +291,22 @@ body {
 /* ============================================
    CAST BIOS
    ============================================ */
+.cast-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.15in 0.35in;
+}
+
 .cast-bio-block {
     display: grid;
-    grid-template-columns: 1in 1fr;
-    gap: 0.35in;
-    margin-bottom: 0.6rem;
+    grid-template-columns: 0.65in 1fr;
+    gap: 0.15in;
     align-items: start;
 }
 
 .cast-photo-box {
-    width: 1in;
-    height: 1.25in;
+    width: 0.65in;
+    height: 0.8in;
     border-radius: 2px;
     overflow: hidden;
     border: 1px solid var(--border);
@@ -315,24 +320,25 @@ body {
 
 .cast-name {
     font-family: 'Bebas Neue', cursive;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
     color: var(--accent);
     margin: 0;
+    line-height: 1.1;
 }
 
 .cast-character {
     font-family: 'Bebas Neue', cursive;
-    font-size: 0.65rem;
+    font-size: 0.55rem;
     letter-spacing: 2px;
     color: var(--gold-print);
     text-transform: uppercase;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.05rem;
 }
 
 .cast-body {
-    font-size: 0.7rem;
-    line-height: 1.5;
+    font-size: 0.58rem;
+    line-height: 1.35;
     color: var(--medium);
 }
 
