@@ -16,7 +16,7 @@
     <div class="toolbar no-print">
         <a href="epk.html" class="toolbar-back">&larr; Back to EPK</a>
         <span class="toolbar-title">PRINT VERSION</span>
-        <button class="toolbar-btn" onclick="savePDF()">Save as PDF</button>
+        <button class="toolbar-btn" onclick="window.print()">Save as PDF</button>
     </div>
 
     <!-- PAGE 1: COVER -->
@@ -452,33 +452,5 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
-    <script>
-    function savePDF() {
-        var btn = document.querySelector('.toolbar-btn');
-        btn.textContent = 'Generating PDF...';
-        btn.disabled = true;
-        var pages = document.querySelectorAll('.page');
-        var opt = {
-            margin: 0,
-            filename: 'ThatFriend_EPK_Print.pdf',
-            image: { type: 'jpeg', quality: 0.95 },
-            html2canvas: { scale: 2, useCORS: true, letterRendering: true },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-            pagebreak: { mode: ['css', 'legacy'], avoid: '.page' }
-        };
-        // Build PDF page by page
-        var worker = html2pdf().set(opt).from(pages[0]).toPdf();
-        for (var i = 1; i < pages.length; i++) {
-            worker = worker.get('pdf').then(function(idx) {
-                return function(pdf) { pdf.addPage(); };
-            }(i)).from(pages[i]).toContainer().toCanvas().toPdf();
-        }
-        worker.save().then(function() {
-            btn.textContent = 'Save as PDF';
-            btn.disabled = false;
-        });
-    }
-    </script>
 </body>
 </html>
