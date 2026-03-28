@@ -247,7 +247,12 @@ body {
 
 .stills-flex-fill {
     flex: 1;
+    min-height: 0;
     grid-auto-rows: 1fr;
+}
+
+.stills-flex-fill img {
+    min-height: 0;
 }
 
 /* ============================================
