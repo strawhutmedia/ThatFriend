@@ -85,6 +85,27 @@ body {
 }
 
 /* Toolbar - keep dark like digital version */
+.toolbar {
+    background: rgba(26, 58, 74, 0.97);
+    border-bottom-color: #c9a96e;
+}
+
+.toolbar-title {
+    color: #f0e6d3;
+}
+
+.toolbar-back {
+    color: #c9a96e;
+}
+
+.toolbar-btn {
+    background: #FF8C42;
+    color: white;
+}
+
+.toolbar-btn:hover {
+    background: #e67a30;
+}
 
 /* Section title border */
 .section-title {
