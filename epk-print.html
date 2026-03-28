@@ -16,7 +16,7 @@
     <div class="toolbar no-print">
         <a href="epk.html" class="toolbar-back">&larr; Back to EPK</a>
         <span class="toolbar-title">PRINT VERSION</span>
-        <button class="toolbar-btn" onclick="window.print()">Save as PDF</button>
+        <button class="toolbar-btn" onclick="savePDF()">Save as PDF</button>
     </div>
 
     <!-- PAGE 1: COVER -->
@@ -452,5 +452,10 @@
         </div>
     </div>
 
+    <script>
+    function savePDF() {
+        window.print();
+    }
+    </script>
 </body>
 </html>
