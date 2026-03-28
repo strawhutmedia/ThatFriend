@@ -46,31 +46,31 @@ body {
     color: #1a1a1a;
 }
 
-/* Closing page - keep inverted (dark) for contrast */
+/* Closing page - white like all other pages */
 .page-closing {
-    background: #1a3a4a;
+    background: #ffffff;
 }
 
 .closing-title {
-    color: #f0e6d3;
+    color: #1a1a1a;
 }
 
 .closing-tagline {
-    color: #f0e6d3;
+    color: #1a1a1a;
     opacity: 0.7;
 }
 
 .closing-contact p,
 .closing-contact h3 {
-    color: #f0e6d3;
+    color: #1a1a1a;
 }
 
 .closing-contact a {
-    color: #c9a96e !important;
+    color: #8a6d3b !important;
 }
 
 .closing-copyright {
-    color: #f0e6d3;
+    color: #1a1a1a;
     opacity: 0.5;
 }
 
