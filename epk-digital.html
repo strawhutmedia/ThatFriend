@@ -456,34 +456,45 @@
     <script>
     function savePDF() {
         var btn = document.querySelector('.toolbar-btn');
-        btn.textContent = 'Generating PDF...';
+        var pages = document.querySelectorAll('.page');
+        var total = pages.length;
+        btn.textContent = 'Page 0 / ' + total + '...';
         btn.disabled = true;
 
-        var pages = document.querySelectorAll('.page');
-        var pdf = new jspdf.jsPDF({ unit: 'in', format: 'letter', orientation: 'portrait' });
-        var pageWidth = 8.5;
-        var pageHeight = 11;
+        var toolbar = document.querySelector('.toolbar');
+        toolbar.style.display = 'none';
+
+        var pdf = new jspdf.jsPDF({ unit: 'px', format: [816, 1056], orientation: 'portrait' });
+        // 816x1056 px = 8.5x11 in at 96dpi
 
         function renderPage(index) {
-            if (index >= pages.length) {
+            if (index >= total) {
+                toolbar.style.display = '';
                 pdf.save('ThatFriend_EPK_Digital.pdf');
                 btn.textContent = 'Save as PDF';
                 btn.disabled = false;
                 return;
             }
 
+            btn.textContent = 'Page ' + (index + 1) + ' / ' + total + '...';
+
             html2canvas(pages[index], {
-                scale: 2,
+                scale: 1.5,
                 useCORS: true,
-                backgroundColor: null,
-                width: pages[index].scrollWidth,
-                height: pages[index].scrollHeight
+                backgroundColor: '#1a3a4a',
+                logging: false
             }).then(function(canvas) {
-                var imgData = canvas.toDataURL('image/jpeg', 0.95);
+                var imgData = canvas.toDataURL('image/jpeg', 0.92);
                 if (index > 0) {
-                    pdf.addPage('letter', 'portrait');
+                    pdf.addPage([816, 1056], 'portrait');
                 }
-                pdf.addImage(imgData, 'JPEG', 0, 0, pageWidth, pageHeight);
+                pdf.addImage(imgData, 'JPEG', 0, 0, 816, 1056);
+                renderPage(index + 1);
+            }).catch(function(err) {
+                console.error('Error rendering page ' + (index + 1), err);
+                if (index > 0) {
+                    pdf.addPage([816, 1056], 'portrait');
+                }
                 renderPage(index + 1);
             });
         }
