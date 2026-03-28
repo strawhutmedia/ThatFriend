@@ -226,8 +226,10 @@ body {
 .page-flex {
     display: flex;
     flex-direction: column;
-    min-height: 11in;
+    height: 11in;
+    padding: 0.6in 0.75in;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .stills-grid-2x2 {
@@ -430,10 +432,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 11in;
-    padding-top: 0.6in;
-    padding-bottom: 0.6in;
+    height: 11in;
+    padding: 0.6in 0.75in;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .press-list {
