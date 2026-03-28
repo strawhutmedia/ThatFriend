@@ -419,7 +419,7 @@ body {
 }
 
 .song-row {
-    padding: 0.5rem 0;
+    padding: 0.22rem 0;
     border-bottom: 1px solid rgba(74, 160, 180, 0.08);
     break-inside: avoid;
 }
@@ -427,14 +427,14 @@ body {
 .song-t {
     font-weight: 700;
     color: var(--cream);
-    font-size: 0.85rem;
+    font-size: 0.7rem;
 }
 
 .song-d {
     color: var(--text-dim);
-    font-size: 0.73rem;
+    font-size: 0.58rem;
     display: block;
-    line-height: 1.5;
+    line-height: 1.35;
 }
 
 /* ============================================
