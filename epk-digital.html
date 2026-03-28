@@ -455,43 +455,46 @@
     <script>
     function savePDF() {
         var btn = document.getElementById('pdfBtn');
-        btn.textContent = 'Generating...';
         btn.disabled = true;
-
-        var container = document.createElement('div');
-        container.style.width = '8.5in';
         var pages = document.querySelectorAll('.page');
-        pages.forEach(function(page) {
-            var clone = page.cloneNode(true);
-            clone.style.margin = '0';
-            clone.style.boxShadow = 'none';
-            clone.style.border = 'none';
-            clone.style.width = '8.5in';
-            clone.style.height = '11in';
-            clone.style.minHeight = '11in';
-            clone.style.maxHeight = '11in';
-            clone.style.overflow = 'hidden';
-            container.appendChild(clone);
-        });
-        document.body.appendChild(container);
+        var total = pages.length;
+        btn.textContent = 'Page 1/' + total;
 
-        html2pdf().set({
-            margin: 0,
-            filename: 'ThatFriend_EPK_Digital.pdf',
-            image: { type: 'jpeg', quality: 0.82 },
-            html2canvas: { scale: 1.2, useCORS: true },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all'] }
-        }).from(container).save().then(function() {
-            document.body.removeChild(container);
-            btn.textContent = 'Save as PDF';
-            btn.disabled = false;
-        }).catch(function(err) {
-            alert('PDF error: ' + err.message);
-            document.body.removeChild(container);
-            btn.textContent = 'Save as PDF';
-            btn.disabled = false;
-        });
+        // html2pdf bundle includes html2canvas and jspdf
+        var pdf = new jspdf.jsPDF({ unit: 'in', format: 'letter', orientation: 'portrait' });
+
+        function doPage(i) {
+            if (i >= total) {
+                pdf.save('ThatFriend_EPK_Digital.pdf');
+                btn.textContent = 'Save as PDF';
+                btn.disabled = false;
+                return;
+            }
+            btn.textContent = 'Page ' + (i + 1) + '/' + total;
+            // Let browser repaint the button text before heavy render
+            requestAnimationFrame(function() {
+                setTimeout(function() {
+                    html2canvas(pages[i], {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: null,
+                        width: pages[i].offsetWidth,
+                        height: pages[i].offsetHeight
+                    }).then(function(canvas) {
+                        if (i > 0) pdf.addPage();
+                        var imgData = canvas.toDataURL('image/jpeg', 0.85);
+                        pdf.addImage(imgData, 'JPEG', 0, 0, 8.5, 11);
+                        doPage(i + 1);
+                    }).catch(function(err) {
+                        console.error('Page ' + (i+1) + ' error:', err);
+                        if (i > 0) pdf.addPage();
+                        doPage(i + 1);
+                    });
+                }, 50);
+            });
+        }
+
+        doPage(0);
     }
 
     if (window.location.search.indexOf('auto=1') !== -1) {
