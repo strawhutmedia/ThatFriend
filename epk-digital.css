@@ -419,7 +419,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 9.8in;
+    min-height: 11in;
+    padding-top: 0.6in;
+    padding-bottom: 0.6in;
     box-sizing: border-box;
 }
 
