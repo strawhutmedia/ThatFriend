@@ -479,12 +479,12 @@
             btn.textContent = 'Page ' + (index + 1) + ' / ' + total + '...';
 
             html2canvas(pages[index], {
-                scale: 1.5,
+                scale: 1.2,
                 useCORS: true,
                 backgroundColor: '#1a3a4a',
                 logging: false
             }).then(function(canvas) {
-                var imgData = canvas.toDataURL('image/jpeg', 0.92);
+                var imgData = canvas.toDataURL('image/jpeg', 0.80);
                 if (index > 0) {
                     pdf.addPage([816, 1056], 'portrait');
                 }
