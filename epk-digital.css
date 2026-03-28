@@ -414,14 +414,12 @@ body {
    ============================================ */
 .songs-list {
     columns: 2;
-    column-gap: 0.6in;
-    column-fill: auto;
-    height: 8.8in;
-    overflow: hidden;
+    column-gap: 0.5in;
+    column-fill: balance;
 }
 
 .song-row {
-    padding: 0.4rem 0;
+    padding: 0.35rem 0;
     border-bottom: 1px solid rgba(74, 160, 180, 0.08);
     break-inside: avoid;
 }
@@ -429,14 +427,14 @@ body {
 .song-t {
     font-weight: 700;
     color: var(--cream);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
 }
 
 .song-d {
     color: var(--text-dim);
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     display: block;
-    line-height: 1.55;
+    line-height: 1.45;
 }
 
 /* ============================================
