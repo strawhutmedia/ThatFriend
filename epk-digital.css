@@ -417,10 +417,11 @@ body {
     column-gap: 0.6in;
     column-fill: auto;
     height: 8.8in;
+    overflow: hidden;
 }
 
 .song-row {
-    padding: 0.55rem 0;
+    padding: 0.4rem 0;
     border-bottom: 1px solid rgba(74, 160, 180, 0.08);
     break-inside: avoid;
 }
