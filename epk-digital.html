@@ -463,52 +463,47 @@
 
         var pages = document.querySelectorAll('.page');
         var total = pages.length;
-        var toolbar = document.getElementById('toolbar');
 
-        // Hide toolbar, force exact page dimensions on real DOM
-        toolbar.style.display = 'none';
-        var saved = [];
-        for (var j = 0; j < total; j++) {
-            saved.push(pages[j].style.cssText);
-            pages[j].style.cssText = 'margin:0;width:816px;height:1056px;min-height:1056px;max-height:1056px;overflow:hidden;box-shadow:none;border:none;background:var(--teal-dark);';
-        }
-        window.scrollTo(0, 0);
-
-        var pdf = new jspdf.jsPDF({ unit: 'px', format: [816, 1056], orientation: 'portrait' });
-
-        function doPage(i) {
-            if (i >= total) {
-                // Restore original styles
-                for (var k = 0; k < total; k++) {
-                    pages[k].style.cssText = saved[k];
+        var opt = {
+            margin: 0,
+            filename: 'ThatFriend_EPK_Digital.pdf',
+            image: { type: 'jpeg', quality: 0.85 },
+            html2canvas: {
+                scale: 1.5,
+                useCORS: true,
+                width: 816,
+                height: 1056,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: 816,
+                onclone: function(clonedDoc) {
+                    var pp = clonedDoc.querySelectorAll('.page');
+                    for (var j = 0; j < pp.length; j++) {
+                        pp[j].style.margin = '0';
+                        pp[j].style.boxShadow = 'none';
+                        pp[j].style.border = 'none';
+                    }
+                    var tb = clonedDoc.querySelector('.toolbar');
+                    if (tb) tb.style.display = 'none';
                 }
-                toolbar.style.display = '';
-                pdf.save('ThatFriend_EPK_Digital.pdf');
-                btn.textContent = 'Save as PDF';
-                btn.disabled = false;
-                return;
-            }
-            btn.textContent = 'Page ' + (i + 1) + '/' + total;
-            pages[i].scrollIntoView();
+            },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
 
-            requestAnimationFrame(function() {
-                html2canvas(pages[i], {
-                    scale: 2,
-                    useCORS: true,
-                    backgroundColor: null
-                }).then(function(canvas) {
-                    if (i > 0) pdf.addPage([816, 1056]);
-                    pdf.addImage(canvas.toDataURL('image/jpeg', 0.85), 'JPEG', 0, 0, 816, 1056);
-                    doPage(i + 1);
-                }).catch(function(err) {
-                    console.error('Page ' + (i + 1) + ' error:', err);
-                    if (i > 0) pdf.addPage([816, 1056]);
-                    doPage(i + 1);
-                });
-            });
+        var worker = html2pdf().set(opt).from(pages[0]).toContainer().toCanvas().toPdf();
+
+        for (var i = 1; i < total; i++) {
+            (function(pg) {
+                worker = worker.get('pdf').then(function(pdf) {
+                    pdf.addPage();
+                }).from(pg).toContainer().toCanvas().toPdf();
+            })(pages[i]);
         }
 
-        setTimeout(function() { doPage(0); }, 200);
+        worker.save().then(function() {
+            btn.textContent = 'Save as PDF';
+            btn.disabled = false;
+        });
     }
 
     if (window.location.search.indexOf('auto=1') !== -1) {
