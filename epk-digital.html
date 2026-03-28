@@ -463,8 +463,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
     <script>
     function savePDF() {
         var btn = document.querySelector('.toolbar-btn');
@@ -477,76 +476,68 @@
         var toolbar = document.getElementById('toolbar');
 
         overlay.style.display = 'flex';
-        statusEl.textContent = 'Loading libraries...';
+        statusEl.textContent = 'Building PDF pages...';
 
-        var pages = document.querySelectorAll('.page');
-        var total = pages.length;
         toolbar.style.visibility = 'hidden';
 
-        try {
-            var JsPDF = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
-            if (!JsPDF) {
-                statusEl.textContent = 'Error: jsPDF library not loaded. Please refresh and try again.';
-                return;
+        // Build a tight container: each page exactly 8.5in x 11in, no gaps
+        var container = document.createElement('div');
+        container.style.cssText = 'position:absolute;left:-9999px;top:0;width:8.5in;';
+        var pages = document.querySelectorAll('.page');
+        var total = pages.length;
+
+        pages.forEach(function(page, i) {
+            var clone = page.cloneNode(true);
+            clone.style.cssText = 'width:8.5in;height:11in;min-height:11in;max-height:11in;margin:0;padding:0;box-shadow:none;border:none;overflow:hidden;display:block;page-break-after:always;';
+            // Re-apply the page-content padding
+            var content = clone.querySelector('.page-content') || clone.querySelector('.page-flex');
+            if (content) {
+                content.style.padding = '0.6in 0.75in';
+                content.style.height = '100%';
+                content.style.boxSizing = 'border-box';
             }
-            var pdf = new JsPDF({ unit: 'px', format: [816, 1056], orientation: 'portrait' });
-        } catch(e) {
-            statusEl.textContent = 'Error initializing PDF: ' + e.message;
-            return;
-        }
+            container.appendChild(clone);
+        });
+        document.body.appendChild(container);
 
-        if (typeof html2canvas === 'undefined') {
-            statusEl.textContent = 'Error: html2canvas not loaded. Please refresh and try again.';
-            return;
-        }
+        // Animate progress bar during generation
+        var progress = 0;
+        var progressTimer = setInterval(function() {
+            progress += 2;
+            if (progress > 90) progress = 90;
+            bar.style.width = progress + '%';
+            pct.textContent = progress + '%';
+            statusEl.textContent = 'Rendering ' + total + ' pages...';
+        }, 300);
 
-        statusEl.textContent = 'Starting render...';
-
-        function renderPage(index) {
-            if (index >= total) {
-                statusEl.textContent = 'Saving file...';
-                bar.style.width = '100%';
-                pct.textContent = '100%';
-                setTimeout(function() {
-                    pdf.save('ThatFriend_EPK_Digital.pdf');
-                    overlay.style.display = 'none';
-                    toolbar.style.visibility = '';
-                    btn.textContent = 'Save as PDF';
-                    btn.disabled = false;
-                }, 300);
-                return;
-            }
-
-            var percent = Math.round(((index + 1) / total) * 100);
-            bar.style.width = percent + '%';
-            pct.textContent = percent + '%';
-            statusEl.textContent = 'Rendering page ' + (index + 1) + ' of ' + total + '...';
-
+        html2pdf().set({
+            margin: 0,
+            filename: 'ThatFriend_EPK_Digital.pdf',
+            image: { type: 'jpeg', quality: 0.82 },
+            html2canvas: { scale: 1.2, useCORS: true, backgroundColor: '#1a3a4a' },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+            pagebreak: { mode: ['css'], avoid: [] }
+        }).from(container).save().then(function() {
+            clearInterval(progressTimer);
+            bar.style.width = '100%';
+            pct.textContent = '100%';
+            statusEl.textContent = 'Done!';
             setTimeout(function() {
-                html2canvas(pages[index], {
-                    scale: 1.2,
-                    useCORS: true,
-                    backgroundColor: '#1a3a4a',
-                    logging: false
-                }).then(function(canvas) {
-                    var imgData = canvas.toDataURL('image/jpeg', 0.80);
-                    if (index > 0) {
-                        pdf.addPage([816, 1056], 'portrait');
-                    }
-                    pdf.addImage(imgData, 'JPEG', 0, 0, 816, 1056);
-                    renderPage(index + 1);
-                }).catch(function(err) {
-                    console.error('Error on page ' + (index + 1), err);
-                    statusEl.textContent = 'Error on page ' + (index + 1) + ': ' + err.message;
-                    if (index > 0) {
-                        pdf.addPage([816, 1056], 'portrait');
-                    }
-                    renderPage(index + 1);
-                });
-            }, 100);
-        }
-
-        renderPage(0);
+                document.body.removeChild(container);
+                overlay.style.display = 'none';
+                toolbar.style.visibility = '';
+                btn.textContent = 'Save as PDF';
+                btn.disabled = false;
+            }, 500);
+        }).catch(function(err) {
+            clearInterval(progressTimer);
+            statusEl.textContent = 'Error: ' + err.message;
+            console.error('PDF error:', err);
+            document.body.removeChild(container);
+            toolbar.style.visibility = '';
+            btn.textContent = 'Save as PDF';
+            btn.disabled = false;
+        });
     }
 
     // Auto-start if opened with ?auto=1
