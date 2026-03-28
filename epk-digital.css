@@ -415,19 +415,26 @@ body {
 /* ============================================
    PRESS
    ============================================ */
+.info-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
 .press-list {
     max-width: 6in;
     margin: 0 auto;
 }
 
 .press-row {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
 }
 
 .press-headline {
     display: block;
     font-weight: 700;
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     color: var(--gold);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -436,8 +443,8 @@ body {
 .press-source {
     display: block;
     color: var(--text-dim);
-    font-size: 0.68rem;
-    margin-top: 0.1rem;
+    font-size: 0.72rem;
+    margin-top: 0.15rem;
 }
 
 /* ============================================
@@ -450,8 +457,8 @@ body {
 }
 
 .spec-row {
-    margin-bottom: 0.3rem;
-    font-size: 0.8rem;
+    margin-bottom: 0.45rem;
+    font-size: 0.85rem;
 }
 
 .spec-label {
@@ -478,10 +485,10 @@ body {
 
 .loc-tag {
     background: rgba(74, 160, 180, 0.15);
-    padding: 0.3rem 0.8rem;
+    padding: 0.4rem 1rem;
     border-radius: 3px;
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 0.82rem;
     color: var(--cream);
     border-left: 3px solid var(--gold);
 }
