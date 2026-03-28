@@ -1,0 +1,111 @@
+/* Print EPK Override - White background, black text */
+/* Loaded AFTER epk-digital.css to override colors only */
+
+:root {
+    --teal-dark: #ffffff;
+    --teal-mid: #f5f5f5;
+    --teal-light: #e8e8e8;
+    --cream: #1a1a1a;
+    --gold: #8a6d3b;
+    --text-light: #333333;
+    --text-dim: #666666;
+    --border-teal: rgba(0, 0, 0, 0.15);
+}
+
+body {
+    background: #e0e0e0;
+}
+
+.page {
+    background: #ffffff;
+}
+
+/* Cover page */
+.page-cover {
+    background: #ffffff;
+}
+
+.cover-credits {
+    color: #333333;
+}
+
+/* Cast photo box background */
+.cast-photo-box {
+    background: #e8e8e8;
+}
+
+/* Bio photo box */
+.bio-photo-box {
+    background: #e8e8e8;
+}
+
+/* Location tags */
+.loc-tag {
+    background: rgba(0, 0, 0, 0.08);
+    border-left-color: var(--gold);
+    color: #1a1a1a;
+}
+
+/* Closing page - keep inverted (dark) for contrast */
+.page-closing {
+    background: #1a3a4a;
+}
+
+.closing-title {
+    color: #f0e6d3;
+}
+
+.closing-tagline {
+    color: #f0e6d3;
+    opacity: 0.7;
+}
+
+.closing-contact p,
+.closing-contact h3 {
+    color: #f0e6d3;
+}
+
+.closing-contact a {
+    color: #c9a96e !important;
+}
+
+.closing-copyright {
+    color: #f0e6d3;
+    opacity: 0.5;
+}
+
+/* Song border */
+.song-row {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Credits divider */
+.credit-row {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Toolbar stays dark */
+.toolbar {
+    background: #1a3a4a;
+}
+
+/* Section title border */
+.section-title {
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Sub title border */
+.sub-title {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Print media - white pages */
+@media print {
+    body {
+        background: white;
+    }
+
+    .page {
+        border: none;
+    }
+}
