@@ -473,23 +473,38 @@
         var overlay = document.getElementById('pdf-overlay');
         var bar = document.getElementById('pdf-bar');
         var pct = document.getElementById('pdf-pct');
-        var status = document.getElementById('pdf-status');
+        var statusEl = document.getElementById('pdf-status');
         var toolbar = document.getElementById('toolbar');
 
-        // Show overlay
         overlay.style.display = 'flex';
+        statusEl.textContent = 'Loading libraries...';
 
         var pages = document.querySelectorAll('.page');
         var total = pages.length;
-
-        // Hide toolbar so it doesn't render in captures
         toolbar.style.visibility = 'hidden';
 
-        var pdf = new jspdf.jsPDF({ unit: 'px', format: [816, 1056], orientation: 'portrait' });
+        try {
+            var JsPDF = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+            if (!JsPDF) {
+                statusEl.textContent = 'Error: jsPDF library not loaded. Please refresh and try again.';
+                return;
+            }
+            var pdf = new JsPDF({ unit: 'px', format: [816, 1056], orientation: 'portrait' });
+        } catch(e) {
+            statusEl.textContent = 'Error initializing PDF: ' + e.message;
+            return;
+        }
+
+        if (typeof html2canvas === 'undefined') {
+            statusEl.textContent = 'Error: html2canvas not loaded. Please refresh and try again.';
+            return;
+        }
+
+        statusEl.textContent = 'Starting render...';
 
         function renderPage(index) {
             if (index >= total) {
-                status.textContent = 'Saving file...';
+                statusEl.textContent = 'Saving file...';
                 bar.style.width = '100%';
                 pct.textContent = '100%';
                 setTimeout(function() {
@@ -505,9 +520,8 @@
             var percent = Math.round(((index + 1) / total) * 100);
             bar.style.width = percent + '%';
             pct.textContent = percent + '%';
-            status.textContent = 'Rendering page ' + (index + 1) + ' of ' + total + '...';
+            statusEl.textContent = 'Rendering page ' + (index + 1) + ' of ' + total + '...';
 
-            // Use setTimeout to let the browser paint the progress update
             setTimeout(function() {
                 html2canvas(pages[index], {
                     scale: 1.2,
@@ -523,12 +537,13 @@
                     renderPage(index + 1);
                 }).catch(function(err) {
                     console.error('Error on page ' + (index + 1), err);
+                    statusEl.textContent = 'Error on page ' + (index + 1) + ': ' + err.message;
                     if (index > 0) {
                         pdf.addPage([816, 1056], 'portrait');
                     }
                     renderPage(index + 1);
                 });
-            }, 50);
+            }, 100);
         }
 
         renderPage(0);
@@ -537,7 +552,7 @@
     // Auto-start if opened with ?auto=1
     if (window.location.search.indexOf('auto=1') !== -1) {
         window.addEventListener('load', function() {
-            setTimeout(savePDF, 500);
+            setTimeout(savePDF, 1000);
         });
     }
     </script>
