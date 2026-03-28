@@ -471,12 +471,19 @@
             html2canvas: {
                 scale: 1.5,
                 useCORS: true,
-                width: 816,
-                height: 1056,
                 scrollX: 0,
                 scrollY: 0,
-                windowWidth: 816,
                 onclone: function(clonedDoc) {
+                    // Resize html2pdf's fixed-position container to page width
+                    var divs = clonedDoc.querySelectorAll('div');
+                    for (var d = 0; d < divs.length; d++) {
+                        var s = divs[d].style;
+                        if (s.position === 'fixed' && (s.zIndex === '1000' || s.zIndex === 1000)) {
+                            s.width = '816px';
+                            s.left = '0';
+                            s.right = 'auto';
+                        }
+                    }
                     var pp = clonedDoc.querySelectorAll('.page');
                     for (var j = 0; j < pp.length; j++) {
                         pp[j].style.margin = '0';
