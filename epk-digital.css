@@ -226,14 +226,13 @@ body {
 .stills-grid-2x2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.3in;
+    gap: 0.2in;
 }
 
 .stills-grid-2x2 img {
     width: 100%;
-    height: auto;
+    height: 1.45in;
     border-radius: 4px;
-    aspect-ratio: 16/9;
     object-fit: cover;
 }
 
