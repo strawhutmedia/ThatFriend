@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>That Friend - Digital EPK</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -455,50 +458,38 @@
     <script>
     function savePDF() {
         var btn = document.getElementById('pdfBtn');
+        btn.textContent = 'Generating...';
         btn.disabled = true;
+
         var pages = document.querySelectorAll('.page');
         var total = pages.length;
-        btn.textContent = 'Page 1/' + total;
+        var opt = {
+            margin: 0,
+            filename: 'ThatFriend_EPK_Digital.pdf',
+            image: { type: 'jpeg', quality: 0.85 },
+            html2canvas: { scale: 1.5, useCORS: true },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
 
-        // html2pdf bundle includes html2canvas and jspdf
-        var pdf = new jspdf.jsPDF({ unit: 'in', format: 'letter', orientation: 'portrait' });
+        // Use html2pdf worker API: render page 0, then chain remaining pages
+        var worker = html2pdf().set(opt).from(pages[0]).toContainer().toCanvas().toPdf();
 
-        function doPage(i) {
-            if (i >= total) {
-                pdf.save('ThatFriend_EPK_Digital.pdf');
-                btn.textContent = 'Save as PDF';
-                btn.disabled = false;
-                return;
-            }
-            btn.textContent = 'Page ' + (i + 1) + '/' + total;
-            // Let browser repaint the button text before heavy render
-            requestAnimationFrame(function() {
-                setTimeout(function() {
-                    html2canvas(pages[i], {
-                        scale: 2,
-                        useCORS: true,
-                        backgroundColor: null,
-                        width: pages[i].offsetWidth,
-                        height: pages[i].offsetHeight
-                    }).then(function(canvas) {
-                        if (i > 0) pdf.addPage();
-                        var imgData = canvas.toDataURL('image/jpeg', 0.85);
-                        pdf.addImage(imgData, 'JPEG', 0, 0, 8.5, 11);
-                        doPage(i + 1);
-                    }).catch(function(err) {
-                        console.error('Page ' + (i+1) + ' error:', err);
-                        if (i > 0) pdf.addPage();
-                        doPage(i + 1);
-                    });
-                }, 50);
-            });
+        for (var i = 1; i < total; i++) {
+            (function(pg) {
+                worker = worker.get('pdf').then(function(pdf) {
+                    pdf.addPage();
+                }).from(pg).toContainer().toCanvas().toPdf();
+            })(pages[i]);
         }
 
-        doPage(0);
+        worker.save().then(function() {
+            btn.textContent = 'Save as PDF';
+            btn.disabled = false;
+        });
     }
 
     if (window.location.search.indexOf('auto=1') !== -1) {
-        window.addEventListener('load', function() { setTimeout(savePDF, 500); });
+        window.addEventListener('load', function() { setTimeout(savePDF, 800); });
     }
     </script>
 </body>
