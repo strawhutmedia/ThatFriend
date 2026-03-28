@@ -256,11 +256,11 @@ body {
 }
 
 .stills-3row {
-    grid-template-rows: repeat(3, 1.3in);
+    grid-template-rows: repeat(3, 1.55in);
 }
 
 .stills-3row img {
-    height: 1.3in;
+    height: 1.55in;
 }
 
 /* ============================================
