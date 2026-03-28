@@ -473,15 +473,28 @@
                 useCORS: true,
                 scrollX: 0,
                 scrollY: 0,
+                windowWidth: 816,
                 onclone: function(clonedDoc) {
-                    // Resize html2pdf's fixed-position container to page width
-                    var divs = clonedDoc.querySelectorAll('div');
-                    for (var d = 0; d < divs.length; d++) {
-                        var s = divs[d].style;
-                        if (s.position === 'fixed' && (s.zIndex === '1000' || s.zIndex === 1000)) {
-                            s.width = '816px';
-                            s.left = '0';
-                            s.right = 'auto';
+                    // Force entire document to 816px wide
+                    clonedDoc.documentElement.style.width = '816px';
+                    clonedDoc.documentElement.style.overflow = 'hidden';
+                    clonedDoc.body.style.width = '816px';
+                    clonedDoc.body.style.maxWidth = '816px';
+                    clonedDoc.body.style.overflow = 'hidden';
+                    clonedDoc.body.style.margin = '0';
+                    clonedDoc.body.style.padding = '0';
+                    // Target html2pdf containers by class
+                    var overlay = clonedDoc.querySelector('.html2pdf__overlay');
+                    if (overlay) { overlay.style.width = '816px'; overlay.style.right = 'auto'; }
+                    var cont = clonedDoc.querySelector('.html2pdf__container');
+                    if (cont) { cont.style.width = '816px'; }
+                    // Also catch by inline fixed position
+                    var allEls = clonedDoc.getElementsByTagName('div');
+                    for (var d = 0; d < allEls.length; d++) {
+                        if (allEls[d].style.cssText && allEls[d].style.cssText.indexOf('fixed') !== -1) {
+                            allEls[d].style.width = '816px';
+                            allEls[d].style.right = 'auto';
+                            allEls[d].style.overflow = 'hidden';
                         }
                     }
                     var pp = clonedDoc.querySelectorAll('.page');
