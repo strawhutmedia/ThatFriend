@@ -386,16 +386,11 @@ body {
 /* ============================================
    SONGS
    ============================================ */
-.songs-page {
-    display: flex;
-    flex-direction: column;
-}
-
 .songs-list {
     columns: 2;
     column-gap: 0.6in;
-    column-fill: balance;
-    flex: 1;
+    column-fill: auto;
+    height: 8.8in;
 }
 
 .song-row {
