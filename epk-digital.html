@@ -12,10 +12,22 @@
 </head>
 <body>
 
-    <div class="toolbar no-print">
+    <div class="toolbar no-print" id="toolbar">
         <a href="epk.html" class="toolbar-back">&larr; Back to EPK</a>
         <span class="toolbar-title">DIGITAL PRESS KIT</span>
         <button class="toolbar-btn" onclick="savePDF()">Save as PDF</button>
+    </div>
+
+    <!-- Progress overlay -->
+    <div id="pdf-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;">
+        <div style="background:rgba(26,58,74,0.97);border-radius:12px;padding:2rem 2.5rem;text-align:center;max-width:360px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.5);border:1px solid rgba(74,160,180,0.3);">
+            <div style="font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:4px;color:#f0e6d3;margin-bottom:0.4rem;">Generating PDF</div>
+            <div id="pdf-status" style="font-size:0.8rem;color:#8a9aa5;margin-bottom:1rem;">Preparing...</div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:6px;height:12px;overflow:hidden;">
+                <div id="pdf-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#FF8C42,#c9a96e);border-radius:6px;transition:width 0.3s ease;"></div>
+            </div>
+            <div id="pdf-pct" style="font-size:0.85rem;color:#c9a96e;margin-top:0.5rem;font-weight:700;">0%</div>
+        </div>
     </div>
 
     <!-- PAGE 1: COVER -->
@@ -457,45 +469,36 @@
     function savePDF() {
         var btn = document.querySelector('.toolbar-btn');
         btn.disabled = true;
-        btn.style.display = 'none';
+
+        var overlay = document.getElementById('pdf-overlay');
+        var bar = document.getElementById('pdf-bar');
+        var pct = document.getElementById('pdf-pct');
+        var status = document.getElementById('pdf-status');
+        var toolbar = document.getElementById('toolbar');
+
+        // Show overlay
+        overlay.style.display = 'flex';
 
         var pages = document.querySelectorAll('.page');
         var total = pages.length;
 
-        // Create progress bar overlay
-        var overlay = document.createElement('div');
-        overlay.id = 'pdf-overlay';
-        overlay.innerHTML = '<div style="background:rgba(26,58,74,0.96);border-radius:12px;padding:2rem 2.5rem;text-align:center;max-width:360px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.5);">' +
-            '<div style="font-family:Bebas Neue,cursive;font-size:1.4rem;letter-spacing:3px;color:#f0e6d3;margin-bottom:0.3rem;">Generating PDF</div>' +
-            '<div id="pdf-status" style="font-size:0.8rem;color:#8a9aa5;margin-bottom:1rem;">Preparing...</div>' +
-            '<div style="background:rgba(255,255,255,0.1);border-radius:6px;height:10px;overflow:hidden;">' +
-            '<div id="pdf-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#FF8C42,#c9a96e);border-radius:6px;transition:width 0.3s ease;"></div>' +
-            '</div>' +
-            '<div id="pdf-pct" style="font-size:0.75rem;color:#c9a96e;margin-top:0.5rem;font-weight:700;">0%</div>' +
-            '</div>';
-        overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;';
-        document.body.appendChild(overlay);
-
-        var bar = document.getElementById('pdf-bar');
-        var pct = document.getElementById('pdf-pct');
-        var status = document.getElementById('pdf-status');
-
-        var toolbar = document.querySelector('.toolbar');
-        toolbar.style.display = 'none';
+        // Hide toolbar so it doesn't render in captures
+        toolbar.style.visibility = 'hidden';
 
         var pdf = new jspdf.jsPDF({ unit: 'px', format: [816, 1056], orientation: 'portrait' });
 
         function renderPage(index) {
             if (index >= total) {
-                toolbar.style.display = '';
                 status.textContent = 'Saving file...';
                 bar.style.width = '100%';
                 pct.textContent = '100%';
-                pdf.save('ThatFriend_EPK_Digital.pdf');
-                document.body.removeChild(overlay);
-                btn.style.display = '';
-                btn.textContent = 'Save as PDF';
-                btn.disabled = false;
+                setTimeout(function() {
+                    pdf.save('ThatFriend_EPK_Digital.pdf');
+                    overlay.style.display = 'none';
+                    toolbar.style.visibility = '';
+                    btn.textContent = 'Save as PDF';
+                    btn.disabled = false;
+                }, 300);
                 return;
             }
 
@@ -504,28 +507,38 @@
             pct.textContent = percent + '%';
             status.textContent = 'Rendering page ' + (index + 1) + ' of ' + total + '...';
 
-            html2canvas(pages[index], {
-                scale: 1.2,
-                useCORS: true,
-                backgroundColor: '#1a3a4a',
-                logging: false
-            }).then(function(canvas) {
-                var imgData = canvas.toDataURL('image/jpeg', 0.80);
-                if (index > 0) {
-                    pdf.addPage([816, 1056], 'portrait');
-                }
-                pdf.addImage(imgData, 'JPEG', 0, 0, 816, 1056);
-                renderPage(index + 1);
-            }).catch(function(err) {
-                console.error('Error rendering page ' + (index + 1), err);
-                if (index > 0) {
-                    pdf.addPage([816, 1056], 'portrait');
-                }
-                renderPage(index + 1);
-            });
+            // Use setTimeout to let the browser paint the progress update
+            setTimeout(function() {
+                html2canvas(pages[index], {
+                    scale: 1.2,
+                    useCORS: true,
+                    backgroundColor: '#1a3a4a',
+                    logging: false
+                }).then(function(canvas) {
+                    var imgData = canvas.toDataURL('image/jpeg', 0.80);
+                    if (index > 0) {
+                        pdf.addPage([816, 1056], 'portrait');
+                    }
+                    pdf.addImage(imgData, 'JPEG', 0, 0, 816, 1056);
+                    renderPage(index + 1);
+                }).catch(function(err) {
+                    console.error('Error on page ' + (index + 1), err);
+                    if (index > 0) {
+                        pdf.addPage([816, 1056], 'portrait');
+                    }
+                    renderPage(index + 1);
+                });
+            }, 50);
         }
 
         renderPage(0);
+    }
+
+    // Auto-start if opened with ?auto=1
+    if (window.location.search.indexOf('auto=1') !== -1) {
+        window.addEventListener('load', function() {
+            setTimeout(savePDF, 500);
+        });
     }
     </script>
 </body>
