@@ -457,23 +457,32 @@
         var btn = document.querySelector('.toolbar-btn');
         btn.textContent = 'Generating PDF...';
         btn.disabled = true;
+
+        // Create a temporary container with all pages
+        var container = document.createElement('div');
         var pages = document.querySelectorAll('.page');
-        var opt = {
+        pages.forEach(function(page) {
+            var clone = page.cloneNode(true);
+            clone.style.margin = '0';
+            clone.style.boxShadow = 'none';
+            clone.style.border = 'none';
+            container.appendChild(clone);
+        });
+        document.body.appendChild(container);
+
+        html2pdf().set({
             margin: 0,
             filename: 'ThatFriend_EPK_Digital.pdf',
             image: { type: 'jpeg', quality: 0.95 },
-            html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+            html2canvas: { scale: 2, useCORS: true },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-            pagebreak: { mode: ['css', 'legacy'], avoid: '.page' }
-        };
-        // Build PDF page by page
-        var worker = html2pdf().set(opt).from(pages[0]).toPdf();
-        for (var i = 1; i < pages.length; i++) {
-            worker = worker.get('pdf').then(function(idx) {
-                return function(pdf) { pdf.addPage(); };
-            }(i)).from(pages[i]).toContainer().toCanvas().toPdf();
-        }
-        worker.save().then(function() {
+            pagebreak: { mode: ['avoid-all'], before: '.page' }
+        }).from(container).save().then(function() {
+            document.body.removeChild(container);
+            btn.textContent = 'Save as PDF';
+            btn.disabled = false;
+        }).catch(function() {
+            document.body.removeChild(container);
             btn.textContent = 'Save as PDF';
             btn.disabled = false;
         });
