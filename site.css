@@ -548,7 +548,7 @@ a:hover { color: var(--orange-dark); }
 }
 
 .crew-item .crew-role { color: var(--text-dark); font-weight: 700; white-space: nowrap; }
-.crew-item .crew-name { color: var(--text-soft); text-align: right; }
+.crew-item .crew-name { color: var(--text-dark); text-align: right; }
 
 /* ---- PRESS PAGE ---- */
 .press-grid {
