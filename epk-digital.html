@@ -15,19 +15,7 @@
     <div class="toolbar no-print" id="toolbar">
         <a href="epk.html" class="toolbar-back">&larr; Back to EPK</a>
         <span class="toolbar-title">DIGITAL PRESS KIT</span>
-        <button class="toolbar-btn" onclick="savePDF()">Save as PDF</button>
-    </div>
-
-    <!-- Progress overlay -->
-    <div id="pdf-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;">
-        <div style="background:rgba(26,58,74,0.97);border-radius:12px;padding:2rem 2.5rem;text-align:center;max-width:360px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,0.5);border:1px solid rgba(74,160,180,0.3);">
-            <div style="font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:4px;color:#f0e6d3;margin-bottom:0.4rem;">Generating PDF</div>
-            <div id="pdf-status" style="font-size:0.8rem;color:#8a9aa5;margin-bottom:1rem;">Preparing...</div>
-            <div style="background:rgba(255,255,255,0.1);border-radius:6px;height:12px;overflow:hidden;">
-                <div id="pdf-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#FF8C42,#c9a96e);border-radius:6px;transition:width 0.3s ease;"></div>
-            </div>
-            <div id="pdf-pct" style="font-size:0.85rem;color:#c9a96e;margin-top:0.5rem;font-weight:700;">0%</div>
-        </div>
+        <button class="toolbar-btn" id="pdfBtn" onclick="savePDF()">Save as PDF</button>
     </div>
 
     <!-- PAGE 1: COVER -->
@@ -466,85 +454,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
     <script>
     function savePDF() {
-        var btn = document.querySelector('.toolbar-btn');
+        var btn = document.getElementById('pdfBtn');
+        btn.textContent = 'Generating...';
         btn.disabled = true;
 
-        var overlay = document.getElementById('pdf-overlay');
-        var bar = document.getElementById('pdf-bar');
-        var pct = document.getElementById('pdf-pct');
-        var statusEl = document.getElementById('pdf-status');
-        var toolbar = document.getElementById('toolbar');
-
-        overlay.style.display = 'flex';
-        statusEl.textContent = 'Building PDF pages...';
-
-        toolbar.style.visibility = 'hidden';
-
-        // Build a tight container: each page exactly 8.5in x 11in, no gaps
         var container = document.createElement('div');
-        container.style.cssText = 'position:absolute;left:-9999px;top:0;width:8.5in;';
+        container.style.width = '8.5in';
         var pages = document.querySelectorAll('.page');
-        var total = pages.length;
-
-        pages.forEach(function(page, i) {
+        pages.forEach(function(page) {
             var clone = page.cloneNode(true);
-            clone.style.cssText = 'width:8.5in;height:11in;min-height:11in;max-height:11in;margin:0;padding:0;box-shadow:none;border:none;overflow:hidden;display:block;page-break-after:always;';
-            // Re-apply the page-content padding
-            var content = clone.querySelector('.page-content') || clone.querySelector('.page-flex');
-            if (content) {
-                content.style.padding = '0.6in 0.75in';
-                content.style.height = '100%';
-                content.style.boxSizing = 'border-box';
-            }
+            clone.style.margin = '0';
+            clone.style.boxShadow = 'none';
+            clone.style.border = 'none';
+            clone.style.width = '8.5in';
+            clone.style.height = '11in';
+            clone.style.minHeight = '11in';
+            clone.style.maxHeight = '11in';
+            clone.style.overflow = 'hidden';
             container.appendChild(clone);
         });
         document.body.appendChild(container);
-
-        // Animate progress bar during generation
-        var progress = 0;
-        var progressTimer = setInterval(function() {
-            progress += 2;
-            if (progress > 90) progress = 90;
-            bar.style.width = progress + '%';
-            pct.textContent = progress + '%';
-            statusEl.textContent = 'Rendering ' + total + ' pages...';
-        }, 300);
 
         html2pdf().set({
             margin: 0,
             filename: 'ThatFriend_EPK_Digital.pdf',
             image: { type: 'jpeg', quality: 0.82 },
-            html2canvas: { scale: 1.2, useCORS: true, backgroundColor: '#1a3a4a' },
+            html2canvas: { scale: 1.2, useCORS: true },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-            pagebreak: { mode: ['css'], avoid: [] }
+            pagebreak: { mode: ['avoid-all'] }
         }).from(container).save().then(function() {
-            clearInterval(progressTimer);
-            bar.style.width = '100%';
-            pct.textContent = '100%';
-            statusEl.textContent = 'Done!';
-            setTimeout(function() {
-                document.body.removeChild(container);
-                overlay.style.display = 'none';
-                toolbar.style.visibility = '';
-                btn.textContent = 'Save as PDF';
-                btn.disabled = false;
-            }, 500);
-        }).catch(function(err) {
-            clearInterval(progressTimer);
-            statusEl.textContent = 'Error: ' + err.message;
-            console.error('PDF error:', err);
             document.body.removeChild(container);
-            toolbar.style.visibility = '';
+            btn.textContent = 'Save as PDF';
+            btn.disabled = false;
+        }).catch(function(err) {
+            alert('PDF error: ' + err.message);
+            document.body.removeChild(container);
             btn.textContent = 'Save as PDF';
             btn.disabled = false;
         });
     }
 
-    // Auto-start if opened with ?auto=1
     if (window.location.search.indexOf('auto=1') !== -1) {
-        window.addEventListener('load', function() {
-            setTimeout(savePDF, 1000);
-        });
+        window.addEventListener('load', function() { setTimeout(savePDF, 500); });
     }
     </script>
 </body>
