@@ -84,9 +84,23 @@ body {
     border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
-/* Toolbar stays dark */
+/* Toolbar - white to match print theme */
 .toolbar {
-    background: #1a3a4a;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.toolbar-title {
+    color: #1a1a1a;
+}
+
+.toolbar-back {
+    color: #666666;
+}
+
+.toolbar-btn {
+    background: #1a1a1a;
+    color: #ffffff;
 }
 
 /* Section title border */
