@@ -547,7 +547,7 @@ a:hover { color: var(--orange-dark); }
     gap: 1rem;
 }
 
-.crew-item .crew-role { color: var(--orange); font-weight: 700; white-space: nowrap; }
+.crew-item .crew-role { color: var(--text-dark); font-weight: 700; white-space: nowrap; }
 .crew-item .crew-name { color: var(--text-soft); text-align: right; }
 
 /* ---- PRESS PAGE ---- */
