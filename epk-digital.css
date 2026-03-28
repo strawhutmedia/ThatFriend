@@ -420,6 +420,12 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     height: 9.8in;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.info-section {
+    flex-shrink: 0;
 }
 
 .press-list {
