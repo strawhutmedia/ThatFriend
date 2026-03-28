@@ -467,7 +467,26 @@
             margin: 0,
             filename: 'ThatFriend_EPK_Digital.pdf',
             image: { type: 'jpeg', quality: 0.85 },
-            html2canvas: { scale: 1.5, useCORS: true },
+            html2canvas: {
+                scale: 1.5,
+                useCORS: true,
+                width: 816,
+                height: 1056,
+                onclone: function(doc) {
+                    var pp = doc.querySelectorAll('.page');
+                    for (var j = 0; j < pp.length; j++) {
+                        pp[j].style.margin = '0';
+                        pp[j].style.padding = '0';
+                        pp[j].style.width = '816px';
+                        pp[j].style.height = '1056px';
+                        pp[j].style.minHeight = '1056px';
+                        pp[j].style.maxHeight = '1056px';
+                        pp[j].style.overflow = 'hidden';
+                        pp[j].style.boxShadow = 'none';
+                        pp[j].style.border = 'none';
+                    }
+                }
+            },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
 
