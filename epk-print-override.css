@@ -47,8 +47,8 @@ body {
 }
 
 /* Closing page - white like all other pages */
-.page-closing {
-    background: #ffffff;
+.page.page-closing {
+    background: #ffffff !important;
 }
 
 .closing-title {
