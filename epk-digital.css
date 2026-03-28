@@ -418,14 +418,9 @@ body {
 .info-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 9.8in;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.info-section {
-    flex-shrink: 0;
+    justify-content: space-between;
+    min-height: 9.8in;
+    box-sizing: border-box;
 }
 
 .press-list {
