@@ -91,7 +91,7 @@ body {
 }
 
 .toolbar-title {
-    color: #f0e6d3;
+    color: #f0e6d3 !important;
 }
 
 .toolbar-back {
