@@ -255,6 +255,14 @@ body {
     min-height: 0;
 }
 
+.stills-3row {
+    grid-template-rows: repeat(3, 1.3in);
+}
+
+.stills-3row img {
+    height: 1.3in;
+}
+
 /* ============================================
    FILMMAKER BIOS
    ============================================ */
