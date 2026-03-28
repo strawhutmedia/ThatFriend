@@ -18,7 +18,7 @@
     <div class="toolbar no-print" id="toolbar">
         <a href="epk.html" class="toolbar-back">&larr; Back to EPK</a>
         <span class="toolbar-title">DIGITAL PRESS KIT</span>
-        <button class="toolbar-btn" id="pdfBtn" onclick="savePDF()">Save as PDF</button>
+        <a href="assets/ThatFriend_EPK_Digital.pdf" download="ThatFriend_EPK_Digital.pdf" class="toolbar-btn" style="text-decoration:none;display:inline-block;">Save as PDF</a>
     </div>
 
     <!-- PAGE 1: COVER -->
@@ -454,81 +454,6 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
-    <script>
-    function savePDF() {
-        var btn = document.getElementById('pdfBtn');
-        btn.textContent = 'Generating...';
-        btn.disabled = true;
-
-        var pages = document.querySelectorAll('.page');
-        var total = pages.length;
-
-        var opt = {
-            margin: 0,
-            filename: 'ThatFriend_EPK_Digital.pdf',
-            image: { type: 'jpeg', quality: 0.85 },
-            html2canvas: {
-                scale: 1.5,
-                useCORS: true,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: 816,
-                onclone: function(clonedDoc) {
-                    // Force entire document to 816px wide
-                    clonedDoc.documentElement.style.width = '816px';
-                    clonedDoc.documentElement.style.overflow = 'hidden';
-                    clonedDoc.body.style.width = '816px';
-                    clonedDoc.body.style.maxWidth = '816px';
-                    clonedDoc.body.style.overflow = 'hidden';
-                    clonedDoc.body.style.margin = '0';
-                    clonedDoc.body.style.padding = '0';
-                    // Target html2pdf containers by class
-                    var overlay = clonedDoc.querySelector('.html2pdf__overlay');
-                    if (overlay) { overlay.style.width = '816px'; overlay.style.right = 'auto'; }
-                    var cont = clonedDoc.querySelector('.html2pdf__container');
-                    if (cont) { cont.style.width = '816px'; }
-                    // Also catch by inline fixed position
-                    var allEls = clonedDoc.getElementsByTagName('div');
-                    for (var d = 0; d < allEls.length; d++) {
-                        if (allEls[d].style.cssText && allEls[d].style.cssText.indexOf('fixed') !== -1) {
-                            allEls[d].style.width = '816px';
-                            allEls[d].style.right = 'auto';
-                            allEls[d].style.overflow = 'hidden';
-                        }
-                    }
-                    var pp = clonedDoc.querySelectorAll('.page');
-                    for (var j = 0; j < pp.length; j++) {
-                        pp[j].style.margin = '0';
-                        pp[j].style.boxShadow = 'none';
-                        pp[j].style.border = 'none';
-                    }
-                    var tb = clonedDoc.querySelector('.toolbar');
-                    if (tb) tb.style.display = 'none';
-                }
-            },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
-
-        var worker = html2pdf().set(opt).from(pages[0]).toContainer().toCanvas().toPdf();
-
-        for (var i = 1; i < total; i++) {
-            (function(pg) {
-                worker = worker.get('pdf').then(function(pdf) {
-                    pdf.addPage();
-                }).from(pg).toContainer().toCanvas().toPdf();
-            })(pages[i]);
-        }
-
-        worker.save().then(function() {
-            btn.textContent = 'Save as PDF';
-            btn.disabled = false;
-        });
-    }
-
-    if (window.location.search.indexOf('auto=1') !== -1) {
-        window.addEventListener('load', function() { setTimeout(savePDF, 800); });
-    }
-    </script>
+    <!-- PDF is pre-generated as a static file -->
 </body>
 </html>
