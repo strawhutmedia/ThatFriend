@@ -388,11 +388,11 @@ body {
    ============================================ */
 .songs-list {
     columns: 2;
-    column-gap: 0.5in;
+    column-gap: 0.6in;
 }
 
 .song-row {
-    padding: 0.2rem 0;
+    padding: 0.35rem 0;
     border-bottom: 1px solid rgba(74, 160, 180, 0.08);
     break-inside: avoid;
 }
@@ -400,14 +400,14 @@ body {
 .song-t {
     font-weight: 700;
     color: var(--cream);
-    font-size: 0.72rem;
+    font-size: 0.8rem;
 }
 
 .song-d {
     color: var(--text-dim);
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     display: block;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 /* ============================================
