@@ -476,7 +476,7 @@
             image: { type: 'jpeg', quality: 0.95 },
             html2canvas: { scale: 2, useCORS: true },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all'], before: '.page' }
+            pagebreak: { mode: [] }
         }).from(container).save().then(function() {
             document.body.removeChild(container);
             btn.textContent = 'Save as PDF';
