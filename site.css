@@ -376,7 +376,7 @@ a:hover { color: var(--orange-dark); }
 
 .about-fact-value {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 
 /* EPK download */
