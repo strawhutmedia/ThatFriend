@@ -529,7 +529,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--cream);
+    background: var(--teal-dark);
 }
 
 .closing-content {
@@ -540,13 +540,13 @@ body {
     font-family: 'Bebas Neue', cursive;
     font-size: 3.5rem;
     letter-spacing: 6px;
-    color: var(--teal-dark);
+    color: var(--cream);
     margin-bottom: 0.5rem;
 }
 
 .closing-tagline {
     font-size: 1rem;
-    color: var(--teal-dark);
+    color: var(--cream);
     font-style: italic;
     margin-bottom: 2rem;
     opacity: 0.7;
@@ -561,14 +561,14 @@ body {
 }
 
 .closing-contact p {
-    color: var(--teal-dark);
+    color: var(--cream);
     font-size: 0.85rem;
     margin-bottom: 0.2rem;
 }
 
 .closing-copyright {
     margin-top: 2rem;
-    color: var(--teal-dark);
+    color: var(--cream);
     opacity: 0.5;
     font-size: 0.7rem;
 }
