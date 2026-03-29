@@ -216,5 +216,20 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
     </script>
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" style="display:none; position:fixed; bottom:0; left:0; right:0; background:rgba(26,42,50,0.95); color:#f5f0e8; padding:1rem 1.5rem; z-index:9999; font-family:'Montserrat',sans-serif; font-size:0.85rem; backdrop-filter:blur(10px);">
+        <div style="max-width:960px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <p style="margin:0; flex:1; min-width:200px;">We use cookies and tracking technologies to improve your experience and for analytics and advertising. By continuing to browse, you consent to our use of cookies.</p>
+            <div style="display:flex; gap:0.5rem; flex-shrink:0;">
+                <button onclick="acceptCookies()" style="background:#FF8C42; color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:4px; cursor:pointer; font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:600;">Accept</button>
+                <button onclick="declineCookies()" style="background:transparent; color:#f5f0e8; border:1px solid #f5f0e8; padding:0.5rem 1.2rem; border-radius:4px; cursor:pointer; font-family:'Montserrat',sans-serif; font-size:0.85rem;">Decline</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function acceptCookies(){document.getElementById('cookieConsent').style.display='none';localStorage.setItem('cookieConsent','accepted');}
+        function declineCookies(){document.getElementById('cookieConsent').style.display='none';localStorage.setItem('cookieConsent','declined');}
+        if(!localStorage.getItem('cookieConsent')){document.getElementById('cookieConsent').style.display='block';}
+    </script>
 </body>
 </html>
