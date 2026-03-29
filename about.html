@@ -126,15 +126,38 @@
     </div>
 
     <!-- Behind the Scenes -->
+    <style>
+        .bts-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:0.75rem; max-width:960px; margin:0 auto 3rem; padding:0 1.5rem; }
+        .bts-grid img { width:100%; border-radius:8px; object-fit:cover; aspect-ratio:3/2; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
+        .bts-grid img:hover { transform:scale(1.05); box-shadow:0 8px 25px rgba(0,0,0,0.3); }
+        .bts-lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center; cursor:pointer; }
+        .bts-lightbox.active { display:flex; }
+        .bts-lightbox img { max-width:90vw; max-height:90vh; border-radius:8px; object-fit:contain; }
+    </style>
     <div class="content-section reveal" style="text-align:center; margin-top: 3rem;">
         <h2>Behind the Scenes</h2>
     </div>
-    <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; max-width:900px; margin:0 auto 3rem; padding:0 1.5rem;">
-        <img src="assets/bts/Tribeca-3.jpg" alt="Behind the scenes - crew with camera" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:3/2;">
-        <img src="assets/bts/Tribeca-18.jpg" alt="Behind the scenes - night shoot" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:3/2;">
-        <img src="assets/bts/Tribeca-9.jpg" alt="Behind the scenes - directing" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:3/2;">
-        <img src="assets/bts/Tribeca-34.jpg" alt="Behind the scenes - cinematographer" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:3/2;">
+    <div class="bts-grid reveal">
+        <img src="assets/bts/Tribeca.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-3.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-9.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-10.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-18.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-26.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-34.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-41.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-57.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
+        <img src="assets/bts/Tribeca-58.jpg" alt="Behind the scenes" onclick="openBtsLightbox(this)">
     </div>
+    <div class="bts-lightbox" id="btsLightbox" onclick="this.classList.remove('active')">
+        <img id="btsLightboxImg" src="" alt="Behind the scenes">
+    </div>
+    <script>
+        function openBtsLightbox(el) {
+            document.getElementById('btsLightboxImg').src = el.src;
+            document.getElementById('btsLightbox').classList.add('active');
+        }
+    </script>
 
     <!-- EPK Download -->
     <div class="epk-download reveal">
