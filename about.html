@@ -159,11 +159,10 @@
         }
     </script>
 
-    <!-- EPK Download -->
-    <div class="epk-download reveal">
-        <h2>Electronic Press Kit</h2>
-        <p>Download the full EPK with complete credits, cast &amp; crew bios, song credits, and more.</p>
-        <a href="epk.html" class="btn-epk">View EPK</a>
+    <!-- EPK Sticky Bar -->
+    <div class="epk-sticky-bar" id="epkStickyBar">
+        <span class="epk-sticky-text">Electronic Press Kit</span>
+        <a href="epk.html" class="btn-epk-sticky">View EPK</a>
     </div>
 
     <footer class="footer">
@@ -215,6 +214,16 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        // Show EPK sticky bar after scrolling 300px
+        var epkBar = document.getElementById('epkStickyBar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                epkBar.classList.add('visible');
+            } else {
+                epkBar.classList.remove('visible');
+            }
+        });
     </script>
     <!-- Cookie Consent Banner -->
     <div id="cookieConsent" style="display:none; position:fixed; bottom:0; left:0; right:0; background:rgba(26,42,50,0.95); color:#f5f0e8; padding:1rem 1.5rem; z-index:9999; font-family:'Montserrat',sans-serif; font-size:0.85rem; backdrop-filter:blur(10px);">
