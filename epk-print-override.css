@@ -2,31 +2,56 @@
 /* Loaded AFTER epk-digital.css to override colors only */
 
 :root {
-    --teal-dark: #ffffff !important;
-    --teal-mid: #f5f5f5 !important;
-    --teal-light: #e8e8e8 !important;
-    --cream: #1a1a1a !important;
-    --gold: #8a6d3b !important;
-    --text-light: #333333 !important;
-    --text-dim: #666666 !important;
-    --border-teal: rgba(0, 0, 0, 0.15) !important;
+    --teal-dark: #ffffff;
+    --teal-mid: #f5f5f5;
+    --teal-light: #e8e8e8;
+    --cream: #1a1a1a;
+    --gold: #8a6d3b;
+    --text-light: #333333;
+    --text-dim: #666666;
+    --border-teal: rgba(0, 0, 0, 0.15);
 }
 
 body {
     background: #e0e0e0 !important;
+    color: #1a1a1a !important;
 }
 
+/* Force all pages white */
 .page {
     background: #ffffff !important;
+    color: #1a1a1a !important;
 }
 
-/* Cover page */
 .page-cover {
     background: #ffffff !important;
 }
 
+.page-content, .page-flex {
+    color: #1a1a1a !important;
+}
+
 .cover-credits {
     color: #333333 !important;
+}
+
+/* Force all text dark */
+.page h1, .page h2, .page h3, .page h4,
+.page p, .page span, .page div,
+.section-title, .sub-title,
+.body-text, .bio-body, .bio-name, .bio-role,
+.cast-name, .cast-role, .cast-note,
+.credit-role, .credit-name,
+.credit-dept,
+.song-title, .song-detail,
+.equipment-text, .thank-you-text,
+.loc-tag, .tech-spec-label, .tech-spec-value {
+    color: #1a1a1a !important;
+}
+
+/* Links should be gold */
+.page a {
+    color: #8a6d3b !important;
 }
 
 /* Cast photo box background */
@@ -42,8 +67,7 @@ body {
 /* Location tags */
 .loc-tag {
     background: rgba(0, 0, 0, 0.08) !important;
-    border-left-color: var(--gold) !important;
-    color: #1a1a1a !important;
+    border-left-color: #8a6d3b !important;
 }
 
 /* Closing page - white like all other pages */
@@ -74,28 +98,6 @@ body {
     opacity: 0.5;
 }
 
-/* All text elements need dark color */
-.page h1, .page h2, .page h3, .page h4,
-.page p, .page span, .page div,
-.section-title, .sub-title,
-.body-text, .bio-body, .bio-name, .bio-role,
-.cast-name, .cast-role, .cast-note,
-.credit-role, .credit-name,
-.song-title, .song-detail,
-.equipment-text, .thank-you-text {
-    color: #1a1a1a !important;
-}
-
-/* Links should be gold */
-.page a {
-    color: #8a6d3b !important;
-}
-
-/* Page content backgrounds */
-.page-content, .page-flex {
-    background: transparent !important;
-}
-
 /* Song border */
 .song-row {
     border-bottom-color: rgba(0, 0, 0, 0.08) !important;
@@ -104,6 +106,16 @@ body {
 /* Credits divider */
 .credit-row {
     border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Section title border */
+.section-title {
+    border-bottom-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Sub title border */
+.sub-title {
+    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Toolbar - keep dark like digital version */
@@ -129,22 +141,17 @@ body {
     background: #e67a30;
 }
 
-/* Section title border */
-.section-title {
-    border-bottom-color: rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Sub title border */
-.sub-title {
-    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
-}
-
 /* Invert FotoKem white logo to black for print */
 .credit-logo-print[alt="FotoKem"] {
     filter: invert(1);
 }
 
-/* Print media - white pages */
+/* Logos row - use dark logos */
+.logos-row img {
+    filter: none !important;
+}
+
+/* Print media */
 @media print {
     * {
         -webkit-print-color-adjust: exact !important;
@@ -156,8 +163,35 @@ body {
         background: white !important;
     }
 
+    .toolbar, .no-print {
+        display: none !important;
+    }
+
     .page {
         background: #ffffff !important;
+        color: #1a1a1a !important;
         border: none;
+        box-shadow: none;
+        margin: 0;
+        width: 8.5in;
+        height: 11in;
+        min-height: 11in;
+        max-height: 11in;
+        overflow: hidden;
+        page-break-after: always;
+        page-break-inside: avoid;
+    }
+
+    .page:first-of-type {
+        margin-top: 0;
+    }
+
+    .page:last-child {
+        page-break-after: auto;
+    }
+
+    @page {
+        margin: 0;
+        size: letter;
     }
 }
