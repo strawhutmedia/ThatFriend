@@ -2,48 +2,48 @@
 /* Loaded AFTER epk-digital.css to override colors only */
 
 :root {
-    --teal-dark: #ffffff;
-    --teal-mid: #f5f5f5;
-    --teal-light: #e8e8e8;
-    --cream: #1a1a1a;
-    --gold: #8a6d3b;
-    --text-light: #333333;
-    --text-dim: #666666;
-    --border-teal: rgba(0, 0, 0, 0.15);
+    --teal-dark: #ffffff !important;
+    --teal-mid: #f5f5f5 !important;
+    --teal-light: #e8e8e8 !important;
+    --cream: #1a1a1a !important;
+    --gold: #8a6d3b !important;
+    --text-light: #333333 !important;
+    --text-dim: #666666 !important;
+    --border-teal: rgba(0, 0, 0, 0.15) !important;
 }
 
 body {
-    background: #e0e0e0;
+    background: #e0e0e0 !important;
 }
 
 .page {
-    background: #ffffff;
+    background: #ffffff !important;
 }
 
 /* Cover page */
 .page-cover {
-    background: #ffffff;
+    background: #ffffff !important;
 }
 
 .cover-credits {
-    color: #333333;
+    color: #333333 !important;
 }
 
 /* Cast photo box background */
 .cast-photo-box {
-    background: #e8e8e8;
+    background: #e8e8e8 !important;
 }
 
 /* Bio photo box */
 .bio-photo-box {
-    background: #e8e8e8;
+    background: #e8e8e8 !important;
 }
 
 /* Location tags */
 .loc-tag {
-    background: rgba(0, 0, 0, 0.08);
-    border-left-color: var(--gold);
-    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.08) !important;
+    border-left-color: var(--gold) !important;
+    color: #1a1a1a !important;
 }
 
 /* Closing page - white like all other pages */
@@ -52,17 +52,17 @@ body {
 }
 
 .closing-title {
-    color: #1a1a1a;
+    color: #1a1a1a !important;
 }
 
 .closing-tagline {
-    color: #1a1a1a;
+    color: #1a1a1a !important;
     opacity: 0.7;
 }
 
 .closing-contact p,
 .closing-contact h3 {
-    color: #1a1a1a;
+    color: #1a1a1a !important;
 }
 
 .closing-contact a {
@@ -70,18 +70,40 @@ body {
 }
 
 .closing-copyright {
-    color: #1a1a1a;
+    color: #1a1a1a !important;
     opacity: 0.5;
+}
+
+/* All text elements need dark color */
+.page h1, .page h2, .page h3, .page h4,
+.page p, .page span, .page div,
+.section-title, .sub-title,
+.body-text, .bio-body, .bio-name, .bio-role,
+.cast-name, .cast-role, .cast-note,
+.credit-role, .credit-name,
+.song-title, .song-detail,
+.equipment-text, .thank-you-text {
+    color: #1a1a1a !important;
+}
+
+/* Links should be gold */
+.page a {
+    color: #8a6d3b !important;
+}
+
+/* Page content backgrounds */
+.page-content, .page-flex {
+    background: transparent !important;
 }
 
 /* Song border */
 .song-row {
-    border-bottom-color: rgba(0, 0, 0, 0.08);
+    border-bottom-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Credits divider */
 .credit-row {
-    border-bottom-color: rgba(0, 0, 0, 0.06);
+    border-bottom-color: rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Toolbar - keep dark like digital version */
@@ -109,12 +131,12 @@ body {
 
 /* Section title border */
 .section-title {
-    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-bottom-color: rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Sub title border */
 .sub-title {
-    border-bottom-color: rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Invert FotoKem white logo to black for print */
@@ -124,11 +146,18 @@ body {
 
 /* Print media - white pages */
 @media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
     body {
-        background: white;
+        background: white !important;
     }
 
     .page {
+        background: #ffffff !important;
         border: none;
     }
 }
