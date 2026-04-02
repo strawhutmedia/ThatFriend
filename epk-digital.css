@@ -152,21 +152,19 @@ body {
 
 .cover-content {
     text-align: center;
-    padding: 2in 0.5in 0.5in;
+    padding: 0.6in 0.75in 0.4in;
 }
 
 .cover-laurel img {
-    max-width: 240px;
-    width: 80%;
-    margin-bottom: 1.2rem;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    max-width: 200px;
+    width: 60%;
+    margin-bottom: 0.3in;
 }
 
 .cover-poster img {
-    max-width: 4.5in;
+    max-width: 6.5in;
     width: 100%;
     border-radius: 6px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
 }
 
 .cover-tagline {
