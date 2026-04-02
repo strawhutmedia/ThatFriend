@@ -269,15 +269,15 @@ body {
    ============================================ */
 .bio-block {
     display: grid;
-    grid-template-columns: 0.75in 1fr;
-    gap: 0.15in;
-    margin-bottom: 0.15rem;
+    grid-template-columns: 1.0in 1fr;
+    gap: 0.2in;
+    margin-bottom: 0.35rem;
     align-items: start;
 }
 
 .bio-photo-box {
-    width: 0.75in;
-    height: 0.9in;
+    width: 1.0in;
+    height: 1.2in;
     border-radius: 4px;
     overflow: hidden;
     background: var(--teal-light);
@@ -291,7 +291,7 @@ body {
 
 .bio-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.0rem;
     letter-spacing: 2px;
     color: var(--cream);
     margin: 0;
@@ -300,16 +300,16 @@ body {
 
 .bio-role {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.5rem;
+    font-size: 0.55rem;
     letter-spacing: 2px;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.15rem;
 }
 
 .bio-body {
-    font-size: 0.48rem;
-    line-height: 1.35;
+    font-size: 0.52rem;
+    line-height: 1.4;
     color: var(--text-light);
     text-align: justify;
 }
