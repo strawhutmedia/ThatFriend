@@ -260,7 +260,7 @@ body {
 .bio-block {
     display: flex;
     gap: 0.2in;
-    margin-bottom: 0.22in;
+    margin-bottom: 0.28in;
     align-items: start;
 }
 
@@ -286,7 +286,7 @@ body {
 
 .bio-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.0rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     color: var(--cream);
     margin: 0;
@@ -295,7 +295,7 @@ body {
 
 .bio-role {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     letter-spacing: 2px;
     color: var(--gold);
     text-transform: uppercase;
@@ -303,7 +303,7 @@ body {
 }
 
 .bio-body {
-    font-size: 0.52rem;
+    font-size: 0.56rem;
     line-height: 1.4;
     color: var(--text-light);
     text-align: justify;
