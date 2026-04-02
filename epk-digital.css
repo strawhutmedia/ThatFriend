@@ -237,8 +237,7 @@ body {
 }
 
 .stills-grid-2x2 img {
-    width: 3.5in;
-    height: auto;
+    width: 3.3in;
     border-radius: 4px;
     object-fit: cover;
 }
@@ -246,15 +245,11 @@ body {
 .stills-flex-fill {
     flex: 1;
     min-height: 0;
-    grid-auto-rows: 1fr;
 }
 
 .stills-flex-fill img {
     min-height: 0;
-}
-
-.stills-3row {
-    grid-template-rows: repeat(3, 1.75in);
+    height: auto;
 }
 
 .stills-3row img {
