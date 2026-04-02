@@ -271,13 +271,13 @@ body {
     display: grid;
     grid-template-columns: 1.0in 1fr;
     gap: 0.2in;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.22in;
     align-items: start;
 }
 
 .bio-photo-box {
     width: 1.0in;
-    height: 1.2in;
+    height: 1.15in;
     border-radius: 4px;
     overflow: hidden;
     background: var(--teal-light);
