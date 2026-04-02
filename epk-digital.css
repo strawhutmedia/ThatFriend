@@ -267,7 +267,7 @@ body {
 .bio-photo-box {
     width: 1.0in;
     min-width: 1.0in;
-    height: 1.15in;
+    height: 1.0in;
     border-radius: 4px;
     overflow: hidden;
     background: var(--teal-light);
