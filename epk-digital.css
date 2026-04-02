@@ -251,7 +251,7 @@ body {
 }
 
 .stills-3row img {
-    height: 1.75in;
+    height: 1.6in;
 }
 
 /* ============================================
@@ -277,6 +277,11 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.bio-info {
+    flex: 1;
+    min-width: 0;
 }
 
 .bio-name {
