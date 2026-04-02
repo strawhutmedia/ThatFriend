@@ -152,7 +152,7 @@ body {
 
 .cover-content {
     text-align: center;
-    padding: 0.6in 0.75in 0.4in;
+    padding: 1.2in 0.75in 0.5in;
 }
 
 .cover-laurel img {
@@ -162,7 +162,7 @@ body {
 }
 
 .cover-poster img {
-    max-width: 6.5in;
+    max-width: 4.5in;
     width: 100%;
     border-radius: 6px;
 }
