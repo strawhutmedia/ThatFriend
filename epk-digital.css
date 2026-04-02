@@ -231,11 +231,11 @@ body {
 .stills-grid-2x2 {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.2in;
+    gap: 0.15in;
 }
 
 .stills-grid-2x2 img {
-    width: 3.3in;
+    width: 3.35in;
     border-radius: 4px;
     object-fit: cover;
 }
