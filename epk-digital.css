@@ -148,14 +148,11 @@ body {
    ============================================ */
 .page-cover {
     background: var(--teal-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .cover-content {
     text-align: center;
-    padding: 0.5in;
+    padding: 2in 0.5in 0.5in;
 }
 
 .cover-laurel img {
@@ -240,7 +237,8 @@ body {
 }
 
 .stills-grid-2x2 img {
-    width: calc(50% - 0.1in);
+    width: 3.5in;
+    height: auto;
     border-radius: 4px;
     object-fit: cover;
 }
@@ -322,7 +320,7 @@ body {
     gap: 0.28in 0.4in;
 }
 .cast-grid > * {
-    width: calc(50% - 0.2in);
+    width: 3.2in;
 }
 
 .cast-bio-block {
