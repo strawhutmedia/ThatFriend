@@ -238,13 +238,9 @@ body {
     flex-wrap: wrap;
     gap: 0.2in;
 }
-.stills-grid-2x2 > * {
-    width: calc(50% - 0.1in);
-}
 
 .stills-grid-2x2 img {
-    width: 100%;
-    height: 100%;
+    width: calc(50% - 0.1in);
     border-radius: 4px;
     object-fit: cover;
 }
@@ -279,6 +275,7 @@ body {
 
 .bio-photo-box {
     width: 1.0in;
+    min-width: 1.0in;
     height: 1.15in;
     border-radius: 4px;
     overflow: hidden;
@@ -336,6 +333,7 @@ body {
 
 .cast-photo-box {
     width: 1.0in;
+    min-width: 1.0in;
     height: 1.25in;
     border-radius: 3px;
     overflow: hidden;
