@@ -554,6 +554,36 @@
         var params = new URLSearchParams(window.location.search);
         var guestNameParam = params.get('name');
         var ticketParam = parseInt(params.get('tickets')) || 1;
+        var storageKey = guestNameParam ? 'rsvp_' + guestNameParam.trim().toLowerCase().replace(/\s+/g, '_') : null;
+
+        function buildGuestLinks(guestNames) {
+            var baseUrl = window.location.origin + window.location.pathname;
+            var list = document.getElementById('guestLinksList');
+            list.innerHTML = '';
+            guestNames.forEach(function(name) {
+                var link = baseUrl + '?name=' + encodeURIComponent(name.trim());
+                var div = document.createElement('div');
+                div.className = 'guest-link-item';
+                div.innerHTML = '<span class="guest-link-name">' + name + '</span>' +
+                    '<button class="btn-copy" data-link="' + link + '">Copy Link</button>';
+                list.appendChild(div);
+            });
+            document.getElementById('guestLinks').style.display = 'block';
+
+            list.addEventListener('click', function(ev) {
+                if (ev.target.classList.contains('btn-copy')) {
+                    var url = ev.target.getAttribute('data-link');
+                    navigator.clipboard.writeText(url).then(function() {
+                        ev.target.textContent = 'Copied';
+                        ev.target.classList.add('copied');
+                        setTimeout(function() {
+                            ev.target.textContent = 'Copy Link';
+                            ev.target.classList.remove('copied');
+                        }, 2000);
+                    });
+                }
+            });
+        }
 
         if (!guestNameParam || !guestNameParam.trim()) {
             document.getElementById('privateNotice').style.display = 'block';
@@ -583,9 +613,17 @@
                     select.appendChild(opt);
                 }
             }
-        }
 
-        var maxGuests = ticketParam - 1;
+            var saved = storageKey ? localStorage.getItem(storageKey) : null;
+            if (saved) {
+                var savedData = JSON.parse(saved);
+                document.getElementById('rsvpForm').style.display = 'none';
+                document.getElementById('thankYou').classList.add('visible');
+                if (savedData.guests && savedData.guests.length > 0) {
+                    buildGuestLinks(savedData.guests);
+                }
+            }
+        }
 
         document.querySelectorAll('input[name="premiere"]').forEach(function(r) {
             r.addEventListener('change', function() {
@@ -623,31 +661,22 @@
                     form.style.display = 'none';
                     document.getElementById('thankYou').classList.add('visible');
 
+                    var guestNames = [];
                     var guestCount = parseInt(data.get('guest_count')) || 0;
-                    if (guestCount > 0) {
-                        var baseUrl = window.location.origin + window.location.pathname;
-                        var list = document.getElementById('guestLinksList');
-                        for (var i = 1; i <= guestCount; i++) {
-                            var name = data.get('guest_' + i + '_name');
-                            if (!name) continue;
-                            var link = baseUrl + '?name=' + encodeURIComponent(name.trim());
-                            var div = document.createElement('div');
-                            div.className = 'guest-link-item';
-                            div.innerHTML = '<span class="guest-link-name">' + name + '</span>' +
-                                '<button class="btn-copy" data-link="' + link + '">Copy Link</button>';
-                            list.appendChild(div);
-                        }
-                        document.getElementById('guestLinks').style.display = 'block';
+                    for (var i = 1; i <= guestCount; i++) {
+                        var name = data.get('guest_' + i + '_name');
+                        if (name && name.trim()) guestNames.push(name.trim());
+                    }
 
-                        list.addEventListener('click', function(ev) {
-                            if (ev.target.classList.contains('btn-copy')) {
-                                var url = ev.target.getAttribute('data-link');
-                                navigator.clipboard.writeText(url).then(function() {
-                                    ev.target.textContent = 'Copied';
-                                    ev.target.classList.add('copied');
-                                });
-                            }
-                        });
+                    if (storageKey) {
+                        localStorage.setItem(storageKey, JSON.stringify({
+                            submitted: true,
+                            guests: guestNames
+                        }));
+                    }
+
+                    if (guestNames.length > 0) {
+                        buildGuestLinks(guestNames);
                     }
                 }
             });
