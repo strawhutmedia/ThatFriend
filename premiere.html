@@ -350,6 +350,33 @@
             }
         }
 
+        .invite-guest-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            font-style: italic;
+            color: #FF8C42;
+            margin-bottom: 1.8rem;
+        }
+        .private-notice {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .private-notice h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            color: #f5f0e8;
+            margin-bottom: 1rem;
+        }
+        .private-notice p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.6;
+        }
+
         @media (max-width: 540px) {
             .invite-card {
                 padding: 2.5rem 1.5rem;
@@ -369,12 +396,18 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="invite-container">
+    <div class="private-notice" id="privateNotice" style="display:none;">
+        <h2>That Friend</h2>
+        <p>This is a private invitation. If you believe you received this link in error, please contact the production team.</p>
+    </div>
+
+    <div class="invite-container" id="inviteMain" style="display:none;">
         <div class="invite-card">
             <div class="invite-presented">A Bolo Production &amp; Straw Hut Media</div>
 
             <div class="invite-youre">You're</div>
             <div class="invite-invited">Invited</div>
+            <div class="invite-guest-name" id="guestName"></div>
 
             <img src="assets/key-still.jpeg" alt="That Friend" class="invite-photo">
 
@@ -465,10 +498,24 @@
 
     <script>
         var params = new URLSearchParams(window.location.search);
+        var guestNameParam = params.get('name');
         var hasPlus = params.get('plus') === '1';
 
-        if (hasPlus) {
-            document.getElementById('inviteType').value = 'plus_one';
+        if (!guestNameParam || !guestNameParam.trim()) {
+            document.getElementById('privateNotice').style.display = 'block';
+        } else {
+            var displayName = decodeURIComponent(guestNameParam).trim();
+            document.getElementById('inviteMain').style.display = 'block';
+            document.getElementById('guestName').textContent = displayName;
+
+            var nameInput = document.querySelector('input[name="name"]');
+            nameInput.value = displayName;
+            nameInput.readOnly = true;
+            nameInput.style.opacity = '0.7';
+
+            if (hasPlus) {
+                document.getElementById('inviteType').value = 'plus_one';
+            }
         }
 
         document.querySelectorAll('input[name="premiere"]').forEach(function(r) {
