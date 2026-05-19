@@ -555,6 +555,8 @@
         var guestNameParam = params.get('name');
         var ticketParam = parseInt(params.get('tickets')) || 1;
         var guestsParam = params.get('guests');
+        var lockKey = guestNameParam ? 'rsvp_locked_' + guestNameParam.trim().toLowerCase().replace(/\s+/g, '_') : null;
+        var isLocked = (lockKey && localStorage.getItem(lockKey) === 'true');
 
         function buildGuestLinks(guestNames) {
             var baseUrl = window.location.origin + window.location.pathname;
@@ -583,6 +585,14 @@
                     });
                 }
             });
+        }
+
+        function showLockedState(guestNames) {
+            document.getElementById('rsvpForm').style.display = 'none';
+            document.getElementById('thankYou').classList.add('visible');
+            if (guestNames && guestNames.length > 0) {
+                buildGuestLinks(guestNames);
+            }
         }
 
         if (!guestNameParam || !guestNameParam.trim()) {
@@ -614,13 +624,12 @@
                 }
             }
 
+            var submittedParam = params.get('submitted') === '1';
             if (guestsParam) {
                 var savedGuests = decodeURIComponent(guestsParam).split(',').map(function(n) { return n.trim(); }).filter(Boolean);
-                if (savedGuests.length > 0) {
-                    document.getElementById('rsvpForm').style.display = 'none';
-                    document.getElementById('thankYou').classList.add('visible');
-                    buildGuestLinks(savedGuests);
-                }
+                showLockedState(savedGuests);
+            } else if (submittedParam || isLocked) {
+                showLockedState([]);
             }
         }
 
@@ -657,6 +666,8 @@
                 headers: { 'Accept': 'application/json' }
             }).then(function(response) {
                 if (response.ok) {
+                    if (lockKey) localStorage.setItem(lockKey, 'true');
+
                     form.style.display = 'none';
                     document.getElementById('thankYou').classList.add('visible');
 
@@ -669,11 +680,14 @@
 
                     if (guestNames.length > 0) {
                         buildGuestLinks(guestNames);
-
-                        var newUrl = new URL(window.location);
-                        newUrl.searchParams.set('guests', guestNames.join(','));
-                        window.history.replaceState({}, '', newUrl.toString());
                     }
+
+                    var newUrl = new URL(window.location);
+                    if (guestNames.length > 0) {
+                        newUrl.searchParams.set('guests', guestNames.join(','));
+                    }
+                    newUrl.searchParams.set('submitted', '1');
+                    window.history.replaceState({}, '', newUrl.toString());
                 }
             });
         });
