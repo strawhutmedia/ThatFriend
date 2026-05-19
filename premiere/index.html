@@ -311,6 +311,45 @@
             color: rgba(255,255,255,0.5);
         }
 
+        .btn-download {
+            display: block;
+            width: 100%;
+            padding: 0.7rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.5);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+            border-radius: 2px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-download:hover {
+            border-color: rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.7);
+        }
+        @media print {
+            body {
+                background: #0d1b21;
+                padding: 0;
+            }
+            .rsvp-section, .btn-download {
+                display: none !important;
+            }
+            .invite-container {
+                max-width: 100%;
+            }
+            .invite-card {
+                border: none;
+                box-shadow: none;
+            }
+        }
+
         @media (max-width: 540px) {
             .invite-card {
                 padding: 2.5rem 1.5rem;
@@ -355,11 +394,13 @@
                 <div class="invite-detail-value">8:30 PM</div>
 
                 <div class="invite-detail-label">Venue</div>
-                <div class="invite-detail-value">Tribeca Film Festival<br>New York City</div>
+                <div class="invite-detail-value">Village East Cinemas-01<br>New York City</div>
             </div>
 
             <div class="invite-festival">Tribeca Festival 2026</div>
         </div>
+
+        <button class="btn-download" onclick="window.print()">Save Invitation</button>
 
         <div class="rsvp-section">
             <div style="text-align:center;">
@@ -416,7 +457,8 @@
 
             <div class="thank-you" id="thankYou">
                 <h3>Thank You</h3>
-                <p>Your RSVP has been received. We look forward to seeing you.</p>
+                <p>Your RSVP has been received.<br>We look forward to seeing you on June 8th.</p>
+                <p style="margin-top: 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.35);">Use the "Save Invitation" button above to keep a copy of your invite.</p>
             </div>
         </div>
     </div>
