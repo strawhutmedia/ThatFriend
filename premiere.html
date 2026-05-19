@@ -554,7 +554,7 @@
         var params = new URLSearchParams(window.location.search);
         var guestNameParam = params.get('name');
         var ticketParam = parseInt(params.get('tickets')) || 1;
-        var storageKey = guestNameParam ? 'rsvp_' + guestNameParam.trim().toLowerCase().replace(/\s+/g, '_') : null;
+        var guestsParam = params.get('guests');
 
         function buildGuestLinks(guestNames) {
             var baseUrl = window.location.origin + window.location.pathname;
@@ -614,13 +614,12 @@
                 }
             }
 
-            var saved = storageKey ? localStorage.getItem(storageKey) : null;
-            if (saved) {
-                var savedData = JSON.parse(saved);
-                document.getElementById('rsvpForm').style.display = 'none';
-                document.getElementById('thankYou').classList.add('visible');
-                if (savedData.guests && savedData.guests.length > 0) {
-                    buildGuestLinks(savedData.guests);
+            if (guestsParam) {
+                var savedGuests = decodeURIComponent(guestsParam).split(',').map(function(n) { return n.trim(); }).filter(Boolean);
+                if (savedGuests.length > 0) {
+                    document.getElementById('rsvpForm').style.display = 'none';
+                    document.getElementById('thankYou').classList.add('visible');
+                    buildGuestLinks(savedGuests);
                 }
             }
         }
@@ -668,15 +667,12 @@
                         if (name && name.trim()) guestNames.push(name.trim());
                     }
 
-                    if (storageKey) {
-                        localStorage.setItem(storageKey, JSON.stringify({
-                            submitted: true,
-                            guests: guestNames
-                        }));
-                    }
-
                     if (guestNames.length > 0) {
                         buildGuestLinks(guestNames);
+
+                        var newUrl = new URL(window.location);
+                        newUrl.searchParams.set('guests', guestNames.join(','));
+                        window.history.replaceState({}, '', newUrl.toString());
                     }
                 }
             });
