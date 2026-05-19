@@ -430,6 +430,7 @@
                 <div class="invite-detail-value">Village East Cinemas-01<br>New York City</div>
             </div>
 
+            <div id="ticketCount" class="invite-festival" style="color:#FF8C42; margin-bottom:0.5rem; display:none;"></div>
             <div class="invite-festival">Tribeca Festival 2026</div>
         </div>
 
@@ -443,7 +444,7 @@
             <form class="rsvp-form" id="rsvpForm" action="https://formspree.io/f/xnjondvq" method="POST">
                 <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
                 <input type="hidden" name="_subject" value="RSVP - That Friend Premiere">
-                <input type="hidden" name="invite_type" id="inviteType" value="solo">
+                <input type="hidden" name="total_tickets" id="totalTickets" value="1">
 
                 <div class="form-group">
                     <label class="form-label">Your Name</label>
@@ -463,18 +464,12 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="guestGroup" style="display:none;">
-                    <label class="form-label">Bringing a Guest?</label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="bringing_guest" value="Yes" id="guestYes"> Yes</label>
-                        <label class="radio-label"><input type="radio" name="bringing_guest" value="No" id="guestNo"> No</label>
-                    </div>
-                    <div class="guest-section" id="guestDetails">
-                        <div class="form-group">
-                            <label class="form-label">Guest Name</label>
-                            <input type="text" name="guest_name" class="form-input" placeholder="Guest's full name">
-                        </div>
-                    </div>
+                <div class="form-group" id="guestsSection" style="display:none;">
+                    <label class="form-label">How many guests are you bringing? <span id="guestMaxLabel"></span></label>
+                    <select name="guest_count" id="guestCount" class="form-input" style="cursor:pointer;">
+                        <option value="0">0 — Just me</option>
+                    </select>
+                    <div id="guestNameFields" style="margin-top: 0.8rem;"></div>
                 </div>
 
                 <div class="form-group">
@@ -499,7 +494,7 @@
     <script>
         var params = new URLSearchParams(window.location.search);
         var guestNameParam = params.get('name');
-        var hasPlus = params.get('plus') === '1';
+        var ticketParam = parseInt(params.get('tickets')) || 1;
 
         if (!guestNameParam || !guestNameParam.trim()) {
             document.getElementById('privateNotice').style.display = 'block';
@@ -507,32 +502,53 @@
             var displayName = decodeURIComponent(guestNameParam).trim();
             document.getElementById('inviteMain').style.display = 'block';
             document.getElementById('guestName').textContent = displayName;
+            document.getElementById('totalTickets').value = ticketParam;
 
             var nameInput = document.querySelector('input[name="name"]');
             nameInput.value = displayName;
             nameInput.readOnly = true;
             nameInput.style.opacity = '0.7';
 
-            if (hasPlus) {
-                document.getElementById('inviteType').value = 'plus_one';
+            if (ticketParam > 1) {
+                var tc = document.getElementById('ticketCount');
+                tc.textContent = ticketParam + ' Tickets Allocated';
+                tc.style.display = 'block';
+
+                var select = document.getElementById('guestCount');
+                var maxGuests = ticketParam - 1;
+                document.getElementById('guestMaxLabel').textContent = '(up to ' + maxGuests + ')';
+                for (var i = 1; i <= maxGuests; i++) {
+                    var opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = i;
+                    select.appendChild(opt);
+                }
             }
         }
 
+        var maxGuests = ticketParam - 1;
+
         document.querySelectorAll('input[name="premiere"]').forEach(function(r) {
             r.addEventListener('change', function() {
-                if (this.value === 'Yes' && hasPlus) {
-                    document.getElementById('guestGroup').style.display = 'block';
+                if (this.value === 'Yes' && ticketParam > 1) {
+                    document.getElementById('guestsSection').style.display = 'block';
                 } else {
-                    document.getElementById('guestGroup').style.display = 'none';
+                    document.getElementById('guestsSection').style.display = 'none';
                 }
             });
         });
 
-        document.getElementById('guestYes').addEventListener('change', function() {
-            document.getElementById('guestDetails').classList.add('visible');
-        });
-        document.getElementById('guestNo').addEventListener('change', function() {
-            document.getElementById('guestDetails').classList.remove('visible');
+        document.getElementById('guestCount').addEventListener('change', function() {
+            var count = parseInt(this.value) || 0;
+            var container = document.getElementById('guestNameFields');
+            container.innerHTML = '';
+            for (var i = 1; i <= count; i++) {
+                var div = document.createElement('div');
+                div.className = 'form-group';
+                div.innerHTML = '<label class="form-label">Guest ' + i + ' Name</label>' +
+                    '<input type="text" name="guest_' + i + '_name" class="form-input" placeholder="Full name" required>';
+                container.appendChild(div);
+            }
         });
 
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
