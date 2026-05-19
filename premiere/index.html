@@ -299,6 +299,61 @@
         .thank-you.visible {
             display: block;
         }
+        .thank-you p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+        .guest-links {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        .guest-links h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.8rem;
+        }
+        .guest-link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .guest-link-name {
+            font-size: 0.85rem;
+            color: #f5f0e8;
+            flex: 1;
+            min-width: 0;
+        }
+        .btn-copy {
+            background: transparent;
+            border: 1px solid #FF8C42;
+            color: #FF8C42;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.35rem 0.7rem;
+            cursor: pointer;
+            border-radius: 2px;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+        .btn-copy:hover {
+            background: #FF8C42;
+            color: #fff;
+        }
+        .btn-copy.copied {
+            border-color: #4CAF50;
+            color: #4CAF50;
+        }
         .thank-you h3 {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
@@ -486,6 +541,10 @@
             <div class="thank-you" id="thankYou">
                 <h3>Thank You</h3>
                 <p>Your RSVP has been received.<br>We look forward to seeing you on June 8th.</p>
+                <div class="guest-links" id="guestLinks" style="display:none;">
+                    <h4>Share these invite links with your guests</h4>
+                    <div id="guestLinksList"></div>
+                </div>
                 <p style="margin-top: 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.35);">Use the "Save Invitation" button above to keep a copy of your invite.</p>
             </div>
         </div>
@@ -563,6 +622,33 @@
                 if (response.ok) {
                     form.style.display = 'none';
                     document.getElementById('thankYou').classList.add('visible');
+
+                    var guestCount = parseInt(data.get('guest_count')) || 0;
+                    if (guestCount > 0) {
+                        var baseUrl = window.location.origin + window.location.pathname;
+                        var list = document.getElementById('guestLinksList');
+                        for (var i = 1; i <= guestCount; i++) {
+                            var name = data.get('guest_' + i + '_name');
+                            if (!name) continue;
+                            var link = baseUrl + '?name=' + encodeURIComponent(name.trim());
+                            var div = document.createElement('div');
+                            div.className = 'guest-link-item';
+                            div.innerHTML = '<span class="guest-link-name">' + name + '</span>' +
+                                '<button class="btn-copy" data-link="' + link + '">Copy Link</button>';
+                            list.appendChild(div);
+                        }
+                        document.getElementById('guestLinks').style.display = 'block';
+
+                        list.addEventListener('click', function(ev) {
+                            if (ev.target.classList.contains('btn-copy')) {
+                                var url = ev.target.getAttribute('data-link');
+                                navigator.clipboard.writeText(url).then(function() {
+                                    ev.target.textContent = 'Copied';
+                                    ev.target.classList.add('copied');
+                                });
+                            }
+                        });
+                    }
                 }
             });
         });
