@@ -397,19 +397,38 @@
             color: rgba(255,255,255,0.7);
         }
         @media print {
-            body {
-                background: #0d1b21;
-                padding: 0;
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
-            .rsvp-section, .btn-download {
+            @page {
+                margin: 0;
+                size: letter;
+            }
+            body {
+                background: #0d1b21 !important;
+                padding: 0;
+                min-height: 100vh;
+            }
+            .rsvp-section, .btn-download, .thank-you, #ticketCount {
                 display: none !important;
             }
             .invite-container {
-                max-width: 100%;
+                max-width: 480px;
             }
             .invite-card {
-                border: none;
-                box-shadow: none;
+                background: linear-gradient(170deg, rgba(26,42,50,0.9) 0%, rgba(13,27,33,0.95) 100%) !important;
+                border: 1px solid rgba(255,255,255,0.12) !important;
+                padding: 2.5rem 2rem;
+            }
+            .invite-card::before {
+                border: 1px solid rgba(255,255,255,0.06) !important;
+            }
+            .invite-photo {
+                height: 180px;
+            }
+            .invite-detail-value {
+                margin-bottom: 0.8rem;
             }
         }
 
