@@ -1,9 +1,9 @@
 var firebaseConfig = {
-    apiKey: "FIREBASE_API_KEY",
-    authDomain: "FIREBASE_AUTH_DOMAIN",
-    databaseURL: "FIREBASE_DATABASE_URL",
-    projectId: "FIREBASE_PROJECT_ID",
-    storageBucket: "FIREBASE_STORAGE_BUCKET",
-    messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID",
-    appId: "FIREBASE_APP_ID"
+    apiKey: "AIzaSyCW0wGnBbKntmrNSqbh2FgJu_fhUb252R0",
+    authDomain: "thatfriend-rsvp.firebaseapp.com",
+    databaseURL: "https://thatfriend-rsvp-default-rtdb.firebaseio.com",
+    projectId: "thatfriend-rsvp",
+    storageBucket: "thatfriend-rsvp.firebasestorage.app",
+    messagingSenderId: "553784293853",
+    appId: "1:553784293853:web:b0f360c05e549942711e34"
 };
