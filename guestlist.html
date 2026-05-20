@@ -257,7 +257,7 @@
         </table>
 
         <div class="footer-note">
-            RSVP data updates in real time<br>
+            <span id="dbStatus" style="color:#FF8C42;">Connecting to database...</span><br>
             Village East Cinemas-01 &bull; New York City &bull; Tribeca Festival 2026
         </div>
     </div>
@@ -439,13 +439,35 @@
         }
 
         var db = null;
-        if (typeof firebase !== 'undefined' && typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey !== 'FIREBASE_API_KEY') {
-            firebase.initializeApp(firebaseConfig);
-            db = firebase.database();
-            db.ref('rsvps').on('value', function(snapshot) {
-                renderTables(snapshot.val() || {});
-            });
-        } else {
+        var statusEl = document.getElementById('dbStatus');
+        try {
+            if (typeof firebase !== 'undefined' && typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey !== 'FIREBASE_API_KEY') {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.database();
+                statusEl.textContent = 'Database connected. Waiting for data...';
+                db.ref('rsvps').on('value', function(snapshot) {
+                    var data = snapshot.val() || {};
+                    var count = Object.keys(data).length;
+                    statusEl.textContent = 'Live — ' + count + ' RSVP(s) in database';
+                    statusEl.style.color = '#4CAF50';
+                    renderTables(data);
+                }, function(error) {
+                    statusEl.textContent = 'Database error: ' + error.message;
+                    statusEl.style.color = '#e57373';
+                    renderTables({});
+                });
+            } else {
+                var reason = '';
+                if (typeof firebase === 'undefined') reason = 'Firebase SDK not loaded';
+                else if (typeof firebaseConfig === 'undefined') reason = 'Config file not loaded';
+                else reason = 'Config has placeholder values';
+                statusEl.textContent = 'Offline — ' + reason;
+                statusEl.style.color = '#e57373';
+                renderTables({});
+            }
+        } catch(e) {
+            statusEl.textContent = 'Error: ' + e.message;
+            statusEl.style.color = '#e57373';
             renderTables({});
         }
 
