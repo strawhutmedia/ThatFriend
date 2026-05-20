@@ -482,6 +482,9 @@
             }
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="assets/firebase-config.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -733,6 +736,12 @@
             }
         });
 
+        var db = null;
+        if (typeof firebase !== 'undefined' && firebaseConfig && firebaseConfig.apiKey !== 'FIREBASE_API_KEY') {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+        }
+
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var form = this;
@@ -757,6 +766,21 @@
 
                     if (guestNames.length > 0) {
                         buildGuestLinks(guestNames);
+                    }
+
+                    if (db) {
+                        var nameKey = displayName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                        db.ref('rsvps/' + nameKey).set({
+                            name: displayName,
+                            email: data.get('email'),
+                            premiere: data.get('premiere') || 'No',
+                            afterparty: data.get('afterparty') || 'No',
+                            guestCount: guestCount,
+                            guests: guestNames,
+                            tickets: ticketParam,
+                            vip: vipParam,
+                            submittedAt: Date.now()
+                        });
                     }
 
                     var newUrl = new URL(window.location);

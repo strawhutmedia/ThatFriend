@@ -209,6 +209,9 @@
             .hide-mobile { display: none; }
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="../assets/firebase-config.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -254,7 +257,7 @@
         </table>
 
         <div class="footer-note">
-            RSVP data from Formspree &mdash; updated manually<br>
+            RSVP data updates in real time<br>
             Village East Cinemas-01 &bull; New York City &bull; Tribeca Festival 2026
         </div>
     </div>
@@ -263,51 +266,55 @@
         var baseUrl = 'https://thatfriendmovie.com/premiere';
 
         var guests = [
-            { name: 'Samantha Prete', role: 'Press / SSML', tickets: 5, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Max Geschwind', role: 'Sales / CAA', tickets: 5, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Billie Lourd', role: 'Film team', tickets: 2, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Josh Brener', role: 'Film team', tickets: 2, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Harvey Guillen', role: 'Film team', tickets: 15, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Alok', role: 'Film team', tickets: 2, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Miles Gutierrez-Riley', role: 'Film team', tickets: 2, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Retta', role: 'Film team', tickets: 3, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Ryan Tillotson', role: 'Producer', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Maggie Boles', role: 'Original Music', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Ashley Rosenberg', role: 'AD', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Dillon Baldassero', role: 'Composer', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Stephen Markley', role: 'EP', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Vance Lovett', role: 'Crew', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Ashley Smith', role: 'EP', tickets: 2, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Scarlett McDonald', role: 'Music Supervisor', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Maddy Cross', role: 'Extra', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Mike Amico', role: 'DP', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Josh Land', role: 'Editor', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Cam Owen', role: '2nd Unit DP', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Lucia Lopez', role: 'Production Design', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Danielle Carr', role: 'Music', tickets: 1, vip: true, premiere: 'pending', party: 'pending' },
-            { name: 'Tara Roy', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Kacey Short', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Brandi Glanville', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'James Maas', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Sydni Williams', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Michael Dougherty', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Connor Simpson', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Adrian Totten', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Nico Boles', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Brent Katz', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Jordan Reed', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Veronica Wall', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Natalia Veras', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Maccabee Montanan', role: '', tickets: 2, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Lily Jablonski', role: '', tickets: 2, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Catherine Curtin', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'SJ Alocco', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' },
-            { name: 'Bill Williams', role: '', tickets: 1, vip: false, premiere: 'pending', party: 'pending' }
+            { name: 'Samantha Prete', role: 'Press / SSML', tickets: 5, vip: true },
+            { name: 'Max Geschwind', role: 'Sales / CAA', tickets: 5, vip: true },
+            { name: 'Billie Lourd', role: 'Film team', tickets: 2, vip: true },
+            { name: 'Josh Brener', role: 'Film team', tickets: 2, vip: true },
+            { name: 'Harvey Guillen', role: 'Film team', tickets: 15, vip: true },
+            { name: 'Alok', role: 'Film team', tickets: 2, vip: true },
+            { name: 'Miles Gutierrez-Riley', role: 'Film team', tickets: 2, vip: true },
+            { name: 'Retta', role: 'Film team', tickets: 3, vip: true },
+            { name: 'Ryan Tillotson', role: 'Producer', tickets: 1, vip: true },
+            { name: 'Maggie Boles', role: 'Original Music', tickets: 1, vip: true },
+            { name: 'Ashley Rosenberg', role: 'AD', tickets: 1, vip: true },
+            { name: 'Dillon Baldassero', role: 'Composer', tickets: 1, vip: true },
+            { name: 'Stephen Markley', role: 'EP', tickets: 1, vip: true },
+            { name: 'Vance Lovett', role: 'Crew', tickets: 1, vip: true },
+            { name: 'Ashley Smith', role: 'EP', tickets: 2, vip: true },
+            { name: 'Scarlett McDonald', role: 'Music Supervisor', tickets: 1, vip: true },
+            { name: 'Maddy Cross', role: 'Extra', tickets: 1, vip: true },
+            { name: 'Mike Amico', role: 'DP', tickets: 1, vip: true },
+            { name: 'Josh Land', role: 'Editor', tickets: 1, vip: true },
+            { name: 'Cam Owen', role: '2nd Unit DP', tickets: 1, vip: true },
+            { name: 'Lucia Lopez', role: 'Production Design', tickets: 1, vip: true },
+            { name: 'Danielle Carr', role: 'Music', tickets: 1, vip: true },
+            { name: 'Tara Roy', role: '', tickets: 1, vip: false },
+            { name: 'Kacey Short', role: '', tickets: 1, vip: false },
+            { name: 'Brandi Glanville', role: '', tickets: 1, vip: false },
+            { name: 'James Maas', role: '', tickets: 1, vip: false },
+            { name: 'Sydni Williams', role: '', tickets: 1, vip: false },
+            { name: 'Michael Dougherty', role: '', tickets: 1, vip: false },
+            { name: 'Connor Simpson', role: '', tickets: 1, vip: false },
+            { name: 'Adrian Totten', role: '', tickets: 1, vip: false },
+            { name: 'Nico Boles', role: '', tickets: 1, vip: false },
+            { name: 'Brent Katz', role: '', tickets: 1, vip: false },
+            { name: 'Jordan Reed', role: '', tickets: 1, vip: false },
+            { name: 'Veronica Wall', role: '', tickets: 1, vip: false },
+            { name: 'Natalia Veras', role: '', tickets: 1, vip: false },
+            { name: 'Maccabee Montanan', role: '', tickets: 2, vip: false },
+            { name: 'Lily Jablonski', role: '', tickets: 2, vip: false },
+            { name: 'Catherine Curtin', role: '', tickets: 1, vip: false },
+            { name: 'SJ Alocco', role: '', tickets: 1, vip: false },
+            { name: 'Bill Williams', role: '', tickets: 1, vip: false }
         ];
 
+        function nameKey(name) {
+            return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+        }
+
         function statusHtml(val) {
-            if (val === 'yes') return '<span class="status status-yes">Yes</span>';
-            if (val === 'no') return '<span class="status status-no">No</span>';
+            if (val === 'Yes') return '<span class="status status-yes">Yes</span>';
+            if (val === 'No') return '<span class="status status-no">No</span>';
             return '<span class="status status-pending">&mdash;</span>';
         }
 
@@ -318,35 +325,49 @@
             return url;
         }
 
-        function renderTables() {
+        function renderTables(rsvpData) {
             var vipBody = document.querySelector('#vipTable tbody');
             var regBody = document.querySelector('#regularTable tbody');
+            vipBody.innerHTML = '';
+            regBody.innerHTML = '';
             var totalTickets = 0, totalGuests = 0, premiereYes = 0, partyYes = 0;
 
             guests.forEach(function(g) {
                 totalTickets += g.tickets;
                 totalGuests++;
-                if (g.premiere === 'yes') premiereYes++;
-                if (g.party === 'yes') partyYes++;
+
+                var key = nameKey(g.name);
+                var rsvp = rsvpData[key] || null;
+                var premiereStatus = rsvp ? rsvp.premiere : null;
+                var partyStatus = rsvp ? rsvp.afterparty : null;
+                var guestNames = rsvp && rsvp.guests ? rsvp.guests : [];
+
+                if (premiereStatus === 'Yes') premiereYes++;
+                if (partyStatus === 'Yes') partyYes++;
 
                 var link = buildLink(g);
                 var row = document.createElement('tr');
 
+                var guestInfo = '';
+                if (guestNames.length > 0) {
+                    guestInfo = '<div style="font-size:0.7rem; color:rgba(255,255,255,0.35); margin-top:0.2rem;">+ ' + guestNames.join(', ') + '</div>';
+                }
+
                 if (g.vip) {
                     row.innerHTML =
-                        '<td><span class="guest-name">' + g.name + '</span><span class="guest-role hide-mobile"> </span></td>' +
+                        '<td><span class="guest-name">' + g.name + '</span>' + guestInfo + '</td>' +
                         '<td class="hide-mobile">' + g.role + '</td>' +
                         '<td class="tickets-col">' + g.tickets + '</td>' +
-                        '<td>' + statusHtml(g.premiere) + '</td>' +
-                        '<td>' + statusHtml(g.party) + '</td>' +
+                        '<td>' + statusHtml(premiereStatus) + '</td>' +
+                        '<td>' + statusHtml(partyStatus) + '</td>' +
                         '<td><a class="invite-link" data-url="' + link + '">Copy</a></td>';
                     vipBody.appendChild(row);
                 } else {
                     row.innerHTML =
-                        '<td><span class="guest-name">' + g.name + '</span></td>' +
+                        '<td><span class="guest-name">' + g.name + '</span>' + guestInfo + '</td>' +
                         '<td class="tickets-col">' + g.tickets + '</td>' +
-                        '<td>' + statusHtml(g.premiere) + '</td>' +
-                        '<td>' + statusHtml(g.party) + '</td>' +
+                        '<td>' + statusHtml(premiereStatus) + '</td>' +
+                        '<td>' + statusHtml(partyStatus) + '</td>' +
                         '<td><a class="invite-link" data-url="' + link + '">Copy</a></td>';
                     regBody.appendChild(row);
                 }
@@ -359,7 +380,16 @@
                 '<div class="stat-box"><div class="stat-number">' + partyYes + '</div><div class="stat-label">Party RSVPs</div></div>';
         }
 
-        renderTables();
+        var db = null;
+        if (typeof firebase !== 'undefined' && typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey !== 'FIREBASE_API_KEY') {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            db.ref('rsvps').on('value', function(snapshot) {
+                renderTables(snapshot.val() || {});
+            });
+        } else {
+            renderTables({});
+        }
 
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('invite-link')) {
