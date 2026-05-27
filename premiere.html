@@ -396,6 +396,43 @@
             border-color: rgba(255,255,255,0.3);
             color: rgba(255,255,255,0.7);
         }
+        .ticket-downloads {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        .ticket-downloads h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.8rem;
+        }
+        .ticket-dl-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            color: #f5f0e8;
+            font-size: 0.85rem;
+            transition: border-color 0.3s;
+        }
+        .ticket-dl-item:hover {
+            border-color: #FF8C42;
+        }
+        .ticket-dl-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #FF8C42;
+            flex-shrink: 0;
+        }
         @media print {
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -619,6 +656,10 @@
                     <h4>Share these invite links with your guests</h4>
                     <div id="guestLinksList"></div>
                 </div>
+                <div class="ticket-downloads" id="ticketDownloads" style="display:none;">
+                    <h4>Your Tickets</h4>
+                    <div id="ticketList"></div>
+                </div>
                 <p style="margin-top: 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.35);">Use the "Save Invitation" button above to keep a copy of your invite.</p>
             </div>
         </div>
@@ -642,8 +683,10 @@
             var baseUrl = window.location.origin + window.location.pathname;
             var list = document.getElementById('guestLinksList');
             list.innerHTML = '';
-            guestNames.forEach(function(name) {
-                var link = baseUrl + '?name=' + encodeURIComponent(name.trim());
+            guestNames.forEach(function(name, idx) {
+                var fileBase = displayName.replace(/\s+/g, '_');
+                var ticketNum = idx + 2;
+                var link = baseUrl + '?name=' + encodeURIComponent(name.trim()) + '&ticket_host=' + encodeURIComponent(fileBase) + '&ticket_num=' + ticketNum;
                 var div = document.createElement('div');
                 div.className = 'guest-link-item';
                 div.innerHTML = '<span class="guest-link-name">' + name + '</span>' +
@@ -667,12 +710,49 @@
             });
         }
 
+        function buildTicketDownloads(inviteeName, guestNames) {
+            var container = document.getElementById('ticketList');
+            container.innerHTML = '';
+            var ticketHost = params.get('ticket_host');
+            var ticketNum = params.get('ticket_num');
+
+            if (ticketHost && ticketNum) {
+                var a = document.createElement('a');
+                a.href = 'assets/tickets/' + ticketHost + '_' + ticketNum + '.pdf';
+                a.className = 'ticket-dl-item';
+                a.setAttribute('download', '');
+                a.innerHTML = '<span>' + inviteeName + '</span><span class="ticket-dl-btn">Download Ticket</span>';
+                container.appendChild(a);
+            } else if (ticketParam === 1) {
+                var fileBase = inviteeName.replace(/\s+/g, '_');
+                var a = document.createElement('a');
+                a.href = 'assets/tickets/' + fileBase + '.pdf';
+                a.className = 'ticket-dl-item';
+                a.setAttribute('download', '');
+                a.innerHTML = '<span>' + inviteeName + '</span><span class="ticket-dl-btn">Download Ticket</span>';
+                container.appendChild(a);
+            } else {
+                var fileBase = inviteeName.replace(/\s+/g, '_');
+                for (var i = 1; i <= ticketParam; i++) {
+                    var a = document.createElement('a');
+                    a.href = 'assets/tickets/' + fileBase + '_' + i + '.pdf';
+                    a.className = 'ticket-dl-item';
+                    a.setAttribute('download', '');
+                    var label = (i === 1) ? inviteeName : (guestNames && guestNames[i-2] ? guestNames[i-2] : 'Guest ' + (i-1));
+                    a.innerHTML = '<span>' + label + ' <small style="opacity:0.4;">(Ticket ' + i + ')</small></span><span class="ticket-dl-btn">Download</span>';
+                    container.appendChild(a);
+                }
+            }
+            document.getElementById('ticketDownloads').style.display = 'block';
+        }
+
         function showLockedState(guestNames) {
             document.getElementById('rsvpForm').style.display = 'none';
             document.getElementById('thankYou').classList.add('visible');
             if (guestNames && guestNames.length > 0) {
                 buildGuestLinks(guestNames);
             }
+            buildTicketDownloads(displayName, guestNames || []);
         }
 
         if (!guestNameParam || !guestNameParam.trim()) {
@@ -767,6 +847,8 @@
                     if (guestNames.length > 0) {
                         buildGuestLinks(guestNames);
                     }
+
+                    buildTicketDownloads(displayName, guestNames);
 
                     if (db) {
                         var nameKey = displayName.toLowerCase().replace(/[^a-z0-9]/g, '_');
