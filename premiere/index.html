@@ -879,10 +879,13 @@
 
         document.querySelectorAll('input[name="premiere"]').forEach(function(r) {
             r.addEventListener('change', function() {
-                if (this.value === 'Yes' && ticketParam > 1) {
-                    document.getElementById('guestsSection').style.display = 'block';
+                var subjectField = document.querySelector('input[name="_subject"]');
+                if (this.value === 'Yes') {
+                    if (ticketParam > 1) document.getElementById('guestsSection').style.display = 'block';
+                    subjectField.value = 'RSVP Accepted - ' + displayName + ' - That Friend Premiere';
                 } else {
                     document.getElementById('guestsSection').style.display = 'none';
+                    subjectField.value = 'DECLINED - ' + displayName + ' (' + ticketParam + ' ticket' + (ticketParam > 1 ? 's' : '') + ') - That Friend Premiere';
                 }
             });
         });
