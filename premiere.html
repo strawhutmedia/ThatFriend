@@ -698,7 +698,9 @@
         var guestsParam = params.get('guests');
         var vipParam = params.get('vip') === '1';
         var lockKey = guestNameParam ? 'rsvp_locked_' + guestNameParam.trim().toLowerCase().replace(/\s+/g, '_') : null;
-        var isLocked = (lockKey && localStorage.getItem(lockKey) === 'true');
+        var resetParam = params.get('reset') === '1';
+        if (resetParam && lockKey) localStorage.removeItem(lockKey);
+        var isLocked = (lockKey && !resetParam && localStorage.getItem(lockKey) === 'true');
 
         if (vipParam) {
             document.getElementById('vipSchedule').style.display = 'block';
