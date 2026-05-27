@@ -432,6 +432,32 @@
             text-transform: uppercase;
             color: #FF8C42;
             flex-shrink: 0;
+            text-decoration: none;
+        }
+        .ticket-name-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 2px;
+            color: #f5f0e8;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.5rem;
+            outline: none;
+            flex: 1;
+            min-width: 0;
+            transition: border-color 0.3s;
+        }
+        .ticket-name-input:focus {
+            border-color: #FF8C42;
+        }
+        .ticket-name-input::placeholder {
+            color: rgba(255,255,255,0.25);
+        }
+        .ticket-num-label {
+            opacity: 0.4;
+            font-size: 0.75rem;
+            margin: 0 0.5rem;
+            flex-shrink: 0;
         }
         @media print {
             * {
@@ -683,7 +709,10 @@
             var baseUrl = window.location.origin + window.location.pathname;
             var list = document.getElementById('guestLinksList');
             list.innerHTML = '';
+            var hasLinks = false;
             guestNames.forEach(function(name, idx) {
+                if (!name || !name.trim()) return;
+                hasLinks = true;
                 var fileBase = displayName.replace(/\s+/g, '_');
                 var ticketNum = idx + 2;
                 var link = baseUrl + '?name=' + encodeURIComponent(name.trim()) + '&ticket_host=' + encodeURIComponent(fileBase) + '&ticket_num=' + ticketNum;
@@ -693,7 +722,7 @@
                     '<button class="btn-copy" data-link="' + link + '">Copy Link</button>';
                 list.appendChild(div);
             });
-            document.getElementById('guestLinks').style.display = 'block';
+            if (hasLinks) document.getElementById('guestLinks').style.display = 'block';
 
             list.addEventListener('click', function(ev) {
                 if (ev.target.classList.contains('btn-copy')) {
@@ -733,15 +762,68 @@
                 container.appendChild(a);
             } else {
                 var fileBase = inviteeName.replace(/\s+/g, '_');
-                for (var i = 1; i <= ticketParam; i++) {
-                    var a = document.createElement('a');
-                    a.href = '../assets/tickets/' + fileBase + '_' + i + '.pdf';
-                    a.className = 'ticket-dl-item';
-                    a.setAttribute('download', '');
-                    var label = (i === 1) ? inviteeName : (guestNames && guestNames[i-2] ? guestNames[i-2] : 'Guest ' + (i-1));
-                    a.innerHTML = '<span>' + label + ' <small style="opacity:0.4;">(Ticket ' + i + ')</small></span><span class="ticket-dl-btn">Download</span>';
-                    container.appendChild(a);
+                var hostRow = document.createElement('a');
+                hostRow.href = '../assets/tickets/' + fileBase + '_1.pdf';
+                hostRow.className = 'ticket-dl-item';
+                hostRow.setAttribute('download', '');
+                hostRow.innerHTML = '<span>' + inviteeName + ' <span class="ticket-num-label">(Ticket 1)</span></span><span class="ticket-dl-btn">Download</span>';
+                container.appendChild(hostRow);
+
+                for (var i = 2; i <= ticketParam; i++) {
+                    var gName = guestNames && guestNames[i-2] ? guestNames[i-2] : '';
+                    var row = document.createElement('div');
+                    row.className = 'ticket-dl-item';
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'ticket-name-input';
+                    input.setAttribute('data-ticket', i);
+                    input.value = gName;
+                    input.placeholder = 'Guest ' + (i-1) + ' name';
+                    var numLabel = document.createElement('span');
+                    numLabel.className = 'ticket-num-label';
+                    numLabel.textContent = '(Ticket ' + i + ')';
+                    var dlLink = document.createElement('a');
+                    dlLink.href = '../assets/tickets/' + fileBase + '_' + i + '.pdf';
+                    dlLink.className = 'ticket-dl-btn';
+                    dlLink.setAttribute('download', '');
+                    dlLink.textContent = 'Download';
+                    row.appendChild(input);
+                    row.appendChild(numLabel);
+                    row.appendChild(dlLink);
+                    container.appendChild(row);
                 }
+
+                var saveBtn = document.createElement('button');
+                saveBtn.className = 'btn-rsvp';
+                saveBtn.style.marginTop = '0.8rem';
+                saveBtn.textContent = 'SAVE TICKET NAMES';
+                saveBtn.addEventListener('click', function() {
+                    var inputs = container.querySelectorAll('.ticket-name-input');
+                    var allNames = [];
+                    inputs.forEach(function(inp) { allNames.push(inp.value.trim()); });
+                    var filledNames = allNames.filter(function(n) { return n !== ''; });
+                    if (db) {
+                        var nk = displayName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                        db.ref('rsvps/' + nk + '/guests').set(allNames);
+                        db.ref('rsvps/' + nk + '/guestCount').set(filledNames.length);
+                    }
+                    buildGuestLinks(allNames);
+                    var newUrl = new URL(window.location);
+                    if (filledNames.length > 0) {
+                        newUrl.searchParams.set('guests', filledNames.join(','));
+                    }
+                    newUrl.searchParams.set('submitted', '1');
+                    window.history.replaceState({}, '', newUrl.toString());
+                    saveBtn.textContent = 'SAVED!';
+                    saveBtn.style.borderColor = '#4CAF50';
+                    saveBtn.style.color = '#4CAF50';
+                    setTimeout(function() {
+                        saveBtn.textContent = 'SAVE TICKET NAMES';
+                        saveBtn.style.borderColor = '';
+                        saveBtn.style.color = '';
+                    }, 2000);
+                });
+                container.appendChild(saveBtn);
             }
             document.getElementById('ticketDownloads').style.display = 'block';
         }
