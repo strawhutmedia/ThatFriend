@@ -333,7 +333,7 @@
             var regBody = document.querySelector('#regularTable tbody');
             vipBody.innerHTML = '';
             regBody.innerHTML = '';
-            var totalTickets = 0, totalGuests = 0, premiereYes = 0, partyYes = 0;
+            var totalTickets = 3, totalGuests = 0, premiereYes = 0, partyYes = 0;
             var knownKeys = {};
 
             guests.forEach(function(g) {
@@ -436,7 +436,7 @@
 
             document.getElementById('stats').innerHTML =
                 '<div class="stat-box"><div class="stat-number">' + totalGuests + '</div><div class="stat-label">Attendees</div></div>' +
-                '<div class="stat-box"><div class="stat-number">' + totalTickets + '</div><div class="stat-label">Tickets</div></div>' +
+                '<div class="stat-box"><div class="stat-number">' + totalTickets + '</div><div class="stat-label">Total Tickets</div></div>' +
                 '<div class="stat-box"><div class="stat-number">' + premiereYes + '</div><div class="stat-label">Premiere RSVPs</div></div>' +
                 '<div class="stat-box"><div class="stat-number">' + partyYes + '</div><div class="stat-label">Party RSVPs</div></div>';
         }
