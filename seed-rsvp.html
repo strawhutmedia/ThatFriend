@@ -5,34 +5,43 @@
 <script src="assets/firebase-config.js"></script>
 <style>body{background:#0d1b21;color:#f5f0e8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;}</style>
 </head><body>
-<div id="msg">Resetting RSVPs...</div>
+<div id="msg">Updating RSVPs...</div>
 <script>
 try {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.database();
-    var toReset = ['ryan_tillotson', 'stephen_markley', 'dillon_baldassero'];
-    var done = 0;
-    var errors = [];
-    toReset.forEach(function(key) {
-        db.ref('rsvps/' + key).remove().then(function() {
-            done++;
-            if (done + errors.length === toReset.length) showResult();
-        }).catch(function(e) {
-            errors.push(key + ': ' + e.message);
-            if (done + errors.length === toReset.length) showResult();
-        });
-    });
-    function showResult() {
-        if (errors.length === 0) {
-            document.getElementById('msg').innerHTML =
-                '<h2 style="color:#4CAF50;">Done!</h2>' +
-                '<p>Cleared RSVPs for:<br>Ryan Tillotson<br>Stephen Markley<br>Dillon Baldassero</p>' +
-                '<p style="margin-top:1rem;">Check <a href="/guestlist?v=4" style="color:#FF8C42;">the guest list</a> to confirm.</p>';
-        } else {
-            document.getElementById('msg').innerHTML =
-                '<h2 style="color:#e57373;">Errors</h2><p>' + errors.join('<br>') + '</p>';
+    var tasks = 0, done = 0, errors = [];
+
+    function check() {
+        if (done + errors.length === tasks) {
+            if (errors.length === 0) {
+                document.getElementById('msg').innerHTML =
+                    '<h2 style="color:#4CAF50;">Done!</h2>' +
+                    '<p>Ryan Tillotson: set to YES<br>Stephen Markley: CLEARED<br>Dillon Baldassero: CLEARED</p>' +
+                    '<p style="margin-top:1rem;"><a href="/guestlist?v=7" style="color:#FF8C42;">Check guest list</a></p>';
+            } else {
+                document.getElementById('msg').innerHTML = '<h2 style="color:#e57373;">Errors</h2><p>' + errors.join('<br>') + '</p>';
+            }
         }
     }
+
+    tasks = 3;
+
+    db.ref('rsvps/ryan_tillotson').set({
+        name: "Ryan Tillotson",
+        email: "ryan@strawhutmedia.com",
+        premiere: "Yes",
+        guestCount: 0,
+        guests: [],
+        tickets: 1,
+        vip: true,
+        submittedAt: Date.now()
+    }).then(function() { done++; check(); }).catch(function(e) { errors.push('Ryan: ' + e.message); check(); });
+
+    db.ref('rsvps/stephen_markley').remove().then(function() { done++; check(); }).catch(function(e) { errors.push('Stephen: ' + e.message); check(); });
+
+    db.ref('rsvps/dillon_baldassero').remove().then(function() { done++; check(); }).catch(function(e) { errors.push('Dillon: ' + e.message); check(); });
+
 } catch(e) {
     document.getElementById('msg').innerHTML = '<h2 style="color:#e57373;">Error</h2><p>' + e.message + '</p>';
 }
