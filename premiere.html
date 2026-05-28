@@ -664,14 +664,6 @@
                     <div id="guestNameFields" style="margin-top: 0.8rem;"></div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Attending After Party?</label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="afterparty" value="Yes" required> Yes</label>
-                        <label class="radio-label"><input type="radio" name="afterparty" value="No"> No</label>
-                    </div>
-                </div>
-
                 <button type="submit" class="btn-rsvp">Submit RSVP</button>
             </form>
 
@@ -943,7 +935,6 @@
                             name: displayName,
                             email: data.get('email'),
                             premiere: data.get('premiere') || 'No',
-                            afterparty: data.get('afterparty') || 'No',
                             guestCount: guestCount,
                             guests: guestNames,
                             tickets: ticketParam,

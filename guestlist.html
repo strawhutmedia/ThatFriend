@@ -238,7 +238,6 @@
                     <th class="hide-mobile">Role</th>
                     <th class="tickets-col">Tickets</th>
                     <th>Premiere</th>
-                    <th>After Party</th>
                     <th>Invite</th>
                 </tr>
             </thead>
@@ -252,7 +251,6 @@
                     <th>Name</th>
                     <th class="tickets-col">Tickets</th>
                     <th>Premiere</th>
-                    <th>After Party</th>
                     <th>Invite</th>
                 </tr>
             </thead>
@@ -333,7 +331,7 @@
             var regBody = document.querySelector('#regularTable tbody');
             vipBody.innerHTML = '';
             regBody.innerHTML = '';
-            var totalTickets = 3, totalGuests = 0, premiereYes = 0, partyYes = 0;
+            var totalTickets = 3, totalGuests = 0, premiereYes = 0;
             var knownKeys = {};
 
             guests.forEach(function(g) {
@@ -344,11 +342,9 @@
                 knownKeys[key] = true;
                 var rsvp = rsvpData[key] || null;
                 var premiereStatus = rsvp ? rsvp.premiere : null;
-                var partyStatus = rsvp ? rsvp.afterparty : null;
                 var guestNames = rsvp && rsvp.guests ? rsvp.guests : [];
 
                 if (premiereStatus === 'Yes') premiereYes++;
-                if (partyStatus === 'Yes') partyYes++;
 
                 var link = buildLink(g);
                 var row = document.createElement('tr');
@@ -359,7 +355,6 @@
                         '<td class="hide-mobile">' + g.role + '</td>' +
                         '<td class="tickets-col">' + g.tickets + '</td>' +
                         '<td>' + statusHtml(premiereStatus) + '</td>' +
-                        '<td>' + statusHtml(partyStatus) + '</td>' +
                         '<td><a class="invite-link" data-url="' + link + '">Copy</a></td>';
                     vipBody.appendChild(row);
 
@@ -371,16 +366,13 @@
                         gRow.style.opacity = '0.7';
                         var gLink = baseUrl + '?name=' + encodeURIComponent(gn);
                         var gPremiereStatus = gRsvp ? gRsvp.premiere : null;
-                        var gPartyStatus = gRsvp ? gRsvp.afterparty : null;
                         if (gPremiereStatus === 'Yes') premiereYes++;
-                        if (gPartyStatus === 'Yes') partyYes++;
                         totalGuests++;
                         gRow.innerHTML =
                             '<td style="padding-left:1.5rem;"><span class="guest-name">' + gn + '</span><span class="guest-role"> &mdash; Guest of ' + g.name + '</span></td>' +
                             '<td class="hide-mobile"></td>' +
                             '<td class="tickets-col"></td>' +
                             '<td>' + statusHtml(gPremiereStatus) + '</td>' +
-                            '<td>' + statusHtml(gPartyStatus) + '</td>' +
                             '<td><a class="invite-link" data-url="' + gLink + '">Copy</a></td>';
                         vipBody.appendChild(gRow);
                     });
@@ -389,7 +381,6 @@
                         '<td><span class="guest-name">' + g.name + '</span></td>' +
                         '<td class="tickets-col">' + g.tickets + '</td>' +
                         '<td>' + statusHtml(premiereStatus) + '</td>' +
-                        '<td>' + statusHtml(partyStatus) + '</td>' +
                         '<td><a class="invite-link" data-url="' + link + '">Copy</a></td>';
                     regBody.appendChild(row);
 
@@ -401,15 +392,12 @@
                         gRow.style.opacity = '0.7';
                         var gLink = baseUrl + '?name=' + encodeURIComponent(gn);
                         var gPremiereStatus = gRsvp ? gRsvp.premiere : null;
-                        var gPartyStatus = gRsvp ? gRsvp.afterparty : null;
                         if (gPremiereStatus === 'Yes') premiereYes++;
-                        if (gPartyStatus === 'Yes') partyYes++;
                         totalGuests++;
                         gRow.innerHTML =
                             '<td style="padding-left:1.5rem;"><span class="guest-name">' + gn + '</span><span class="guest-role"> &mdash; Guest of ' + g.name + '</span></td>' +
                             '<td class="tickets-col"></td>' +
                             '<td>' + statusHtml(gPremiereStatus) + '</td>' +
-                            '<td>' + statusHtml(gPartyStatus) + '</td>' +
                             '<td><a class="invite-link" data-url="' + gLink + '">Copy</a></td>';
                         regBody.appendChild(gRow);
                     });
@@ -422,14 +410,12 @@
                 if (!rsvp || !rsvp.name) return;
                 totalGuests++;
                 if (rsvp.premiere === 'Yes') premiereYes++;
-                if (rsvp.afterparty === 'Yes') partyYes++;
                 var row = document.createElement('tr');
                 var gLink = baseUrl + '?name=' + encodeURIComponent(rsvp.name);
                 row.innerHTML =
                     '<td><span class="guest-name">' + rsvp.name + '</span></td>' +
                     '<td class="tickets-col">' + (rsvp.tickets || 1) + '</td>' +
                     '<td>' + statusHtml(rsvp.premiere) + '</td>' +
-                    '<td>' + statusHtml(rsvp.afterparty) + '</td>' +
                     '<td><a class="invite-link" data-url="' + gLink + '">Copy</a></td>';
                 regBody.appendChild(row);
             });
@@ -437,8 +423,7 @@
             document.getElementById('stats').innerHTML =
                 '<div class="stat-box"><div class="stat-number">' + totalGuests + '</div><div class="stat-label">Attendees</div></div>' +
                 '<div class="stat-box"><div class="stat-number">' + totalTickets + '</div><div class="stat-label">Total Tickets</div></div>' +
-                '<div class="stat-box"><div class="stat-number">' + premiereYes + '</div><div class="stat-label">Premiere RSVPs</div></div>' +
-                '<div class="stat-box"><div class="stat-number">' + partyYes + '</div><div class="stat-label">Party RSVPs</div></div>';
+                '<div class="stat-box"><div class="stat-number">' + premiereYes + '</div><div class="stat-label">Premiere RSVPs</div></div>';
         }
 
         var db = null;
