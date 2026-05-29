@@ -843,51 +843,110 @@
                 tc.textContent = ticketParam + ' Tickets Allocated';
                 tc.style.display = 'block';
 
-                var select = document.getElementById('guestCount');
-                var maxGuests = ticketParam - 1;
-                document.getElementById('guestMaxLabel').textContent = '(up to ' + maxGuests + ')';
-                for (var i = 1; i <= maxGuests; i++) {
-                    var opt = document.createElement('option');
-                    opt.value = i;
-                    opt.textContent = i;
-                    select.appendChild(opt);
+                var savedGuests = [];
+                if (guestsParam) {
+                    savedGuests = decodeURIComponent(guestsParam).split(',').map(function(n) { return n.trim(); });
                 }
+
+                var rsvpSection = document.querySelector('.rsvp-section');
+                rsvpSection.innerHTML = '<div style="text-align:center;"><div class="rsvp-title">YOUR TICKETS</div></div>' +
+                    '<div class="ticket-downloads" id="multiTickets"></div>' +
+                    '<div class="guest-links" id="guestLinks" style="display:none;"><h4>Share these invite links with your guests</h4><div id="guestLinksList"></div></div>';
+
+                var container = document.getElementById('multiTickets');
+                var fileBase = displayName.replace(/\s+/g, '_');
+
+                var hostRow = document.createElement('a');
+                hostRow.href = 'assets/tickets/' + fileBase + '_1.pdf';
+                hostRow.className = 'ticket-dl-item';
+                hostRow.setAttribute('download', '');
+                hostRow.innerHTML = '<span>' + displayName + ' <span class="ticket-num-label">(Ticket 1)</span></span><span class="ticket-dl-btn">Download</span>';
+                container.appendChild(hostRow);
+
+                for (var i = 2; i <= ticketParam; i++) {
+                    var gName = savedGuests[i-2] || '';
+                    var row = document.createElement('div');
+                    row.className = 'ticket-dl-item';
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'ticket-name-input';
+                    input.setAttribute('data-ticket', i);
+                    input.value = gName;
+                    input.placeholder = 'Guest ' + (i-1) + ' name';
+                    var numLabel = document.createElement('span');
+                    numLabel.className = 'ticket-num-label';
+                    numLabel.textContent = '(Ticket ' + i + ')';
+                    var dlLink = document.createElement('a');
+                    dlLink.href = 'assets/tickets/' + fileBase + '_' + i + '.pdf';
+                    dlLink.className = 'ticket-dl-btn';
+                    dlLink.setAttribute('download', '');
+                    dlLink.textContent = 'Download';
+                    row.appendChild(input);
+                    row.appendChild(numLabel);
+                    row.appendChild(dlLink);
+                    container.appendChild(row);
+                }
+
+                var saveBtn = document.createElement('button');
+                saveBtn.className = 'btn-rsvp';
+                saveBtn.style.marginTop = '0.8rem';
+                saveBtn.textContent = 'SAVE GUEST NAMES';
+                saveBtn.addEventListener('click', function() {
+                    var inputs = container.querySelectorAll('.ticket-name-input');
+                    var allNames = [];
+                    inputs.forEach(function(inp) { allNames.push(inp.value.trim()); });
+                    var filledNames = allNames.filter(function(n) { return n !== ''; });
+                    if (db) {
+                        var nk = displayName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                        db.ref('rsvps/' + nk).set({
+                            name: displayName, premiere: 'Yes',
+                            guestCount: filledNames.length, guests: allNames,
+                            tickets: ticketParam, vip: vipParam, submittedAt: Date.now()
+                        });
+                    }
+                    buildGuestLinks(allNames);
+                    var newUrl = new URL(window.location);
+                    if (filledNames.length > 0) newUrl.searchParams.set('guests', filledNames.join(','));
+                    newUrl.searchParams.set('submitted', '1');
+                    window.history.replaceState({}, '', newUrl.toString());
+                    saveBtn.textContent = 'SAVED!';
+                    saveBtn.style.borderColor = '#4CAF50';
+                    saveBtn.style.color = '#4CAF50';
+                    setTimeout(function() {
+                        saveBtn.textContent = 'SAVE GUEST NAMES';
+                        saveBtn.style.borderColor = '';
+                        saveBtn.style.color = '';
+                    }, 2000);
+                });
+                container.appendChild(saveBtn);
+
+                if (savedGuests.length > 0) buildGuestLinks(savedGuests);
+
+                document.querySelector('.rsvp-section').addEventListener('click', function(ev) {
+                    if (ev.target.classList.contains('btn-copy')) {
+                        var url = ev.target.getAttribute('data-link');
+                        navigator.clipboard.writeText(url).then(function() {
+                            ev.target.textContent = 'Copied';
+                            ev.target.classList.add('copied');
+                            setTimeout(function() {
+                                ev.target.textContent = 'Copy Link';
+                                ev.target.classList.remove('copied');
+                            }, 2000);
+                        });
+                    }
+                });
             }
 
-            var submittedParam = params.get('submitted') === '1';
-            if (guestsParam) {
-                var savedGuests = decodeURIComponent(guestsParam).split(',').map(function(n) { return n.trim(); }).filter(Boolean);
-                showLockedState(savedGuests);
-            } else if (submittedParam || isLocked) {
-                showLockedState([]);
+            if (ticketParam <= 1) {
+                var submittedParam = params.get('submitted') === '1';
+                if (guestsParam) {
+                    var savedGuests = decodeURIComponent(guestsParam).split(',').map(function(n) { return n.trim(); }).filter(Boolean);
+                    showLockedState(savedGuests);
+                } else if (submittedParam || isLocked) {
+                    showLockedState([]);
+                }
             }
         }
-
-        document.querySelectorAll('input[name="premiere"]').forEach(function(r) {
-            r.addEventListener('change', function() {
-                var subjectField = document.querySelector('input[name="_subject"]');
-                if (this.value === 'Yes') {
-                    if (ticketParam > 1) document.getElementById('guestsSection').style.display = 'block';
-                    subjectField.value = 'RSVP Accepted - ' + displayName + ' - That Friend Premiere';
-                } else {
-                    document.getElementById('guestsSection').style.display = 'none';
-                    subjectField.value = 'DECLINED - ' + displayName + ' (' + ticketParam + ' ticket' + (ticketParam > 1 ? 's' : '') + ') - That Friend Premiere';
-                }
-            });
-        });
-
-        document.getElementById('guestCount').addEventListener('change', function() {
-            var count = parseInt(this.value) || 0;
-            var container = document.getElementById('guestNameFields');
-            container.innerHTML = '';
-            for (var i = 1; i <= count; i++) {
-                var div = document.createElement('div');
-                div.className = 'form-group';
-                div.innerHTML = '<label class="form-label">Guest ' + i + ' Name</label>' +
-                    '<input type="text" name="guest_' + i + '_name" class="form-input" placeholder="Full name" required>';
-                container.appendChild(div);
-            }
-        });
 
         var db = null;
         if (typeof firebase !== 'undefined' && firebaseConfig && firebaseConfig.apiKey !== 'FIREBASE_API_KEY') {
@@ -895,7 +954,38 @@
             db = firebase.database();
         }
 
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        var premiereRadios = document.querySelectorAll('input[name="premiere"]');
+        if (premiereRadios.length > 0) {
+            premiereRadios.forEach(function(r) {
+                r.addEventListener('change', function() {
+                    var subjectField = document.querySelector('input[name="_subject"]');
+                    if (this.value === 'Yes') {
+                        subjectField.value = 'RSVP Accepted - ' + displayName + ' - That Friend Premiere';
+                    } else {
+                        subjectField.value = 'DECLINED - ' + displayName + ' (' + ticketParam + ' ticket' + (ticketParam > 1 ? 's' : '') + ') - That Friend Premiere';
+                    }
+                });
+            });
+        }
+
+        var guestCountEl = document.getElementById('guestCount');
+        if (guestCountEl) {
+            guestCountEl.addEventListener('change', function() {
+                var count = parseInt(this.value) || 0;
+                var container = document.getElementById('guestNameFields');
+                container.innerHTML = '';
+                for (var i = 1; i <= count; i++) {
+                    var div = document.createElement('div');
+                    div.className = 'form-group';
+                    div.innerHTML = '<label class="form-label">Guest ' + i + ' Name</label>' +
+                        '<input type="text" name="guest_' + i + '_name" class="form-input" placeholder="Full name" required>';
+                    container.appendChild(div);
+                }
+            });
+        }
+
+        var rsvpForm = document.getElementById('rsvpForm');
+        if (rsvpForm) rsvpForm.addEventListener('submit', function(e) {
             e.preventDefault();
             var form = this;
             var data = new FormData(form);
