@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4641ZWTYSX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4641ZWTYSX');
+    </script>
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '26252798684369358');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=26252798684369358&ev=PageView&noscript=1"
+    /></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7RCZNFN');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Guest List - That Friend 2nd Screening</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: #0d1b21;
+            font-family: 'Montserrat', sans-serif;
+            color: #f5f0e8;
+            padding: 2rem 1rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .page-header { text-align: center; margin-bottom: 2.5rem; }
+        .page-header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.4rem;
+            letter-spacing: 6px;
+            color: #f5f0e8;
+            margin-bottom: 0.3rem;
+        }
+        .page-header p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+        }
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 120px;
+        }
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: #FF8C42;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-top: 0.3rem;
+        }
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #FF8C42;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .guest-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2.5rem;
+        }
+        .guest-table th {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            text-align: left;
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            white-space: nowrap;
+        }
+        .guest-table td {
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+            vertical-align: middle;
+        }
+        .guest-table tr:hover td { background: rgba(255,255,255,0.03); }
+        .guest-name { font-weight: 600; }
+        .status { display: inline-block; font-size: 0.7rem; font-weight: 500; padding: 0.15rem 0.5rem; border-radius: 2px; }
+        .status-pending { color: rgba(255,255,255,0.3); }
+        .status-yes { color: #4CAF50; }
+        .status-no { color: #e57373; }
+        .tickets-col { text-align: center; }
+        .invite-link {
+            font-size: 0.7rem;
+            color: #FF8C42;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid rgba(255,140,66,0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 2px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .invite-link:hover { background: rgba(255,140,66,0.15); }
+        .invite-link.copied { border-color: #4CAF50; color: #4CAF50; }
+        .footer-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.25);
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        @media (max-width: 700px) {
+            .guest-table { font-size: 0.78rem; }
+            .guest-table th, .guest-table td { padding: 0.5rem 0.4rem; }
+            .hide-mobile { display: none; }
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="../assets/firebase-config.js"></script>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7RCZNFN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>That Friend</h1>
+            <p>2nd Screening Guest List &mdash; June 9, 2026</p>
+        </div>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="section-label">2nd Screening &mdash; General Admission</div>
+        <table class="guest-table" id="guestTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="tickets-col">Tickets</th>
+                    <th>RSVP</th>
+                    <th>Invite</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <div class="footer-note">
+            <span id="dbStatus" style="color:#FF8C42;">Connecting to database...</span><br>
+            Village East by Angelika &mdash; Theater 3 &bull; New York City &bull; Tribeca Festival 2026
+        </div>
+    </div>
+
+    <script>
+        var baseUrl = 'https://thatfriendmovie.com/screening2';
+        var totalTicketCount = 15;
+
+        var guests = [
+            { name: 'Ryan Tillotson', tickets: 1 },
+            { name: 'Adam Tillotson', tickets: 1 },
+            { name: 'Michelle Starsiak', tickets: 1 },
+            { name: 'Michael Amico', tickets: 1 },
+            { name: 'Dillon Baldassero', tickets: 1 }
+        ];
+
+        function nameKey(name) {
+            return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+        }
+
+        function statusHtml(val) {
+            if (val === 'Yes') return '<span class="status status-yes">Yes</span>';
+            if (val === 'No') return '<span class="status status-no">No</span>';
+            return '<span class="status status-pending">&mdash;</span>';
+        }
+
+        function buildLink(g) {
+            var url = baseUrl + '?name=' + encodeURIComponent(g.name);
+            if (g.tickets > 1) url += '&tickets=' + g.tickets;
+            return url;
+        }
+
+        function renderTable(rsvpData) {
+            var tbody = document.querySelector('#guestTable tbody');
+            tbody.innerHTML = '';
+            var assignedTickets = 0, totalGuests = 0, rsvpYes = 0;
+            var knownKeys = {};
+
+            guests.forEach(function(g) {
+                assignedTickets += g.tickets;
+                totalGuests++;
+
+                var key = nameKey(g.name);
+                knownKeys[key] = true;
+                var rsvp = rsvpData[key] || null;
+                var rsvpStatus = rsvp ? rsvp.premiere : null;
+
+                if (rsvpStatus === 'Yes') rsvpYes++;
+
+                var link = buildLink(g);
+                var row = document.createElement('tr');
+                row.innerHTML =
+                    '<td><span class="guest-name">' + g.name + '</span></td>' +
+                    '<td class="tickets-col">' + g.tickets + '</td>' +
+                    '<td>' + statusHtml(rsvpStatus) + '</td>' +
+                    '<td><a class="invite-link" data-url="' + link + '">Copy</a></td>';
+                tbody.appendChild(row);
+            });
+
+            Object.keys(rsvpData).forEach(function(key) {
+                if (knownKeys[key]) return;
+                var rsvp = rsvpData[key];
+                if (!rsvp || !rsvp.name) return;
+                totalGuests++;
+                assignedTickets += (rsvp.tickets || 1);
+                if (rsvp.premiere === 'Yes') rsvpYes++;
+                var row = document.createElement('tr');
+                var gLink = baseUrl + '?name=' + encodeURIComponent(rsvp.name);
+                row.innerHTML =
+                    '<td><span class="guest-name">' + rsvp.name + '</span></td>' +
+                    '<td class="tickets-col">' + (rsvp.tickets || 1) + '</td>' +
+                    '<td>' + statusHtml(rsvp.premiere) + '</td>' +
+                    '<td><a class="invite-link" data-url="' + gLink + '">Copy</a></td>';
+                tbody.appendChild(row);
+            });
+
+            var unassigned = totalTicketCount - assignedTickets;
+            document.getElementById('stats').innerHTML =
+                '<div class="stat-box"><div class="stat-number">' + totalGuests + '</div><div class="stat-label">Attendees</div></div>' +
+                '<div class="stat-box"><div class="stat-number">' + totalTicketCount + '</div><div class="stat-label">Total Tickets</div></div>' +
+                '<div class="stat-box"><div class="stat-number">' + rsvpYes + '</div><div class="stat-label">RSVPs</div></div>' +
+                '<div class="stat-box"><div class="stat-number">' + unassigned + '</div><div class="stat-label">Unassigned</div></div>';
+        }
+
+        var db = null;
+        var statusEl = document.getElementById('dbStatus');
+        try {
+            if (typeof firebase !== 'undefined' && typeof firebaseConfig !== 'undefined' && firebaseConfig.apiKey !== 'FIREBASE_API_KEY') {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.database();
+                statusEl.textContent = 'Database connected. Waiting for data...';
+                db.ref('rsvps_s2').on('value', function(snapshot) {
+                    var data = snapshot.val() || {};
+                    var count = Object.keys(data).length;
+                    statusEl.textContent = 'Live — ' + count + ' RSVP(s) in database';
+                    statusEl.style.color = '#4CAF50';
+                    renderTable(data);
+                }, function(error) {
+                    statusEl.textContent = 'Database error: ' + error.message;
+                    statusEl.style.color = '#e57373';
+                    renderTable({});
+                });
+            } else {
+                statusEl.textContent = 'Offline';
+                statusEl.style.color = '#e57373';
+                renderTable({});
+            }
+        } catch(e) {
+            statusEl.textContent = 'Error: ' + e.message;
+            statusEl.style.color = '#e57373';
+            renderTable({});
+        }
+
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('invite-link')) {
+                e.preventDefault();
+                var url = e.target.getAttribute('data-url');
+                navigator.clipboard.writeText(url).then(function() {
+                    e.target.textContent = 'Copied!';
+                    e.target.classList.add('copied');
+                    setTimeout(function() {
+                        e.target.textContent = 'Copy';
+                        e.target.classList.remove('copied');
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
