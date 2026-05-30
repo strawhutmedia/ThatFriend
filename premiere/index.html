@@ -850,8 +850,7 @@
 
                 var rsvpSection = document.querySelector('.rsvp-section');
                 rsvpSection.innerHTML = '<div style="text-align:center;"><div class="rsvp-title">YOUR TICKETS</div></div>' +
-                    '<div class="ticket-downloads" id="multiTickets"></div>' +
-                    '<div class="guest-links" id="guestLinks" style="display:none;"><h4>Share these invite links with your guests</h4><div id="guestLinksList"></div></div>';
+                    '<div class="ticket-downloads" id="multiTickets"></div>';
 
                 var container = document.getElementById('multiTickets');
                 var fileBase = displayName.replace(/\s+/g, '_');
@@ -872,6 +871,7 @@
                     var gName = savedGuests[gIdx] || '';
                     var row = document.createElement('div');
                     row.className = 'ticket-dl-item';
+                    row.style.flexWrap = 'wrap';
                     var input = document.createElement('input');
                     input.type = 'text';
                     input.className = 'ticket-name-input';
@@ -886,10 +886,35 @@
                     dlLink.className = 'ticket-dl-btn';
                     dlLink.setAttribute('download', '');
                     dlLink.textContent = 'Download';
+                    var inviteBtn = document.createElement('button');
+                    inviteBtn.className = 'btn-copy';
+                    inviteBtn.setAttribute('data-ticket-idx', i);
+                    inviteBtn.textContent = 'Send Invite';
+                    inviteBtn.style.display = gName ? 'inline-block' : 'none';
+                    inviteBtn.style.marginLeft = '0.3rem';
                     row.appendChild(input);
                     row.appendChild(numLabel);
                     row.appendChild(dlLink);
+                    row.appendChild(inviteBtn);
                     container.appendChild(row);
+                }
+
+                function updateInviteButtons() {
+                    var bUrl = window.location.origin + window.location.pathname;
+                    var inputs = container.querySelectorAll('.ticket-name-input');
+                    inputs.forEach(function(inp, idx) {
+                        var row = inp.parentElement;
+                        var invBtn = row.querySelector('.btn-copy');
+                        var nm = inp.value.trim();
+                        if (nm) {
+                            var tNum = firstTicket + idx;
+                            var lnk = bUrl + '?name=' + encodeURIComponent(nm) + '&ticket_host=' + encodeURIComponent(fileBase) + '&ticket_num=' + tNum;
+                            invBtn.setAttribute('data-link', lnk);
+                            invBtn.style.display = 'inline-block';
+                        } else {
+                            invBtn.style.display = 'none';
+                        }
+                    });
                 }
 
                 var saveBtn = document.createElement('button');
@@ -909,21 +934,7 @@
                             tickets: ticketParam, vip: vipParam, submittedAt: Date.now()
                         });
                     }
-                    var bUrl = window.location.origin + window.location.pathname;
-                    var linkList = document.getElementById('guestLinksList');
-                    linkList.innerHTML = '';
-                    var hasGLinks = false;
-                    allNames.forEach(function(nm, idx) {
-                        if (!nm || !nm.trim()) return;
-                        hasGLinks = true;
-                        var tNum = firstTicket + idx;
-                        var lnk = bUrl + '?name=' + encodeURIComponent(nm.trim()) + '&ticket_host=' + encodeURIComponent(fileBase) + '&ticket_num=' + tNum;
-                        var dv = document.createElement('div');
-                        dv.className = 'guest-link-item';
-                        dv.innerHTML = '<span class="guest-link-name">' + nm + '</span><button class="btn-copy" data-link="' + lnk + '">Copy Link</button>';
-                        linkList.appendChild(dv);
-                    });
-                    if (hasGLinks) document.getElementById('guestLinks').style.display = 'block';
+                    updateInviteButtons();
                     var newUrl = new URL(window.location);
                     if (filledNames.length > 0) newUrl.searchParams.set('guests', filledNames.join(','));
                     newUrl.searchParams.set('submitted', '1');
@@ -940,20 +951,7 @@
                 container.appendChild(saveBtn);
 
                 if (savedGuests.length > 0) {
-                    var bUrl2 = window.location.origin + window.location.pathname;
-                    var linkList2 = document.getElementById('guestLinksList');
-                    var hasInit = false;
-                    savedGuests.forEach(function(nm, idx) {
-                        if (!nm || !nm.trim()) return;
-                        hasInit = true;
-                        var tNum = firstTicket + idx;
-                        var lnk = bUrl2 + '?name=' + encodeURIComponent(nm.trim()) + '&ticket_host=' + encodeURIComponent(fileBase) + '&ticket_num=' + tNum;
-                        var dv = document.createElement('div');
-                        dv.className = 'guest-link-item';
-                        dv.innerHTML = '<span class="guest-link-name">' + nm + '</span><button class="btn-copy" data-link="' + lnk + '">Copy Link</button>';
-                        linkList2.appendChild(dv);
-                    });
-                    if (hasInit) document.getElementById('guestLinks').style.display = 'block';
+                    updateInviteButtons();
                 }
 
                 document.querySelector('.rsvp-section').addEventListener('click', function(ev) {
