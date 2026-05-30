@@ -887,10 +887,9 @@
                     dlLink.setAttribute('download', '');
                     dlLink.textContent = 'Download';
                     var inviteBtn = document.createElement('button');
-                    inviteBtn.className = 'btn-copy';
-                    inviteBtn.setAttribute('data-ticket-idx', i);
+                    inviteBtn.className = 'btn-copy btn-send-invite';
+                    inviteBtn.setAttribute('data-ticket-num', i);
                     inviteBtn.textContent = 'Send Invite';
-                    inviteBtn.style.display = gName ? 'inline-block' : 'none';
                     inviteBtn.style.marginLeft = '0.3rem';
                     row.appendChild(input);
                     row.appendChild(numLabel);
@@ -899,23 +898,24 @@
                     container.appendChild(row);
                 }
 
-                function updateInviteButtons() {
+                container.addEventListener('click', function(ev) {
+                    if (!ev.target.classList.contains('btn-send-invite')) return;
+                    var row = ev.target.parentElement;
+                    var inp = row.querySelector('.ticket-name-input');
+                    var nm = inp.value.trim();
+                    if (!nm) { inp.focus(); return; }
+                    var tNum = ev.target.getAttribute('data-ticket-num');
                     var bUrl = window.location.origin + window.location.pathname;
-                    var inputs = container.querySelectorAll('.ticket-name-input');
-                    inputs.forEach(function(inp, idx) {
-                        var row = inp.parentElement;
-                        var invBtn = row.querySelector('.btn-copy');
-                        var nm = inp.value.trim();
-                        if (nm) {
-                            var tNum = firstTicket + idx;
-                            var lnk = bUrl + '?name=' + encodeURIComponent(nm) + '&ticket_host=' + encodeURIComponent(fileBase) + '&ticket_num=' + tNum;
-                            invBtn.setAttribute('data-link', lnk);
-                            invBtn.style.display = 'inline-block';
-                        } else {
-                            invBtn.style.display = 'none';
-                        }
+                    var lnk = bUrl + '?name=' + encodeURIComponent(nm) + '&ticket_host=' + encodeURIComponent(fileBase) + '&ticket_num=' + tNum;
+                    navigator.clipboard.writeText(lnk).then(function() {
+                        ev.target.textContent = 'Copied!';
+                        ev.target.classList.add('copied');
+                        setTimeout(function() {
+                            ev.target.textContent = 'Send Invite';
+                            ev.target.classList.remove('copied');
+                        }, 2000);
                     });
-                }
+                });
 
                 var saveBtn = document.createElement('button');
                 saveBtn.className = 'btn-rsvp';
@@ -934,7 +934,6 @@
                             tickets: ticketParam, vip: vipParam, submittedAt: Date.now()
                         });
                     }
-                    updateInviteButtons();
                     var newUrl = new URL(window.location);
                     if (filledNames.length > 0) newUrl.searchParams.set('guests', filledNames.join(','));
                     newUrl.searchParams.set('submitted', '1');
@@ -950,23 +949,6 @@
                 });
                 container.appendChild(saveBtn);
 
-                if (savedGuests.length > 0) {
-                    updateInviteButtons();
-                }
-
-                document.querySelector('.rsvp-section').addEventListener('click', function(ev) {
-                    if (ev.target.classList.contains('btn-copy')) {
-                        var url = ev.target.getAttribute('data-link');
-                        navigator.clipboard.writeText(url).then(function() {
-                            ev.target.textContent = 'Copied';
-                            ev.target.classList.add('copied');
-                            setTimeout(function() {
-                                ev.target.textContent = 'Copy Link';
-                                ev.target.classList.remove('copied');
-                            }, 2000);
-                        });
-                    }
-                });
             }
 
             if (ticketParam <= 1) {
