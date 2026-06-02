@@ -282,11 +282,10 @@
             { name: 'Stephen Markley', role: 'EP', tickets: 1, vip: true },
             { name: 'Vance Lovett', role: 'Crew', tickets: 1, vip: true },
             { name: 'Lisane Basquiat', role: 'EP', tickets: 2, vip: true },
-            { name: 'Scarlett McDonald', role: 'Music Supervisor', tickets: 1, vip: true },
             { name: 'Mike Amico', role: 'DP', tickets: 1, vip: true },
             { name: 'Josh Land', role: 'Editor', tickets: 1, vip: true },
             { name: 'Cam Owen', role: '2nd Unit DP', tickets: 1, vip: true },
-            { name: 'Lucia Lopez', role: 'Production Design', tickets: 1, vip: true },
+
             { name: 'Danielle Carr', role: 'Music', tickets: 1, vip: true },
             { name: 'Kristi Lugo', role: '', tickets: 2, vip: true },
             { name: 'Tara Roy', role: '', tickets: 1, vip: true },
@@ -337,7 +336,7 @@
             var regBody = document.querySelector('#regularTable tbody');
             vipBody.innerHTML = '';
             regBody.innerHTML = '';
-            var totalTickets = 0, totalGuests = 0, premiereYes = 0;
+            var totalTickets = 2, totalGuests = 0, premiereYes = 0;
             var knownKeys = {};
 
             guests.forEach(function(g) {
