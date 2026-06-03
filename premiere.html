@@ -966,6 +966,25 @@
         if (typeof firebase !== 'undefined' && firebaseConfig && firebaseConfig.apiKey !== 'FIREBASE_API_KEY') {
             firebase.initializeApp(firebaseConfig);
             db = firebase.database();
+
+            if (ticketParam > 1 && displayName) {
+                var nk = displayName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                db.ref('rsvps/' + nk).once('value', function(snapshot) {
+                    var data = snapshot.val();
+                    if (data && data.guests && data.guests.length > 0) {
+                        var container = document.getElementById('multiTickets');
+                        if (!container) return;
+                        var inputs = container.querySelectorAll('.ticket-name-input');
+                        var allEditable = (displayName === 'Nikole Schroder' || displayName === 'Max Geschwind');
+                        inputs.forEach(function(inp, idx) {
+                            var gIdx = allEditable ? idx : idx;
+                            if (data.guests[gIdx] && !inp.value) {
+                                inp.value = data.guests[gIdx];
+                            }
+                        });
+                    }
+                });
+            }
         }
 
         var premiereRadios = document.querySelectorAll('input[name="premiere"]');
