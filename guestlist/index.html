@@ -269,7 +269,7 @@
         var guests = [
             { name: 'Nikole Schroder', role: 'Press / SSML', tickets: 5, vip: true },
             { name: 'Max Geschwind', role: 'Sales / CAA', tickets: 5, vip: true },
-            { name: 'Billie Lourd', role: 'Film team', tickets: 2, vip: true },
+            { name: 'Billie Lourd', role: 'Film team', tickets: 10, vip: true },
             { name: 'Josh Brener', role: 'Film team', tickets: 2, vip: true },
             { name: 'Harvey Guillen', role: 'Film team', tickets: 14, vip: true },
             { name: 'Alok', role: 'Film team', tickets: 2, vip: true },
@@ -336,7 +336,7 @@
             var regBody = document.querySelector('#regularTable tbody');
             vipBody.innerHTML = '';
             regBody.innerHTML = '';
-            var totalTickets = 2, totalGuests = 0, premiereYes = 0;
+            var totalTickets = 0, totalGuests = 0, premiereYes = 0;
             var knownKeys = {};
 
             guests.forEach(function(g) {
