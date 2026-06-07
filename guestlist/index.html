@@ -285,7 +285,6 @@
             { name: 'Missy Wall', role: '', tickets: 1, vip: false },
             { name: 'Mike Amico', role: 'DP', tickets: 1, vip: true },
             { name: 'Josh Land', role: 'Editor', tickets: 1, vip: true },
-            { name: 'Cam Owen', role: '2nd Unit DP', tickets: 1, vip: true },
 
             { name: 'Danielle Carr', role: 'Music', tickets: 1, vip: true },
             { name: 'Kristi Lugo', role: '', tickets: 2, vip: true },
@@ -294,7 +293,6 @@
             { name: 'Scarlett McDonald', role: 'Music Supervisor', tickets: 1, vip: true },
             { name: 'James Maas', role: '', tickets: 1, vip: false },
             { name: 'Sydni Williams', role: '', tickets: 1, vip: false },
-            { name: 'Michael Dougherty', role: '', tickets: 1, vip: false },
             { name: 'Christine Armstrong', role: '', tickets: 1, vip: false },
             { name: 'Adrian Totten', role: '', tickets: 1, vip: false },
             { name: 'Nico Boles', role: '', tickets: 1, vip: false },
@@ -337,7 +335,7 @@
             var regBody = document.querySelector('#regularTable tbody');
             vipBody.innerHTML = '';
             regBody.innerHTML = '';
-            var totalTickets = 0, totalGuests = 0, premiereYes = 0;
+            var totalTickets = 2, totalGuests = 0, premiereYes = 0;
             var knownKeys = {};
 
             guests.forEach(function(g) {
