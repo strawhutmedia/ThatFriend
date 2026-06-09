@@ -301,11 +301,49 @@
         }
         .btn-download:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
 
+        .ticket-download-section {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2px;
+            background: rgba(255,255,255,0.03);
+        }
+        .ticket-download-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+        .ticket-dl-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid rgba(255,140,66,0.3);
+            border-radius: 2px;
+            text-decoration: none;
+            color: #f5f0e8;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            margin-bottom: 0.4rem;
+        }
+        .ticket-dl-link:last-child { margin-bottom: 0; }
+        .ticket-dl-link:hover { background: rgba(255,140,66,0.1); border-color: #FF8C42; }
+        .ticket-dl-btn {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FF8C42;
+        }
+
         @media print {
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             @page { margin: 0; size: letter; }
             body { background: #0d1b21 !important; padding: 0; min-height: 100vh; }
-            .rsvp-section, .btn-download, .thank-you { display: none !important; }
+            .rsvp-section, .btn-download, .thank-you, .ticket-download-section { display: none !important; }
             .invite-container { max-width: 480px; }
             .invite-card {
                 background: linear-gradient(170deg, rgba(26,42,50,0.9) 0%, rgba(13,27,33,0.95) 100%) !important;
@@ -386,6 +424,11 @@
 
         <button class="btn-download" onclick="window.print()">Save Invitation</button>
 
+        <div class="ticket-download-section" id="ticketDownload" style="display:none;">
+            <h4>Your Ticket(s)</h4>
+            <div id="ticketLinks"></div>
+        </div>
+
         <div class="rsvp-section">
             <div style="text-align:center;">
                 <div class="rsvp-title">RSVP</div>
@@ -446,6 +489,22 @@
             nameInput.value = displayName;
             nameInput.readOnly = true;
             nameInput.style.opacity = '0.7';
+
+            var fileBase = displayName.replace(/\s+/g, '_');
+            var ticketEl = document.getElementById('ticketDownload');
+            var ticketLinksDiv = document.getElementById('ticketLinks');
+            if (ticketParam === 1) {
+                ticketLinksDiv.innerHTML = '<a class="ticket-dl-link" href="../assets/tickets-s3/' + fileBase + '.pdf" download>' +
+                    '<span>' + displayName + '</span><span class="ticket-dl-btn">Download Ticket</span></a>';
+            } else {
+                var html = '';
+                for (var i = 1; i <= ticketParam; i++) {
+                    html += '<a class="ticket-dl-link" href="../assets/tickets-s3/' + fileBase + '_' + i + '.pdf" download>' +
+                        '<span>' + displayName + ' (Ticket ' + i + ')</span><span class="ticket-dl-btn">Download</span></a>';
+                }
+                ticketLinksDiv.innerHTML = html;
+            }
+            ticketEl.style.display = 'block';
 
             var submittedParam = params.get('submitted') === '1';
             if (submittedParam || isLocked) {
