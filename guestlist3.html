@@ -199,6 +199,7 @@
                     <th class="tickets-col">Tickets</th>
                     <th>RSVP</th>
                     <th>Invite</th>
+                    <th>Ticket</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -269,12 +270,22 @@
                 if (rsvpStatus === 'Yes') rsvpYes++;
 
                 var link = buildLink(g);
+                var fileBase = g.name.replace(/\s+/g, '_');
+                var dlHtml = '';
+                if (g.tickets === 1) {
+                    dlHtml = '<a class="invite-link" href="assets/tickets-s3/' + fileBase + '.pdf" download>Download</a>';
+                } else {
+                    for (var t = 1; t <= g.tickets; t++) {
+                        dlHtml += '<a class="invite-link" href="assets/tickets-s3/' + fileBase + '_' + t + '.pdf" download style="margin-bottom:2px;display:inline-block;">#' + t + '</a> ';
+                    }
+                }
                 var row = document.createElement('tr');
                 row.innerHTML =
                     '<td><span class="guest-name">' + g.name + '</span></td>' +
                     '<td class="tickets-col">' + g.tickets + '</td>' +
                     '<td>' + statusHtml(rsvpStatus) + '</td>' +
-                    '<td><a class="invite-link" data-url="' + link + '">Copy</a></td>';
+                    '<td><a class="invite-link" data-url="' + link + '">Copy</a></td>' +
+                    '<td>' + dlHtml + '</td>';
                 tbody.appendChild(row);
             });
 
@@ -287,11 +298,14 @@
                 if (rsvp.premiere === 'Yes') rsvpYes++;
                 var row = document.createElement('tr');
                 var gLink = baseUrl + '?name=' + encodeURIComponent(rsvp.name);
+                var gFileBase = rsvp.name.replace(/\s+/g, '_');
+                var gDlHtml = '<a class="invite-link" href="assets/tickets-s3/' + gFileBase + '.pdf" download>Download</a>';
                 row.innerHTML =
                     '<td><span class="guest-name">' + rsvp.name + '</span></td>' +
                     '<td class="tickets-col">' + (rsvp.tickets || 1) + '</td>' +
                     '<td>' + statusHtml(rsvp.premiere) + '</td>' +
-                    '<td><a class="invite-link" data-url="' + gLink + '">Copy</a></td>';
+                    '<td><a class="invite-link" data-url="' + gLink + '">Copy</a></td>' +
+                    '<td>' + gDlHtml + '</td>';
                 tbody.appendChild(row);
             });
 
