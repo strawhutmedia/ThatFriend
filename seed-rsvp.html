@@ -3,45 +3,54 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="assets/firebase-config.js"></script>
-<style>body{background:#0d1b21;color:#f5f0e8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;}</style>
+<style>body{background:#0d1b21;color:#f5f0e8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;}.section{margin-bottom:1rem;}.label{font-size:0.7rem;color:#FF8C42;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.3rem;}</style>
 </head><body>
 <div id="msg">Removing old entries...</div>
 <script>
 try {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.database();
-    var removes = [
-        'lucia_lopez',
 
-        'connor_simpson',
-        'lisane_basquiat',
-        'ashley_smith',
-        'samantha_prete',
-        'maddy_cross',
-        'michael_dougherty',
-        'cam_owen',
-        'brandi_glanville'
+    var tasks = [
+        { path: 'rsvps/lucia_lopez' },
+        { path: 'rsvps/connor_simpson' },
+        { path: 'rsvps/lisane_basquiat' },
+        { path: 'rsvps/ashley_smith' },
+        { path: 'rsvps/samantha_prete' },
+        { path: 'rsvps/maddy_cross' },
+        { path: 'rsvps/michael_dougherty' },
+        { path: 'rsvps/cam_owen' },
+        { path: 'rsvps/brandi_glanville' },
+
+        { path: 'rsvps_s2/adam_tillotson' },
+        { path: 'rsvps_s2/michelle_starsiak' },
+
+        { path: 'rsvps_s3/adam_tillotson' },
+        { path: 'rsvps_s3/michelle_starsiak' }
     ];
+
     var done = 0, errors = [];
+    var total = tasks.length;
 
     function check() {
-        if (done + errors.length === removes.length) {
-            if (errors.length === 0) {
-                document.getElementById('msg').innerHTML =
-                    '<h2 style="color:#4CAF50;">Done!</h2>' +
-                    '<p>Removed ' + done + ' old entries from Firebase</p>' +
-                    '<p style="margin-top:0.5rem;font-size:0.8rem;color:rgba(255,255,255,0.5);">' + removes.join(', ') + '</p>' +
-                    '<p style="margin-top:1rem;"><a href="/guestlist?v=10" style="color:#FF8C42;">Check guest list</a></p>';
-            } else {
-                document.getElementById('msg').innerHTML = '<h2 style="color:#e57373;">Errors</h2><p>' + errors.join('<br>') + '</p>';
+        if (done + errors.length === total) {
+            var html = '<h2 style="color:#4CAF50;">Done!</h2>' +
+                '<p>Processed ' + done + ' of ' + total + ' removals</p>';
+            if (errors.length > 0) {
+                html += '<p style="color:#e57373;margin-top:0.5rem;">' + errors.length + ' errors:<br>' + errors.join('<br>') + '</p>';
             }
+            html += '<div style="margin-top:1rem;font-size:0.8rem;">' +
+                '<a href="/guestlist?v=12" style="color:#FF8C42;">Premiere Guest List</a> &bull; ' +
+                '<a href="/guestlist2?v=4" style="color:#FF8C42;">Screening 2</a> &bull; ' +
+                '<a href="/guestlist3?v=4" style="color:#FF8C42;">Screening 3</a></div>';
+            document.getElementById('msg').innerHTML = html;
         }
     }
 
-    removes.forEach(function(key) {
-        db.ref('rsvps/' + key).remove()
+    tasks.forEach(function(t) {
+        db.ref(t.path).remove()
             .then(function() { done++; check(); })
-            .catch(function(e) { errors.push(key + ': ' + e.message); check(); });
+            .catch(function(e) { errors.push(t.path + ': ' + e.message); check(); });
     });
 
 } catch(e) {
