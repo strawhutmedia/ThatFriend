@@ -147,6 +147,28 @@
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.06);
         }
+        .ticket-dl-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.55rem 0.8rem;
+            border: 1px solid rgba(255,140,66,0.3);
+            border-radius: 2px;
+            text-decoration: none;
+            color: #f5f0e8;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            margin-bottom: 0.4rem;
+        }
+        .ticket-dl-link:last-child { margin-bottom: 0; }
+        .ticket-dl-link:hover { background: rgba(255,140,66,0.1); border-color: #FF8C42; }
+        .ticket-dl-btn {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FF8C42;
+        }
+        .unassigned-section { margin-bottom: 2.5rem; }
         @media (max-width: 700px) {
             .guest-table { font-size: 0.78rem; }
             .guest-table th, .guest-table td { padding: 0.5rem 0.4rem; }
@@ -181,6 +203,20 @@
             </thead>
             <tbody></tbody>
         </table>
+
+        <div class="section-label">Unassigned Tickets</div>
+        <div class="unassigned-section">
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-unassigned-1.pdf" download><span>Ticket 1</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-unassigned-2.pdf" download><span>Ticket 2</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-51c9f295ee65fff8339e.pdf" download><span>Ticket 3</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-8c01c33c620e96036250.pdf" download><span>Ticket 4</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-b0478aed967bd7552461.pdf" download><span>Ticket 5</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-be7c3486fe4d22593cb1.pdf" download><span>Ticket 6</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-ca682777148d7c1b293f.pdf" download><span>Ticket 7</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-daef7eb673549d42b356.pdf" download><span>Ticket 8</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-e1a8f9d565f4e8a25462.pdf" download><span>Ticket 9</span><span class="ticket-dl-btn">Download</span></a>
+            <a class="ticket-dl-link" href="../assets/tickets-s2/squadup_ticket-e69e411aead3f3b08e9e.pdf" download><span>Ticket 10</span><span class="ticket-dl-btn">Download</span></a>
+        </div>
 
         <div class="footer-note">
             <span id="dbStatus" style="color:#FF8C42;">Connecting to database...</span><br>
