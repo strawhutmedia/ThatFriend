@@ -1,16 +1,20 @@
 /* ==========================================================
    Bolo Media — site stylesheet
-   Light gray, monochrome, and fun. The logo is a bolo tie.
-   Brand gray sampled from the logo: #676767
+   Goofy on purpose. Palette riffed Adobe-Color-style around
+   the bolo tie itself: silver (the logo's #676767) + turquoise
+   (the stone) + coral & mustard (the fun), on warm cream.
    ========================================================== */
 
 :root {
-    --paper: #e9e9e7;          /* light gray — the brand color */
-    --card: #f9f9f7;
-    --ink: #676767;            /* logo gray */
-    --ink-dark: #3d3d3d;
-    --line: #cfcfcb;
-    --shadow: 6px 6px 0 rgba(103, 103, 103, 0.9);
+    --cream: #fbf3e2;           /* warm paper background */
+    --card: #ffffff;
+    --charcoal: #2e2a26;        /* ink, borders, hard shadows */
+    --gray: #676767;            /* the logo's silver */
+    --turquoise: #3eb8af;       /* the stone on the tie */
+    --coral: #ff6b5e;
+    --mustard: #ffb830;
+    --pink: #f686bd;
+    --shadow: 6px 6px 0 var(--charcoal);
     --font-display: 'Oswald', 'Arial Narrow', sans-serif;
     --font-body: 'Nunito Sans', 'Avenir', Helvetica, Arial, sans-serif;
 }
@@ -26,8 +30,8 @@ html {
 }
 
 body {
-    background: var(--paper);
-    color: var(--ink-dark);
+    background: var(--cream);
+    color: var(--charcoal);
     font-family: var(--font-body);
     font-weight: 400;
     line-height: 1.7;
@@ -35,6 +39,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 main {
@@ -42,7 +47,7 @@ main {
 }
 
 a {
-    color: var(--ink-dark);
+    color: var(--charcoal);
     text-decoration: none;
 }
 
@@ -52,8 +57,8 @@ img {
 }
 
 ::selection {
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--mustard);
+    color: var(--charcoal);
 }
 
 /* ---------- Navigation ---------- */
@@ -64,10 +69,10 @@ img {
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(233, 233, 231, 0.9);
+    background: rgba(251, 243, 226, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--ink);
+    border-bottom: 3px solid var(--charcoal);
 }
 
 .nav-inner {
@@ -85,13 +90,14 @@ img {
     font-size: 1.15rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--turquoise);
+    -webkit-text-stroke: 0.4px var(--charcoal);
     display: inline-block;
     transition: transform 0.2s ease;
 }
 
 .nav-wordmark:hover {
-    transform: rotate(-3deg) scale(1.05);
+    transform: rotate(-3deg) scale(1.06);
 }
 
 .nav-links {
@@ -106,23 +112,23 @@ img {
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--charcoal);
     display: inline-block;
     padding: 0.15rem 0;
-    border-bottom: 2px solid transparent;
-    transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    border-bottom: 3px solid transparent;
+    transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .nav-links a:hover {
-    color: var(--ink-dark);
     transform: rotate(-2deg);
-    border-bottom-color: var(--ink-dark);
 }
 
-.nav-links a.active {
-    color: var(--ink-dark);
-    border-bottom-color: var(--ink-dark);
-}
+/* every link underlines in its own color, because why not */
+.nav-links li:nth-child(1) a:hover, .nav-links li:nth-child(1) a.active { border-bottom-color: var(--turquoise); }
+.nav-links li:nth-child(2) a:hover, .nav-links li:nth-child(2) a.active { border-bottom-color: var(--coral); }
+.nav-links li:nth-child(3) a:hover, .nav-links li:nth-child(3) a.active { border-bottom-color: var(--mustard); }
+.nav-links li:nth-child(4) a:hover { border-bottom-color: var(--pink); }
+.nav-links li:nth-child(5) a:hover { border-bottom-color: var(--turquoise); }
 
 .nav-links .nav-ext a::after {
     content: '\2197';
@@ -146,7 +152,7 @@ img {
     width: 24px;
     height: 3px;
     border-radius: 2px;
-    background: var(--ink);
+    background: var(--charcoal);
 }
 
 /* ---------- Home / hero ---------- */
@@ -159,18 +165,40 @@ img {
     justify-content: center;
     text-align: center;
     padding: 6.5rem 1.5rem 3.5rem;
+    position: relative;
 }
 
-/* The sign hangs, therefore it sways. */
+/* the turquoise "stone" the logo hangs in front of */
+.hero-burst {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-burst::before {
+    content: '';
+    position: absolute;
+    width: min(430px, 88vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--turquoise);
+    border: 3px solid var(--charcoal);
+    box-shadow: 10px 10px 0 var(--charcoal);
+    z-index: -1;
+}
+
+/* The sign hangs, therefore it sways. Click it for a treat. */
 .hero-logo {
-    width: min(300px, 62vw);
+    width: min(280px, 58vw);
     transform-origin: 50% 0;
     animation: sway 3.6s ease-in-out infinite;
+    cursor: pointer;
+    filter: drop-shadow(0 3px 0 rgba(46, 42, 38, 0.25));
 }
 
 .hero-logo:hover {
     animation: sway-big 1.1s ease-in-out infinite;
-    cursor: grab;
 }
 
 @keyframes sway {
@@ -183,22 +211,41 @@ img {
     50%      { transform: rotate(-7deg); }
 }
 
-.hero-headline {
-    margin-top: 2.6rem;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(2.2rem, 6.5vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: 0.06em;
+.hero-hint {
+    margin-top: 1.6rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-dark);
+    color: var(--gray);
 }
 
-.hero-tagline {
-    margin-top: 1rem;
-    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+.hero-headline {
+    margin-top: 1.8rem;
+    font-family: var(--font-display);
     font-weight: 600;
-    color: var(--ink);
+    font-size: clamp(2.4rem, 7vw, 4.4rem);
+    line-height: 1.12;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.hl {
+    display: inline-block;
+    padding: 0 0.22em;
+    border: 3px solid var(--charcoal);
+    box-shadow: 5px 5px 0 var(--charcoal);
+}
+
+.hl-turquoise { background: var(--turquoise); transform: rotate(-1.5deg); }
+.hl-coral     { background: var(--coral);     transform: rotate(1.2deg); }
+.hl-mustard   { background: var(--mustard);   transform: rotate(-1deg); }
+
+.hero-tagline {
+    margin-top: 1.6rem;
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    font-weight: 700;
+    color: var(--gray);
     max-width: 34em;
 }
 
@@ -216,38 +263,37 @@ img {
     font-size: 0.85rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--ink-dark);
+    color: var(--charcoal);
     background: var(--card);
-    border: 2px solid var(--ink);
+    border: 3px solid var(--charcoal);
     border-radius: 999px;
     padding: 0.7rem 1.7rem;
-    box-shadow: 4px 4px 0 var(--ink);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+    box-shadow: 4px 4px 0 var(--charcoal);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
     display: inline-block;
+    cursor: pointer;
 }
 
 .btn:hover {
     transform: translate(-2px, -2px) rotate(-1.5deg);
-    box-shadow: 7px 7px 0 var(--ink);
+    box-shadow: 7px 7px 0 var(--charcoal);
 }
 
 .btn:active {
     transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 var(--ink);
+    box-shadow: 1px 1px 0 var(--charcoal);
 }
 
-.btn-solid {
-    background: var(--ink);
-    color: var(--paper);
-}
+.btn-coral   { background: var(--coral); }
+.btn-mustard { background: var(--mustard); }
 
 /* ---------- Ticker ---------- */
 
 .ticker {
     overflow: hidden;
-    background: var(--ink);
-    border-top: 2px solid var(--ink-dark);
-    border-bottom: 2px solid var(--ink-dark);
+    background: var(--turquoise);
+    border-top: 3px solid var(--charcoal);
+    border-bottom: 3px solid var(--charcoal);
 }
 
 .ticker-track {
@@ -260,17 +306,22 @@ img {
     display: flex;
     align-items: center;
     white-space: nowrap;
-    padding: 0.6rem 0;
+    padding: 0.65rem 0;
     font-family: var(--font-display);
     font-weight: 500;
     font-size: 0.85rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--paper);
+    color: var(--charcoal);
 }
 
 .ticker-content span {
     padding: 0 1.6rem;
+}
+
+.ticker-content .tick-star {
+    color: var(--cream);
+    padding: 0 0.2rem;
 }
 
 @keyframes ticker {
@@ -293,24 +344,29 @@ img {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     text-align: center;
-    color: var(--ink-dark);
     line-height: 1;
 }
 
 .page-title-tilt {
     display: inline-block;
     transform: rotate(-2deg);
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--coral);
+    color: var(--charcoal);
+    border: 3px solid var(--charcoal);
     padding: 0.1em 0.35em 0.05em;
     box-shadow: var(--shadow);
+}
+
+.page-title-tilt-mustard {
+    background: var(--mustard);
+    transform: rotate(1.5deg);
 }
 
 .page-intro {
     margin: 2rem auto 0;
     text-align: center;
-    color: var(--ink);
-    font-weight: 600;
+    color: var(--gray);
+    font-weight: 700;
     font-size: 0.95rem;
     max-width: 36em;
 }
@@ -322,7 +378,6 @@ img {
     font-size: 1.1rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--ink-dark);
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -331,17 +386,17 @@ img {
 .section-label::after {
     content: '';
     flex: 1;
-    height: 2px;
-    background: var(--ink);
+    height: 3px;
+    background: var(--charcoal);
 }
 
 /* ---------- Press ---------- */
 
 .festival-banner {
-    background: var(--card);
-    border: 2px solid var(--ink);
+    background: var(--mustard);
+    border: 3px solid var(--charcoal);
     box-shadow: var(--shadow);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 1.6rem 1.8rem;
     display: flex;
     justify-content: space-between;
@@ -368,7 +423,6 @@ img {
     font-size: 0.72rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink);
     text-align: right;
 }
 
@@ -382,8 +436,8 @@ img {
 .press-item a {
     display: block;
     background: var(--card);
-    border: 2px solid var(--ink);
-    border-radius: 12px;
+    border: 3px solid var(--charcoal);
+    border-radius: 14px;
     box-shadow: var(--shadow);
     padding: 1.5rem 1.8rem;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -394,31 +448,40 @@ img {
 
 .press-item a:hover {
     transform: rotate(0deg) translate(-3px, -3px);
-    box-shadow: 9px 9px 0 rgba(103, 103, 103, 0.9);
+    box-shadow: 9px 9px 0 var(--charcoal);
 }
 
+/* the meta line cycles through the palette */
+.press-item:nth-child(3n+1) .press-meta { background: var(--turquoise); }
+.press-item:nth-child(3n+2) .press-meta { background: var(--coral); }
+.press-item:nth-child(3n)   .press-meta { background: var(--mustard); }
+
 .press-meta {
+    display: inline-block;
     font-weight: 800;
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--charcoal);
+    border: 2px solid var(--charcoal);
+    border-radius: 999px;
+    padding: 0.15rem 0.8rem;
+    transform: rotate(-1deg);
 }
 
 .press-headline {
-    margin-top: 0.4rem;
+    margin-top: 0.7rem;
     font-family: var(--font-display);
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 1.25;
     letter-spacing: 0.02em;
-    color: var(--ink-dark);
 }
 
 .press-blurb {
     margin-top: 0.4rem;
     font-size: 0.88rem;
-    color: var(--ink);
+    color: var(--gray);
 }
 
 /* ---------- Team ---------- */
@@ -432,8 +495,8 @@ img {
 
 .team-member {
     background: var(--card);
-    border: 2px solid var(--ink);
-    border-radius: 16px;
+    border: 3px solid var(--charcoal);
+    border-radius: 18px;
     box-shadow: var(--shadow);
     padding: 3rem 2rem 2.6rem;
     display: flex;
@@ -441,6 +504,24 @@ img {
     align-items: center;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* each member gets their own color */
+.team-turquoise { --accent: var(--turquoise); }
+.team-coral     { --accent: var(--coral); }
+.team-mustard   { --accent: var(--mustard); }
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 118px;
+    background: var(--accent);
+    border-bottom: 3px solid var(--charcoal);
 }
 
 .team-member:nth-child(odd)  { transform: rotate(0.5deg); }
@@ -448,7 +529,7 @@ img {
 
 .team-member:hover {
     transform: rotate(0deg) translate(-3px, -3px);
-    box-shadow: 10px 10px 0 rgba(103, 103, 103, 0.9);
+    box-shadow: 10px 10px 0 var(--charcoal);
 }
 
 .team-photo {
@@ -456,13 +537,15 @@ img {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--ink);
-    filter: grayscale(100%);
-    transition: filter 0.3s ease, transform 0.3s ease;
+    border: 3px solid var(--charcoal);
+    box-shadow: 5px 5px 0 var(--charcoal);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    background: var(--card);
 }
 
 .team-member:hover .team-photo {
-    filter: grayscale(0%);          /* color is a hover-only privilege */
     transform: rotate(3deg) scale(1.04);
 }
 
@@ -473,7 +556,6 @@ img {
     font-size: 2rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--ink-dark);
     line-height: 1.1;
 }
 
@@ -484,8 +566,9 @@ img {
     font-size: 0.68rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--paper);
-    background: var(--ink);
+    color: var(--charcoal);
+    background: var(--accent);
+    border: 2px solid var(--charcoal);
     border-radius: 999px;
     padding: 0.35rem 1.1rem;
     transform: rotate(-1.5deg);
@@ -494,7 +577,7 @@ img {
 .team-bio {
     margin-top: 1.2rem;
     font-size: 0.9rem;
-    color: var(--ink);
+    color: var(--gray);
     max-width: 38em;
 }
 
@@ -517,23 +600,26 @@ img {
     font-size: 0.75rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    border: 2px solid var(--ink);
+    border: 2px solid var(--charcoal);
     border-radius: 999px;
     padding: 0.4rem 1.2rem;
-    box-shadow: 3px 3px 0 var(--ink);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 3px 3px 0 var(--charcoal);
+    background: var(--card);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .team-links a:hover {
     transform: translate(-2px, -2px) rotate(-2deg);
-    box-shadow: 5px 5px 0 var(--ink);
+    box-shadow: 5px 5px 0 var(--charcoal);
+    background: var(--accent);
 }
 
 /* ---------- Footer ---------- */
 
 .footer {
-    border-top: 2px solid var(--ink);
-    padding: 2.4rem 1.5rem;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 2.6rem 1.5rem;
     text-align: center;
 }
 
@@ -549,26 +635,41 @@ img {
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--cream);
     display: inline-block;
-    transition: transform 0.15s ease;
+    transition: transform 0.15s ease, color 0.15s ease;
 }
+
+.footer-links a:nth-child(1):hover { color: var(--turquoise); }
+.footer-links a:nth-child(2):hover { color: var(--coral); }
+.footer-links a:nth-child(3):hover { color: var(--mustard); }
 
 .footer-links a:hover {
     transform: rotate(-3deg);
-    color: var(--ink-dark);
 }
 
 .footer-copy {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
-    color: var(--ink);
+    color: rgba(251, 243, 226, 0.75);
 }
 
 .footer-copy .footer-wink {
     display: block;
     margin-top: 0.3rem;
     font-style: italic;
+}
+
+/* ---------- Confetti (logo easter egg) ---------- */
+
+.confetto {
+    position: fixed;
+    width: 10px;
+    height: 14px;
+    z-index: 999;
+    pointer-events: none;
+    top: 0;
+    left: 0;
 }
 
 /* ---------- Motion preferences ---------- */
@@ -599,8 +700,8 @@ img {
         right: 0;
         flex-direction: column;
         gap: 0;
-        background: rgba(233, 233, 231, 0.98);
-        border-bottom: 2px solid var(--ink);
+        background: rgba(251, 243, 226, 0.98);
+        border-bottom: 3px solid var(--charcoal);
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;

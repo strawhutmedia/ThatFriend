@@ -8,11 +8,21 @@ Hover it and it sways harder.
 
 ## Brand
 
-- **Gray** `#676767` — sampled directly from the logo PNGs
-- **Light gray** `#e9e9e7` — page background
-- Fonts (Google Fonts): **Oswald** (display — matches the logo's condensed
-  gothic letterforms) + **Nunito Sans** (body — Avenir stand-in, per the
-  logo package report)
+Palette riffed Adobe-Color-style around the bolo tie itself — the logo's
+gray is the "silver," turquoise is the stone, and the rest is the fun:
+
+- **Silver gray** `#676767` — sampled directly from the logo PNGs
+- **Turquoise** `#3eb8af` — the stone; ticker, hero burst, accents
+- **Coral** `#ff6b5e` / **Mustard** `#ffb830` / **Pink** `#f686bd` — accents
+- **Charcoal** `#2e2a26` — ink, borders, hard shadows
+- **Cream** `#fbf3e2` — page background
+
+Fonts (Google Fonts): **Oswald** (display — matches the logo's condensed
+gothic letterforms) + **Nunito Sans** (body — Avenir stand-in, per the
+logo package report)
+
+Easter egg: clicking the homepage logo fires confetti (skipped under
+`prefers-reduced-motion`).
 
 ## Structure
 
