@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team &mdash; Bolo Media</title>
+    <meta name="description" content="The team behind Bolo Media, a film and media production company.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-wordmark">Bolo</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="press.html">Press</a></li>
+                <li><a href="team.html" class="active">Team</a></li>
+                <!-- TODO: replace # with Bolo's IMDb company page and Instagram profile -->
+                <li class="nav-ext"><a href="#" target="_blank" rel="noopener">IMDb</a></li>
+                <li class="nav-ext"><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="page">
+            <h1 class="page-title">Team</h1>
+
+            <!-- ============================================================
+                 PLACEHOLDER TEAM MEMBERS — replace with real names, roles,
+                 bios, headshots, and IMDb links when provided.
+
+                 To use a real headshot, replace the placeholder div with:
+                 <img src="assets/team/firstname-lastname.jpg" alt="Full Name" class="team-photo">
+                 ============================================================ -->
+            <div class="team-list">
+
+                <div class="team-member">
+                    <div class="team-photo-placeholder" aria-hidden="true">A</div>
+                    <h2 class="team-name">Team Member Name</h2>
+                    <p class="team-role">Founder &amp; Producer</p>
+                    <p class="team-bio">Short bio goes here &mdash; a sentence or two about background, credits, and role at Bolo.</p>
+                    <div class="team-links">
+                        <a href="#" target="_blank" rel="noopener">IMDb</a>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo-placeholder" aria-hidden="true">B</div>
+                    <h2 class="team-name">Team Member Name</h2>
+                    <p class="team-role">Producer</p>
+                    <p class="team-bio">Short bio goes here &mdash; a sentence or two about background, credits, and role at Bolo.</p>
+                    <div class="team-links">
+                        <a href="#" target="_blank" rel="noopener">IMDb</a>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo-placeholder" aria-hidden="true">C</div>
+                    <h2 class="team-name">Team Member Name</h2>
+                    <p class="team-role">Head of Development</p>
+                    <p class="team-bio">Short bio goes here &mdash; a sentence or two about background, credits, and role at Bolo.</p>
+                    <div class="team-links">
+                        <a href="#" target="_blank" rel="noopener">IMDb</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="press.html">Press</a>
+            <a href="team.html">Team</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Bolo Productions, LLC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navLinks.classList.toggle('open'); }
+        });
+    </script>
+</body>
+</html>
