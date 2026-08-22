@@ -87,9 +87,47 @@
 
         // Click the tie, get confetti. That's the whole feature.
         const COLORS = ['#f6b8c8', '#a8d8ea', '#abdec6', '#f7e196', '#cdbcec'];
+        const SPARKLE_COLORS = ['#ee9cb6', '#7fbede', '#7fc7a8', '#e8c96a', '#b599e0'];
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        document.getElementById('boloLogo').addEventListener('click', (e) => {
+        const logo = document.getElementById('boloLogo');
+
+        // Hover the tie, stars sprinkle off it.
+        let sparkleTimer = null;
+        function spawnSparkle() {
+            const r = logo.getBoundingClientRect();
+            const s = document.createElement('span');
+            s.className = 'sparkle';
+            s.textContent = '✦';
+            s.style.color = SPARKLE_COLORS[Math.floor(Math.random() * SPARKLE_COLORS.length)];
+            const x = r.left - 30 + Math.random() * (r.width + 60);
+            const y = r.top - 20 + Math.random() * (r.height + 40);
+            document.body.appendChild(s);
+            s.animate([
+                { transform: `translate(${x}px, ${y}px) scale(0) rotate(0deg)`, opacity: 0 },
+                { transform: `translate(${x}px, ${y - 14}px) scale(1.1) rotate(90deg)`, opacity: 1, offset: 0.45 },
+                { transform: `translate(${x}px, ${y - 34}px) scale(0) rotate(180deg)`, opacity: 0 }
+            ], { duration: 750, easing: 'ease-out' }).onfinish = () => s.remove();
+        }
+        logo.addEventListener('pointerenter', () => {
+            if (reducedMotion || sparkleTimer) return;
+            spawnSparkle();
+            sparkleTimer = setInterval(spawnSparkle, 110);
+        });
+        logo.addEventListener('pointerleave', () => {
+            clearInterval(sparkleTimer);
+            sparkleTimer = null;
+        });
+
+        logo.addEventListener('click', (e) => {
             if (reducedMotion) return;
+            // squash & stretch boing (scale property, so it composes with the sway)
+            logo.animate([
+                { scale: '1 1' },
+                { scale: '1.18 0.82', offset: 0.3 },
+                { scale: '0.88 1.12', offset: 0.6 },
+                { scale: '1.05 0.97', offset: 0.8 },
+                { scale: '1 1' }
+            ], { duration: 550, easing: 'ease-out' });
             for (let i = 0; i < 32; i++) {
                 const c = document.createElement('div');
                 c.className = 'confetto';

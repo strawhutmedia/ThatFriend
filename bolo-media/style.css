@@ -682,6 +682,64 @@ img {
     left: 0;
 }
 
+/* ---------- Sparkles (logo hover) ---------- */
+
+.sparkle {
+    position: fixed;
+    z-index: 999;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+/* ---------- Modern spice ---------- */
+
+/* smooth crossfade between pages (View Transitions API) */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.25s;
+}
+
+/* ticker pauses so you can actually read it */
+.ticker:hover .ticker-track {
+    animation-play-state: paused;
+}
+
+/* cards pop in as they scroll into view (CSS scroll-driven animations).
+   Animates the individual translate/scale/opacity properties so it
+   composes with the nth-child rotate tilts; browsers without
+   animation-timeline just show the cards normally. */
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .press-item,
+        .team-member,
+        .festival-banner {
+            animation: pop-in linear both;
+            animation-timeline: view();
+            animation-range: entry 5% entry 45%;
+        }
+    }
+}
+
+@keyframes pop-in {
+    from {
+        opacity: 0;
+        translate: 0 42px;
+        scale: 0.94;
+    }
+    to {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+    }
+}
+
 /* ---------- Motion preferences ---------- */
 
 @media (prefers-reduced-motion: reduce) {

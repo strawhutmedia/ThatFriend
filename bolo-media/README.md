@@ -22,8 +22,16 @@ Fonts (Google Fonts): **Oswald** (display — matches the logo's condensed
 gothic letterforms) + **Nunito Sans** (body — Avenir stand-in, per the
 logo package report)
 
-Easter egg: clicking the homepage logo fires confetti (skipped under
-`prefers-reduced-motion`).
+Fun & motion (all vanilla, no libraries; everything respects
+`prefers-reduced-motion`):
+
+- The logo sways; hovering makes it sway harder **and sprinkle stars**
+- Clicking it does a squash-and-stretch boing + fires pastel confetti
+- Cards pop in as they scroll into view (CSS scroll-driven animations,
+  `animation-timeline: view()` — graceful no-op in older browsers)
+- Page-to-page navigation crossfades (View Transitions API,
+  `@view-transition` — ditto)
+- The ticker pauses on hover so it can actually be read
 
 ## Structure
 
