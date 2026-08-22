@@ -1,20 +1,21 @@
 /* ==========================================================
    Bolo Media — site stylesheet
-   Big fun popping colors. The logo's charcoal/gray is TRIM
-   ONLY — borders, outlines, shadows. Every page gets its own
-   loud background. (Palette deliberately steers clear of the
-   teal/coral/mustard family.)
+   Palm Springs pastels: flamingo pink, pool-water sky, mint,
+   butter yellow, and lavender on warm desert off-white.
+   The logo's charcoal/gray is TRIM ONLY — borders, outlines,
+   shadows. (Palette avoids the teal/coral/mustard family.)
    ========================================================== */
 
 :root {
-    --purple: #7c5cff;
-    --blue: #4a7dff;
-    --magenta: #ff5ca8;
-    --lime: #a5e14c;
-    --orange: #ff9838;
-    --white: #ffffff;
-    --trim: #2b2b2b;            /* the logo's job now: trim */
-    --gray: #676767;
+    --sand: #faf4ec;            /* warm off-white — stucco in the sun */
+    --card: #ffffff;
+    --trim: #3a3430;            /* warm charcoal: borders, outlines, shadows */
+    --gray: #6b6560;
+    --pink: #f6b8c8;            /* flamingo */
+    --sky: #a8d8ea;             /* pool water */
+    --mint: #abdec6;
+    --butter: #f7e196;
+    --lavender: #cdbcec;
     --shadow: 6px 6px 0 var(--trim);
     --font-display: 'Oswald', 'Arial Narrow', sans-serif;
     --font-body: 'Nunito Sans', 'Avenir', Helvetica, Arial, sans-serif;
@@ -31,6 +32,7 @@ html {
 }
 
 body {
+    background: var(--sand);
     color: var(--trim);
     font-family: var(--font-body);
     font-weight: 400;
@@ -41,11 +43,6 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
-
-/* every page its own color */
-.page-home  { background: var(--purple); }
-.page-press { background: var(--blue); }
-.page-team  { background: var(--lime); }
 
 main {
     flex: 1;
@@ -62,8 +59,8 @@ img {
 }
 
 ::selection {
-    background: var(--magenta);
-    color: var(--white);
+    background: var(--pink);
+    color: var(--trim);
 }
 
 /* ---------- Navigation ---------- */
@@ -74,7 +71,9 @@ img {
     left: 0;
     right: 0;
     z-index: 100;
-    background: var(--white);
+    background: rgba(250, 244, 236, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 3px solid var(--trim);
 }
 
@@ -100,7 +99,6 @@ img {
 
 .nav-wordmark:hover {
     transform: rotate(-3deg) scale(1.06);
-    color: var(--magenta);
 }
 
 .nav-links {
@@ -126,12 +124,12 @@ img {
     transform: rotate(-2deg);
 }
 
-/* every link underlines in its own color, because why not */
-.nav-links li:nth-child(1) a:hover, .nav-links li:nth-child(1) a.active { border-bottom-color: var(--purple); }
-.nav-links li:nth-child(2) a:hover, .nav-links li:nth-child(2) a.active { border-bottom-color: var(--blue); }
-.nav-links li:nth-child(3) a:hover, .nav-links li:nth-child(3) a.active { border-bottom-color: var(--lime); }
-.nav-links li:nth-child(4) a:hover { border-bottom-color: var(--magenta); }
-.nav-links li:nth-child(5) a:hover { border-bottom-color: var(--orange); }
+/* every link underlines in its own pastel, because why not */
+.nav-links li:nth-child(1) a:hover, .nav-links li:nth-child(1) a.active { border-bottom-color: var(--pink); }
+.nav-links li:nth-child(2) a:hover, .nav-links li:nth-child(2) a.active { border-bottom-color: var(--sky); }
+.nav-links li:nth-child(3) a:hover, .nav-links li:nth-child(3) a.active { border-bottom-color: var(--mint); }
+.nav-links li:nth-child(4) a:hover { border-bottom-color: var(--lavender); }
+.nav-links li:nth-child(5) a:hover { border-bottom-color: var(--butter); }
 
 .nav-links .nav-ext a::after {
     content: '\2197';
@@ -171,7 +169,7 @@ img {
     position: relative;
 }
 
-/* floating doodads */
+/* floating doodads (deeper pastels so they read on the sand) */
 .doodad {
     position: absolute;
     font-size: 2.6rem;
@@ -180,18 +178,18 @@ img {
     animation: floaty 5.5s ease-in-out infinite;
 }
 
-.doodad-1 { top: 16%; left: 12%; color: var(--lime);    animation-delay: 0s; }
-.doodad-2 { top: 24%; right: 13%; color: var(--magenta); animation-delay: 1.2s; font-size: 3.4rem; }
-.doodad-3 { bottom: 22%; left: 18%; color: var(--orange); animation-delay: 2.1s; font-size: 2rem; }
-.doodad-4 { bottom: 30%; right: 20%; color: var(--white); animation-delay: 0.7s; }
-.doodad-5 { top: 55%; left: 7%;  color: var(--blue);   animation-delay: 1.7s; font-size: 3rem; }
+.doodad-1 { top: 16%; left: 12%; color: #7fc7a8; animation-delay: 0s; }
+.doodad-2 { top: 24%; right: 13%; color: #ee9cb6; animation-delay: 1.2s; font-size: 3.4rem; }
+.doodad-3 { bottom: 22%; left: 18%; color: #e8c96a; animation-delay: 2.1s; font-size: 2rem; }
+.doodad-4 { bottom: 30%; right: 20%; color: #7fbede; animation-delay: 0.7s; }
+.doodad-5 { top: 55%; left: 7%;  color: #b599e0; animation-delay: 1.7s; font-size: 3rem; }
 
 @keyframes floaty {
     0%, 100% { transform: translateY(0) rotate(-6deg); }
     50%      { transform: translateY(-18px) rotate(8deg); }
 }
 
-/* the big sticker the logo hangs in front of */
+/* the pool float the logo hangs in front of */
 .hero-burst {
     position: relative;
     display: flex;
@@ -205,7 +203,7 @@ img {
     width: min(430px, 88vw);
     aspect-ratio: 1;
     border-radius: 50%;
-    background: var(--magenta);
+    background: var(--pink);
     border: 3px solid var(--trim);
     box-shadow: 10px 10px 0 var(--trim);
     z-index: -1;
@@ -218,7 +216,8 @@ img {
     width: min(480px, 96vw);
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 4px dashed var(--white);
+    border: 4px dashed var(--trim);
+    opacity: 0.35;
     animation: spin 40s linear infinite;
     z-index: -1;
 }
@@ -255,7 +254,7 @@ img {
     font-weight: 800;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--gray);
 }
 
 .hero-actions {
@@ -273,7 +272,7 @@ img {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--trim);
-    background: var(--white);
+    background: var(--card);
     border: 3px solid var(--trim);
     border-radius: 999px;
     padding: 0.7rem 1.7rem;
@@ -293,14 +292,14 @@ img {
     box-shadow: 1px 1px 0 var(--trim);
 }
 
-.btn-lime   { background: var(--lime); }
-.btn-orange { background: var(--orange); }
+.btn-mint   { background: var(--mint); }
+.btn-butter { background: var(--butter); }
 
 /* ---------- Ticker ---------- */
 
 .ticker {
     overflow: hidden;
-    background: var(--lime);
+    background: var(--sky);
     border-top: 3px solid var(--trim);
     border-bottom: 3px solid var(--trim);
 }
@@ -329,7 +328,7 @@ img {
 }
 
 .ticker-content .tick-star {
-    color: var(--magenta);
+    color: var(--card);
     padding: 0 0.2rem;
 }
 
@@ -359,28 +358,26 @@ img {
 .page-title-tilt {
     display: inline-block;
     transform: rotate(-2deg);
-    background: var(--magenta);
-    color: var(--white);
+    background: var(--pink);
+    color: var(--trim);
     border: 3px solid var(--trim);
     padding: 0.1em 0.35em 0.05em;
     box-shadow: var(--shadow);
 }
 
-.page-title-tilt-purple {
-    background: var(--purple);
+.page-title-tilt-mint {
+    background: var(--mint);
     transform: rotate(1.5deg);
 }
 
 .page-intro {
     margin: 2rem auto 0;
     text-align: center;
-    font-weight: 800;
+    color: var(--gray);
+    font-weight: 700;
     font-size: 0.95rem;
     max-width: 36em;
 }
-
-.page-press .page-intro { color: var(--white); }
-.page-team .page-intro  { color: var(--trim); }
 
 .section-label {
     margin: 4rem 0 1.5rem;
@@ -392,7 +389,7 @@ img {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: var(--white);
+    color: var(--trim);
 }
 
 .section-label::after {
@@ -405,7 +402,7 @@ img {
 /* ---------- Press ---------- */
 
 .festival-banner {
-    background: var(--orange);
+    background: var(--butter);
     border: 3px solid var(--trim);
     box-shadow: var(--shadow);
     border-radius: 14px;
@@ -447,7 +444,7 @@ img {
 
 .press-item a {
     display: block;
-    background: var(--white);
+    background: var(--card);
     border: 3px solid var(--trim);
     border-radius: 14px;
     box-shadow: var(--shadow);
@@ -463,11 +460,11 @@ img {
     box-shadow: 9px 9px 0 var(--trim);
 }
 
-/* the meta line cycles through the palette */
-.press-item:nth-child(4n+1) .press-meta { background: var(--magenta); color: var(--white); }
-.press-item:nth-child(4n+2) .press-meta { background: var(--lime); }
-.press-item:nth-child(4n+3) .press-meta { background: var(--orange); }
-.press-item:nth-child(4n)   .press-meta { background: var(--purple); color: var(--white); }
+/* the meta line cycles through the pastels */
+.press-item:nth-child(4n+1) .press-meta { background: var(--pink); }
+.press-item:nth-child(4n+2) .press-meta { background: var(--mint); }
+.press-item:nth-child(4n+3) .press-meta { background: var(--sky); }
+.press-item:nth-child(4n)   .press-meta { background: var(--lavender); }
 
 .press-meta {
     display: inline-block;
@@ -499,11 +496,6 @@ img {
 
 /* ---------- Team ---------- */
 
-.page-team .section-label,
-.page-team .page-title {
-    color: var(--trim);
-}
-
 .team-list {
     margin-top: 4rem;
     display: flex;
@@ -512,7 +504,7 @@ img {
 }
 
 .team-member {
-    background: var(--white);
+    background: var(--card);
     border: 3px solid var(--trim);
     border-radius: 18px;
     box-shadow: var(--shadow);
@@ -526,10 +518,10 @@ img {
     overflow: hidden;
 }
 
-/* each member gets their own color */
-.team-purple  { --accent: var(--purple);  --accent-ink: var(--white); }
-.team-magenta { --accent: var(--magenta); --accent-ink: var(--white); }
-.team-orange  { --accent: var(--orange);  --accent-ink: var(--trim); }
+/* each member gets their own pastel */
+.team-sky    { --accent: var(--sky); }
+.team-pink   { --accent: var(--pink); }
+.team-butter { --accent: var(--butter); }
 
 .team-member::before {
     content: '';
@@ -560,7 +552,7 @@ img {
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;
-    background: var(--white);
+    background: var(--card);
 }
 
 .team-member:hover .team-photo {
@@ -584,7 +576,7 @@ img {
     font-size: 0.68rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--accent-ink);
+    color: var(--trim);
     background: var(--accent);
     border: 2px solid var(--trim);
     border-radius: 999px;
@@ -622,22 +614,21 @@ img {
     border-radius: 999px;
     padding: 0.4rem 1.2rem;
     box-shadow: 3px 3px 0 var(--trim);
-    background: var(--white);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+    background: var(--card);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .team-links a:hover {
     transform: translate(-2px, -2px) rotate(-2deg);
     box-shadow: 5px 5px 0 var(--trim);
     background: var(--accent);
-    color: var(--accent-ink);
 }
 
 /* ---------- Footer ---------- */
 
 .footer {
     background: var(--trim);
-    color: var(--white);
+    color: var(--sand);
     padding: 2.6rem 1.5rem;
     text-align: center;
 }
@@ -654,14 +645,14 @@ img {
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--sand);
     display: inline-block;
     transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.footer-links a:nth-child(1):hover { color: var(--magenta); }
-.footer-links a:nth-child(2):hover { color: var(--lime); }
-.footer-links a:nth-child(3):hover { color: var(--orange); }
+.footer-links a:nth-child(1):hover { color: var(--pink); }
+.footer-links a:nth-child(2):hover { color: var(--sky); }
+.footer-links a:nth-child(3):hover { color: var(--mint); }
 
 .footer-links a:hover {
     transform: rotate(-3deg);
@@ -670,7 +661,7 @@ img {
 .footer-copy {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(250, 244, 236, 0.75);
 }
 
 .footer-copy .footer-wink {
@@ -721,7 +712,7 @@ img {
         right: 0;
         flex-direction: column;
         gap: 0;
-        background: var(--white);
+        background: rgba(250, 244, 236, 0.98);
         border-bottom: 3px solid var(--trim);
         max-height: 0;
         overflow: hidden;

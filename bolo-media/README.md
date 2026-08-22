@@ -8,16 +8,15 @@ Hover it and it sways harder.
 
 ## Brand
 
-Big fun popping colors; the logo's charcoal/gray is used as **trim only**
-(borders, outlines, hard shadows). Each page gets its own background color.
-(Palette deliberately avoids the teal/coral/mustard/cream family.)
+Palm Springs pastels; the logo's charcoal/gray is used as **trim only**
+(borders, outlines, hard shadows). (Palette deliberately avoids the
+teal/coral/mustard family.)
 
-- **Grape purple** `#7c5cff` — Home background
-- **Electric blue** `#4a7dff` — Press background
-- **Lime** `#a5e14c` — Team background, ticker
-- **Hot magenta** `#ff5ca8` — hero sticker, title plaques
-- **Tangerine** `#ff9838` — festival banner, accents
-- **Trim charcoal** `#2b2b2b` / **White** `#ffffff` — ink, borders, cards
+- **Desert sand** `#faf4ec` — page background
+- **Flamingo pink** `#f6b8c8` — hero circle, title plaques
+- **Pool sky** `#a8d8ea` — ticker, accents
+- **Mint** `#abdec6` / **Butter** `#f7e196` / **Lavender** `#cdbcec` — accents
+- **Trim charcoal** `#3a3430` / **White** `#ffffff` — ink, borders, cards
 
 Fonts (Google Fonts): **Oswald** (display — matches the logo's condensed
 gothic letterforms) + **Nunito Sans** (body — Avenir stand-in, per the
