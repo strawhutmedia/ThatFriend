@@ -1,24 +1,36 @@
 # Bolo Media — Website
 
-Minimal branding site for Bolo Productions, LLC ("Bolo Media"). Pure static
-HTML/CSS/JS — no frameworks, no build step, no dependencies.
+Fun, light-gray branding site for Bolo Productions, LLC ("Bolo Media").
+Pure static HTML/CSS/JS — no frameworks, no build step, no dependencies.
 
-Reference aesthetic: [morningmoon.com](https://morningmoon.com) — dark,
-logo-forward, near-monochromatic.
+The logo is a sign hanging from a bolo tie, so on the homepage it sways.
+Hover it and it sways harder.
+
+## Brand
+
+- **Gray** `#676767` — sampled directly from the logo PNGs
+- **Light gray** `#e9e9e7` — page background
+- Fonts (Google Fonts): **Oswald** (display — matches the logo's condensed
+  gothic letterforms) + **Nunito Sans** (body — Avenir stand-in, per the
+  logo package report)
 
 ## Structure
 
 ```
 bolo-media/
-├── index.html      Home — wordmark, tagline, That Friend credit line
-├── press.html      Press — festival selections + news coverage
-├── team.html       Team — vertical headshot layout (placeholders for now)
+├── index.html      Home — swinging logo, tagline, ticker marquee
+├── press.html      Press — festival banner + news cards
+├── team.html       Team — Ryan Tillotson, Alex Wall, William Sterling
 ├── style.css       Shared stylesheet (all pages)
 └── assets/
-    └── favicon.svg
+    ├── bolo-logo.png           solid logo, open clasp (primary)
+    ├── bolo-logo-alt.png       solid logo, filled clasp
+    ├── bolo-logo-outline.png   outline variant
+    ├── favicon.svg             tiny hand-drawn bolo-sign favicon
+    └── team/                   headshots (resized for web)
 ```
 
-Fonts (Google Fonts): **Cormorant Garamond** (display) + **Montserrat** (nav/body).
+Logo source: Dropbox `/Straw Hut Team Folder/2_CLIENTS/BOLO/Branding/BoloMedia_Logo_Folder/`
 
 ## Moving to its own repo
 
@@ -31,14 +43,9 @@ dedicated repo:
 4. Add a `CNAME` file containing the custom domain, and add an empty
    `.nojekyll` file.
 
-## Content still to drop in
+## Loose ends
 
-- **Logo** — replace the `.hero-wordmark`/`.hero-sub` text in `index.html`
-  with `<img src="assets/bolo-logo.png" alt="Bolo Media" class="hero-logo">`
-  (the CSS class already exists).
-- **Team** — replace the placeholder members in `team.html` with real names,
-  roles, bios, headshots (put images in `assets/team/`), and IMDb links.
-- **Nav external links** — the IMDb and Instagram links in the nav of all
-  three pages are `href="#"` placeholders (marked with `TODO` comments).
-- **Press** — currently seeded with That Friend's Tribeca 2026 coverage;
-  add or remove items in `press.html` as needed.
+- **Nav IMDb/Instagram** currently point at That Friend's pages as an
+  interim; swap for Bolo's own accounts when they exist.
+- **Team IMDb links** use IMDb name-search URLs; swap for exact
+  `imdb.com/name/nm…` profile URLs when handy.

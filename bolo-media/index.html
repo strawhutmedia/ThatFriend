@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bolo Media</title>
-    <meta name="description" content="Bolo Media is a film and media production company. Producer of That Friend, an official selection of the 2026 Tribeca Festival.">
+    <meta name="description" content="Bolo Media is a film and media production company. Producer of That Friend, an official selection of the 2026 Tribeca Festival. Named after the tie.">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Nunito+Sans:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-wordmark">Bolo</a>
+            <a href="index.html" class="nav-wordmark">Bolo Media</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="press.html">Press</a></li>
                 <li><a href="team.html">Team</a></li>
-                <!-- TODO: replace # with Bolo's IMDb company page and Instagram profile -->
-                <li class="nav-ext"><a href="#" target="_blank" rel="noopener">IMDb</a></li>
-                <li class="nav-ext"><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+                <!-- Interim: pointing at That Friend's IMDb & Instagram until Bolo has its own -->
+                <li class="nav-ext"><a href="https://www.imdb.com/title/tt33041195/" target="_blank" rel="noopener">IMDb</a></li>
+                <li class="nav-ext"><a href="https://www.instagram.com/thatfriendmovie" target="_blank" rel="noopener">Instagram</a></li>
             </ul>
             <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
                 <span></span><span></span><span></span>
@@ -31,18 +31,33 @@
 
     <main>
         <section class="hero">
-            <!-- When the logo file is ready, replace the two lines below with:
-                 <img src="assets/bolo-logo.png" alt="Bolo Media" class="hero-logo"> -->
-            <h1 class="hero-wordmark">BOLO</h1>
-            <p class="hero-sub">Media</p>
+            <img src="assets/bolo-logo.png" alt="Bolo Media — a sign hanging from a bolo tie" class="hero-logo">
 
-            <p class="hero-tagline">A film &amp; media production company</p>
+            <h1 class="hero-headline">We make film &amp; media.</h1>
+            <p class="hero-tagline">Named after the tie. Committed to the bit.</p>
 
-            <p class="hero-credit">
-                <a href="https://thatfriendmovie.com" target="_blank" rel="noopener">That Friend</a>
-                &nbsp;&mdash;&nbsp; Official Selection, 2026 Tribeca Festival
-            </p>
+            <div class="hero-actions">
+                <a href="https://thatfriendmovie.com" target="_blank" rel="noopener" class="btn btn-solid">See That Friend</a>
+                <a href="team.html" class="btn">Meet the Team</a>
+            </div>
         </section>
+
+        <div class="ticker" aria-label="That Friend — Official Selection, 2026 Tribeca Festival">
+            <div class="ticker-track">
+                <div class="ticker-content">
+                    <span>That Friend</span><span>&#10038;</span>
+                    <span>Official Selection &mdash; 2026 Tribeca Festival</span><span>&#10038;</span>
+                    <span>A Bolo Production</span><span>&#10038;</span>
+                    <span>In Association with Straw Hut Media</span><span>&#10038;</span>
+                </div>
+                <div class="ticker-content" aria-hidden="true">
+                    <span>That Friend</span><span>&#10038;</span>
+                    <span>Official Selection &mdash; 2026 Tribeca Festival</span><span>&#10038;</span>
+                    <span>A Bolo Production</span><span>&#10038;</span>
+                    <span>In Association with Straw Hut Media</span><span>&#10038;</span>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -51,7 +66,9 @@
             <a href="press.html">Press</a>
             <a href="team.html">Team</a>
         </div>
-        <p class="footer-copy">&copy; 2026 Bolo Productions, LLC. All rights reserved.</p>
+        <p class="footer-copy">&copy; 2026 Bolo Productions, LLC. All rights reserved.
+            <span class="footer-wink">The tie is load-bearing.</span>
+        </p>
     </footer>
 
     <script>
