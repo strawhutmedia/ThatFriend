@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <!-- the sign -->
-  <rect x="8" y="4" width="48" height="32" rx="7" fill="#3eb8af" stroke="#2e2a26" stroke-width="5"/>
+  <rect x="8" y="4" width="48" height="32" rx="7" fill="#ff5ca8" stroke="#2b2b2b" stroke-width="5"/>
   <!-- the cords -->
-  <path d="M24 36 C27 42, 30 43, 31 46 M40 36 C37 42, 34 43, 33 46" fill="none" stroke="#2e2a26" stroke-width="3.5" stroke-linecap="round"/>
-  <!-- the clasp (with its turquoise stone) -->
-  <circle cx="32" cy="49" r="4.5" fill="#ffb830" stroke="#2e2a26" stroke-width="3"/>
+  <path d="M24 36 C27 42, 30 43, 31 46 M40 36 C37 42, 34 43, 33 46" fill="none" stroke="#2b2b2b" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- the clasp -->
+  <circle cx="32" cy="49" r="4.5" fill="#a5e14c" stroke="#2b2b2b" stroke-width="3"/>
   <!-- the tips -->
-  <path d="M29.5 53 L27.5 61 M34.5 53 L36.5 61" fill="none" stroke="#2e2a26" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M29.5 53 L27.5 61 M34.5 53 L36.5 61" fill="none" stroke="#2b2b2b" stroke-width="3.5" stroke-linecap="round"/>
 </svg>

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-home">
     <nav class="nav">
         <div class="nav-inner">
             <a href="index.html" class="nav-wordmark">Bolo Media</a>
@@ -31,20 +31,20 @@
 
     <main>
         <section class="hero">
+            <span class="doodad doodad-1" aria-hidden="true">&#10038;</span>
+            <span class="doodad doodad-2" aria-hidden="true">&#9733;</span>
+            <span class="doodad doodad-3" aria-hidden="true">&#9679;</span>
+            <span class="doodad doodad-4" aria-hidden="true">&#10038;</span>
+            <span class="doodad doodad-5" aria-hidden="true">&#9670;</span>
+
             <div class="hero-burst">
                 <img src="assets/bolo-logo-charcoal.png" alt="Bolo Media — a sign hanging from a bolo tie" class="hero-logo" id="boloLogo">
             </div>
             <p class="hero-hint">(go ahead, click the tie)</p>
 
-            <h1 class="hero-headline">
-                <span class="hl hl-coral">Serious</span> films.<br>
-                <span class="hl hl-mustard">Unserious</span> people.
-            </h1>
-            <p class="hero-tagline">Named after the tie. Committed to the bit.</p>
-
             <div class="hero-actions">
-                <a href="https://thatfriendmovie.com" target="_blank" rel="noopener" class="btn btn-coral">See That Friend</a>
-                <a href="team.html" class="btn btn-mustard">Meet the Team</a>
+                <a href="https://thatfriendmovie.com" target="_blank" rel="noopener" class="btn btn-lime">See That Friend</a>
+                <a href="team.html" class="btn btn-orange">Meet the Team</a>
             </div>
         </section>
 
@@ -86,7 +86,7 @@
         });
 
         // Click the tie, get confetti. That's the whole feature.
-        const COLORS = ['#3eb8af', '#ff6b5e', '#ffb830', '#f686bd', '#676767'];
+        const COLORS = ['#4a7dff', '#ff5ca8', '#a5e14c', '#ff9838', '#ffffff'];
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         document.getElementById('boloLogo').addEventListener('click', (e) => {
             if (reducedMotion) return;

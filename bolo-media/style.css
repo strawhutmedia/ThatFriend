@@ -1,20 +1,21 @@
 /* ==========================================================
    Bolo Media — site stylesheet
-   Goofy on purpose. Palette riffed Adobe-Color-style around
-   the bolo tie itself: silver (the logo's #676767) + turquoise
-   (the stone) + coral & mustard (the fun), on warm cream.
+   Big fun popping colors. The logo's charcoal/gray is TRIM
+   ONLY — borders, outlines, shadows. Every page gets its own
+   loud background. (Palette deliberately steers clear of the
+   teal/coral/mustard family.)
    ========================================================== */
 
 :root {
-    --cream: #fbf3e2;           /* warm paper background */
-    --card: #ffffff;
-    --charcoal: #2e2a26;        /* ink, borders, hard shadows */
-    --gray: #676767;            /* the logo's silver */
-    --turquoise: #3eb8af;       /* the stone on the tie */
-    --coral: #ff6b5e;
-    --mustard: #ffb830;
-    --pink: #f686bd;
-    --shadow: 6px 6px 0 var(--charcoal);
+    --purple: #7c5cff;
+    --blue: #4a7dff;
+    --magenta: #ff5ca8;
+    --lime: #a5e14c;
+    --orange: #ff9838;
+    --white: #ffffff;
+    --trim: #2b2b2b;            /* the logo's job now: trim */
+    --gray: #676767;
+    --shadow: 6px 6px 0 var(--trim);
     --font-display: 'Oswald', 'Arial Narrow', sans-serif;
     --font-body: 'Nunito Sans', 'Avenir', Helvetica, Arial, sans-serif;
 }
@@ -30,8 +31,7 @@ html {
 }
 
 body {
-    background: var(--cream);
-    color: var(--charcoal);
+    color: var(--trim);
     font-family: var(--font-body);
     font-weight: 400;
     line-height: 1.7;
@@ -42,12 +42,17 @@ body {
     overflow-x: hidden;
 }
 
+/* every page its own color */
+.page-home  { background: var(--purple); }
+.page-press { background: var(--blue); }
+.page-team  { background: var(--lime); }
+
 main {
     flex: 1;
 }
 
 a {
-    color: var(--charcoal);
+    color: var(--trim);
     text-decoration: none;
 }
 
@@ -57,8 +62,8 @@ img {
 }
 
 ::selection {
-    background: var(--mustard);
-    color: var(--charcoal);
+    background: var(--magenta);
+    color: var(--white);
 }
 
 /* ---------- Navigation ---------- */
@@ -69,10 +74,8 @@ img {
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(251, 243, 226, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 3px solid var(--charcoal);
+    background: var(--white);
+    border-bottom: 3px solid var(--trim);
 }
 
 .nav-inner {
@@ -90,14 +93,14 @@ img {
     font-size: 1.15rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--turquoise);
-    -webkit-text-stroke: 0.4px var(--charcoal);
+    color: var(--trim);
     display: inline-block;
     transition: transform 0.2s ease;
 }
 
 .nav-wordmark:hover {
     transform: rotate(-3deg) scale(1.06);
+    color: var(--magenta);
 }
 
 .nav-links {
@@ -112,7 +115,7 @@ img {
     font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--charcoal);
+    color: var(--trim);
     display: inline-block;
     padding: 0.15rem 0;
     border-bottom: 3px solid transparent;
@@ -124,11 +127,11 @@ img {
 }
 
 /* every link underlines in its own color, because why not */
-.nav-links li:nth-child(1) a:hover, .nav-links li:nth-child(1) a.active { border-bottom-color: var(--turquoise); }
-.nav-links li:nth-child(2) a:hover, .nav-links li:nth-child(2) a.active { border-bottom-color: var(--coral); }
-.nav-links li:nth-child(3) a:hover, .nav-links li:nth-child(3) a.active { border-bottom-color: var(--mustard); }
-.nav-links li:nth-child(4) a:hover { border-bottom-color: var(--pink); }
-.nav-links li:nth-child(5) a:hover { border-bottom-color: var(--turquoise); }
+.nav-links li:nth-child(1) a:hover, .nav-links li:nth-child(1) a.active { border-bottom-color: var(--purple); }
+.nav-links li:nth-child(2) a:hover, .nav-links li:nth-child(2) a.active { border-bottom-color: var(--blue); }
+.nav-links li:nth-child(3) a:hover, .nav-links li:nth-child(3) a.active { border-bottom-color: var(--lime); }
+.nav-links li:nth-child(4) a:hover { border-bottom-color: var(--magenta); }
+.nav-links li:nth-child(5) a:hover { border-bottom-color: var(--orange); }
 
 .nav-links .nav-ext a::after {
     content: '\2197';
@@ -152,7 +155,7 @@ img {
     width: 24px;
     height: 3px;
     border-radius: 2px;
-    background: var(--charcoal);
+    background: var(--trim);
 }
 
 /* ---------- Home / hero ---------- */
@@ -168,7 +171,27 @@ img {
     position: relative;
 }
 
-/* the turquoise "stone" the logo hangs in front of */
+/* floating doodads */
+.doodad {
+    position: absolute;
+    font-size: 2.6rem;
+    line-height: 1;
+    pointer-events: none;
+    animation: floaty 5.5s ease-in-out infinite;
+}
+
+.doodad-1 { top: 16%; left: 12%; color: var(--lime);    animation-delay: 0s; }
+.doodad-2 { top: 24%; right: 13%; color: var(--magenta); animation-delay: 1.2s; font-size: 3.4rem; }
+.doodad-3 { bottom: 22%; left: 18%; color: var(--orange); animation-delay: 2.1s; font-size: 2rem; }
+.doodad-4 { bottom: 30%; right: 20%; color: var(--white); animation-delay: 0.7s; }
+.doodad-5 { top: 55%; left: 7%;  color: var(--blue);   animation-delay: 1.7s; font-size: 3rem; }
+
+@keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(-6deg); }
+    50%      { transform: translateY(-18px) rotate(8deg); }
+}
+
+/* the big sticker the logo hangs in front of */
 .hero-burst {
     position: relative;
     display: flex;
@@ -182,10 +205,26 @@ img {
     width: min(430px, 88vw);
     aspect-ratio: 1;
     border-radius: 50%;
-    background: var(--turquoise);
-    border: 3px solid var(--charcoal);
-    box-shadow: 10px 10px 0 var(--charcoal);
+    background: var(--magenta);
+    border: 3px solid var(--trim);
+    box-shadow: 10px 10px 0 var(--trim);
     z-index: -1;
+}
+
+/* slowly spinning dashed ring, like a sticker seal */
+.hero-burst::after {
+    content: '';
+    position: absolute;
+    width: min(480px, 96vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 4px dashed var(--white);
+    animation: spin 40s linear infinite;
+    z-index: -1;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* The sign hangs, therefore it sways. Click it for a treat. */
@@ -194,7 +233,6 @@ img {
     transform-origin: 50% 0;
     animation: sway 3.6s ease-in-out infinite;
     cursor: pointer;
-    filter: drop-shadow(0 3px 0 rgba(46, 42, 38, 0.25));
 }
 
 .hero-logo:hover {
@@ -212,45 +250,16 @@ img {
 }
 
 .hero-hint {
-    margin-top: 1.6rem;
+    margin-top: 2rem;
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gray);
-}
-
-.hero-headline {
-    margin-top: 1.8rem;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(2.4rem, 7vw, 4.4rem);
-    line-height: 1.12;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.hl {
-    display: inline-block;
-    padding: 0 0.22em;
-    border: 3px solid var(--charcoal);
-    box-shadow: 5px 5px 0 var(--charcoal);
-}
-
-.hl-turquoise { background: var(--turquoise); transform: rotate(-1.5deg); }
-.hl-coral     { background: var(--coral);     transform: rotate(1.2deg); }
-.hl-mustard   { background: var(--mustard);   transform: rotate(-1deg); }
-
-.hero-tagline {
-    margin-top: 1.6rem;
-    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
-    font-weight: 700;
-    color: var(--gray);
-    max-width: 34em;
+    color: var(--white);
 }
 
 .hero-actions {
-    margin-top: 2.4rem;
+    margin-top: 2.6rem;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -263,12 +272,12 @@ img {
     font-size: 0.85rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--charcoal);
-    background: var(--card);
-    border: 3px solid var(--charcoal);
+    color: var(--trim);
+    background: var(--white);
+    border: 3px solid var(--trim);
     border-radius: 999px;
     padding: 0.7rem 1.7rem;
-    box-shadow: 4px 4px 0 var(--charcoal);
+    box-shadow: 4px 4px 0 var(--trim);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     display: inline-block;
     cursor: pointer;
@@ -276,24 +285,24 @@ img {
 
 .btn:hover {
     transform: translate(-2px, -2px) rotate(-1.5deg);
-    box-shadow: 7px 7px 0 var(--charcoal);
+    box-shadow: 7px 7px 0 var(--trim);
 }
 
 .btn:active {
     transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 var(--charcoal);
+    box-shadow: 1px 1px 0 var(--trim);
 }
 
-.btn-coral   { background: var(--coral); }
-.btn-mustard { background: var(--mustard); }
+.btn-lime   { background: var(--lime); }
+.btn-orange { background: var(--orange); }
 
 /* ---------- Ticker ---------- */
 
 .ticker {
     overflow: hidden;
-    background: var(--turquoise);
-    border-top: 3px solid var(--charcoal);
-    border-bottom: 3px solid var(--charcoal);
+    background: var(--lime);
+    border-top: 3px solid var(--trim);
+    border-bottom: 3px solid var(--trim);
 }
 
 .ticker-track {
@@ -312,7 +321,7 @@ img {
     font-size: 0.85rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: var(--charcoal);
+    color: var(--trim);
 }
 
 .ticker-content span {
@@ -320,7 +329,7 @@ img {
 }
 
 .ticker-content .tick-star {
-    color: var(--cream);
+    color: var(--magenta);
     padding: 0 0.2rem;
 }
 
@@ -350,26 +359,28 @@ img {
 .page-title-tilt {
     display: inline-block;
     transform: rotate(-2deg);
-    background: var(--coral);
-    color: var(--charcoal);
-    border: 3px solid var(--charcoal);
+    background: var(--magenta);
+    color: var(--white);
+    border: 3px solid var(--trim);
     padding: 0.1em 0.35em 0.05em;
     box-shadow: var(--shadow);
 }
 
-.page-title-tilt-mustard {
-    background: var(--mustard);
+.page-title-tilt-purple {
+    background: var(--purple);
     transform: rotate(1.5deg);
 }
 
 .page-intro {
     margin: 2rem auto 0;
     text-align: center;
-    color: var(--gray);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 0.95rem;
     max-width: 36em;
 }
+
+.page-press .page-intro { color: var(--white); }
+.page-team .page-intro  { color: var(--trim); }
 
 .section-label {
     margin: 4rem 0 1.5rem;
@@ -381,20 +392,21 @@ img {
     display: flex;
     align-items: center;
     gap: 1rem;
+    color: var(--white);
 }
 
 .section-label::after {
     content: '';
     flex: 1;
     height: 3px;
-    background: var(--charcoal);
+    background: var(--trim);
 }
 
 /* ---------- Press ---------- */
 
 .festival-banner {
-    background: var(--mustard);
-    border: 3px solid var(--charcoal);
+    background: var(--orange);
+    border: 3px solid var(--trim);
     box-shadow: var(--shadow);
     border-radius: 14px;
     padding: 1.6rem 1.8rem;
@@ -435,8 +447,8 @@ img {
 
 .press-item a {
     display: block;
-    background: var(--card);
-    border: 3px solid var(--charcoal);
+    background: var(--white);
+    border: 3px solid var(--trim);
     border-radius: 14px;
     box-shadow: var(--shadow);
     padding: 1.5rem 1.8rem;
@@ -448,13 +460,14 @@ img {
 
 .press-item a:hover {
     transform: rotate(0deg) translate(-3px, -3px);
-    box-shadow: 9px 9px 0 var(--charcoal);
+    box-shadow: 9px 9px 0 var(--trim);
 }
 
 /* the meta line cycles through the palette */
-.press-item:nth-child(3n+1) .press-meta { background: var(--turquoise); }
-.press-item:nth-child(3n+2) .press-meta { background: var(--coral); }
-.press-item:nth-child(3n)   .press-meta { background: var(--mustard); }
+.press-item:nth-child(4n+1) .press-meta { background: var(--magenta); color: var(--white); }
+.press-item:nth-child(4n+2) .press-meta { background: var(--lime); }
+.press-item:nth-child(4n+3) .press-meta { background: var(--orange); }
+.press-item:nth-child(4n)   .press-meta { background: var(--purple); color: var(--white); }
 
 .press-meta {
     display: inline-block;
@@ -462,8 +475,8 @@ img {
     font-size: 0.66rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--charcoal);
-    border: 2px solid var(--charcoal);
+    color: var(--trim);
+    border: 2px solid var(--trim);
     border-radius: 999px;
     padding: 0.15rem 0.8rem;
     transform: rotate(-1deg);
@@ -486,6 +499,11 @@ img {
 
 /* ---------- Team ---------- */
 
+.page-team .section-label,
+.page-team .page-title {
+    color: var(--trim);
+}
+
 .team-list {
     margin-top: 4rem;
     display: flex;
@@ -494,8 +512,8 @@ img {
 }
 
 .team-member {
-    background: var(--card);
-    border: 3px solid var(--charcoal);
+    background: var(--white);
+    border: 3px solid var(--trim);
     border-radius: 18px;
     box-shadow: var(--shadow);
     padding: 3rem 2rem 2.6rem;
@@ -509,9 +527,9 @@ img {
 }
 
 /* each member gets their own color */
-.team-turquoise { --accent: var(--turquoise); }
-.team-coral     { --accent: var(--coral); }
-.team-mustard   { --accent: var(--mustard); }
+.team-purple  { --accent: var(--purple);  --accent-ink: var(--white); }
+.team-magenta { --accent: var(--magenta); --accent-ink: var(--white); }
+.team-orange  { --accent: var(--orange);  --accent-ink: var(--trim); }
 
 .team-member::before {
     content: '';
@@ -521,7 +539,7 @@ img {
     right: 0;
     height: 118px;
     background: var(--accent);
-    border-bottom: 3px solid var(--charcoal);
+    border-bottom: 3px solid var(--trim);
 }
 
 .team-member:nth-child(odd)  { transform: rotate(0.5deg); }
@@ -529,7 +547,7 @@ img {
 
 .team-member:hover {
     transform: rotate(0deg) translate(-3px, -3px);
-    box-shadow: 10px 10px 0 var(--charcoal);
+    box-shadow: 10px 10px 0 var(--trim);
 }
 
 .team-photo {
@@ -537,12 +555,12 @@ img {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--charcoal);
-    box-shadow: 5px 5px 0 var(--charcoal);
+    border: 3px solid var(--trim);
+    box-shadow: 5px 5px 0 var(--trim);
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;
-    background: var(--card);
+    background: var(--white);
 }
 
 .team-member:hover .team-photo {
@@ -566,9 +584,9 @@ img {
     font-size: 0.68rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--charcoal);
+    color: var(--accent-ink);
     background: var(--accent);
-    border: 2px solid var(--charcoal);
+    border: 2px solid var(--trim);
     border-radius: 999px;
     padding: 0.35rem 1.1rem;
     transform: rotate(-1.5deg);
@@ -600,25 +618,26 @@ img {
     font-size: 0.75rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    border: 2px solid var(--charcoal);
+    border: 2px solid var(--trim);
     border-radius: 999px;
     padding: 0.4rem 1.2rem;
-    box-shadow: 3px 3px 0 var(--charcoal);
-    background: var(--card);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    box-shadow: 3px 3px 0 var(--trim);
+    background: var(--white);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
 .team-links a:hover {
     transform: translate(-2px, -2px) rotate(-2deg);
-    box-shadow: 5px 5px 0 var(--charcoal);
+    box-shadow: 5px 5px 0 var(--trim);
     background: var(--accent);
+    color: var(--accent-ink);
 }
 
 /* ---------- Footer ---------- */
 
 .footer {
-    background: var(--charcoal);
-    color: var(--cream);
+    background: var(--trim);
+    color: var(--white);
     padding: 2.6rem 1.5rem;
     text-align: center;
 }
@@ -635,14 +654,14 @@ img {
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--cream);
+    color: var(--white);
     display: inline-block;
     transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.footer-links a:nth-child(1):hover { color: var(--turquoise); }
-.footer-links a:nth-child(2):hover { color: var(--coral); }
-.footer-links a:nth-child(3):hover { color: var(--mustard); }
+.footer-links a:nth-child(1):hover { color: var(--magenta); }
+.footer-links a:nth-child(2):hover { color: var(--lime); }
+.footer-links a:nth-child(3):hover { color: var(--orange); }
 
 .footer-links a:hover {
     transform: rotate(-3deg);
@@ -651,7 +670,7 @@ img {
 .footer-copy {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
-    color: rgba(251, 243, 226, 0.75);
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .footer-copy .footer-wink {
@@ -677,7 +696,9 @@ img {
 @media (prefers-reduced-motion: reduce) {
     .hero-logo,
     .hero-logo:hover,
-    .ticker-track {
+    .ticker-track,
+    .hero-burst::after,
+    .doodad {
         animation: none;
     }
 
@@ -700,8 +721,8 @@ img {
         right: 0;
         flex-direction: column;
         gap: 0;
-        background: rgba(251, 243, 226, 0.98);
-        border-bottom: 3px solid var(--charcoal);
+        background: var(--white);
+        border-bottom: 3px solid var(--trim);
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
@@ -721,6 +742,14 @@ img {
         padding: 1rem 0;
         border-bottom: none;
     }
+
+    .doodad {
+        font-size: 1.8rem;
+    }
+
+    .doodad-2 { font-size: 2.2rem; }
+    .doodad-4,
+    .doodad-5 { display: none; }
 
     .festival-banner {
         flex-direction: column;

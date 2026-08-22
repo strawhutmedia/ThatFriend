@@ -8,14 +8,16 @@ Hover it and it sways harder.
 
 ## Brand
 
-Palette riffed Adobe-Color-style around the bolo tie itself — the logo's
-gray is the "silver," turquoise is the stone, and the rest is the fun:
+Big fun popping colors; the logo's charcoal/gray is used as **trim only**
+(borders, outlines, hard shadows). Each page gets its own background color.
+(Palette deliberately avoids the teal/coral/mustard/cream family.)
 
-- **Silver gray** `#676767` — sampled directly from the logo PNGs
-- **Turquoise** `#3eb8af` — the stone; ticker, hero burst, accents
-- **Coral** `#ff6b5e` / **Mustard** `#ffb830` / **Pink** `#f686bd` — accents
-- **Charcoal** `#2e2a26` — ink, borders, hard shadows
-- **Cream** `#fbf3e2` — page background
+- **Grape purple** `#7c5cff` — Home background
+- **Electric blue** `#4a7dff` — Press background
+- **Lime** `#a5e14c` — Team background, ticker
+- **Hot magenta** `#ff5ca8` — hero sticker, title plaques
+- **Tangerine** `#ff9838` — festival banner, accents
+- **Trim charcoal** `#2b2b2b` / **White** `#ffffff` — ink, borders, cards
 
 Fonts (Google Fonts): **Oswald** (display — matches the logo's condensed
 gothic letterforms) + **Nunito Sans** (body — Avenir stand-in, per the
