@@ -1,0 +1,237 @@
+/* Shared styles for the /getnow purchase pages.
+   Self-contained on purpose: these pages do not load site.css and are not
+   linked from the main site, same as social.html. */
+
+  :root {
+    --sky: #4DB8C4;
+    --sky-deep: #3a9daa;
+    --orange: #FF8C42;
+    --orange-dark: #e67a30;
+    --white: #ffffff;
+    --cream: #f5f0e8;
+    --dark: #1a2a32;
+    --dark-mid: #2C3E50;
+    --text-soft: rgba(255,255,255,0.85);
+    --text-dim: rgba(255,255,255,0.55);
+    --hair: rgba(255,255,255,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+  }
+
+  .wrap {
+    max-width: 30rem;          /* phone-first: QR scans from TV land here */
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .laurels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .laurels img { height: 62px; width: auto; opacity: .92; }
+
+  h1 {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(3rem, 15vw, 4.75rem);
+    line-height: .88;
+    letter-spacing: 3px;
+    margin-bottom: .6rem;
+  }
+
+  .logline {
+    color: var(--text-soft);
+    font-size: 1.02rem;
+    font-weight: 300;
+    max-width: 24rem;
+    margin: 0 auto 1.1rem;
+  }
+
+  .meta {
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  /* ---------- trailer / poster ---------- */
+
+  .media {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2.25rem;
+    background: #000;
+    box-shadow: 0 18px 44px rgba(0,0,0,.5);
+  }
+  .media .ratio { position: relative; width: 100%; padding-top: 56.25%; }
+  .media iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  }
+  .media img.poster { display: block; width: 100%; height: auto; }
+
+  /* ---------- buy ---------- */
+
+  .buy-label {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    width: 100%;
+    padding: 1.15rem 1.5rem;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .18s ease, transform .18s ease;
+  }
+  .primary:hover { background: var(--orange-dark); transform: translateY(-2px); }
+  .primary:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+
+  .primary-note {
+    font-size: .74rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: .7rem;
+  }
+
+  .others {
+    display: grid;
+    gap: .55rem;
+    margin-top: 1.6rem;
+  }
+
+  .other {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .9rem 1.2rem;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: .95rem;
+    font-weight: 500;
+    transition: background .25s ease, border-color .25s ease,
+                transform .25s ease, box-shadow .25s ease;
+  }
+  .other:hover {
+    background: rgba(255,140,66,.15);
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255,140,66,.2);
+  }
+  .other:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+  .other .price { font-size: .78rem; font-weight: 400; color: var(--text-dim); white-space: nowrap; }
+
+  .pending {
+    padding: 1.1rem 1.2rem;
+    border: 1px dashed var(--hair);
+    border-radius: 10px;
+    color: var(--text-dim);
+    font-size: .87rem;
+  }
+
+  /* ---------- cast ---------- */
+
+  .section-rule {
+    border: 0;
+    border-top: 1px solid var(--hair);
+    margin: 3rem 0 1.75rem;
+  }
+
+  .kicker {
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+  }
+
+  .cast {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem .75rem;
+  }
+  .cast figure { margin: 0; }
+  .cast img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    background: var(--dark-mid);
+  }
+  .cast figcaption {
+    font-size: .74rem;
+    font-weight: 600;
+    margin-top: .45rem;
+    line-height: 1.3;
+  }
+
+  .synopsis {
+    color: var(--text-soft);
+    font-size: .95rem;
+    font-weight: 300;
+    text-align: left;
+    max-width: 26rem;
+    margin: 0 auto;
+  }
+  .synopsis p + p { margin-top: .85rem; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hair);
+    font-size: .74rem;
+    color: var(--text-dim);
+    letter-spacing: .06em;
+  }
+  footer a { color: var(--sky); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ---------- wider screens: stay centred and calm, don't sprawl ---------- */
+
+  @media (min-width: 48rem) {
+    .wrap { max-width: 34rem; padding-top: 3.5rem; }
+    .laurels img { height: 74px; }
+    .cast { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
