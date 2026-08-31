@@ -202,17 +202,23 @@
     justify-content: space-between;
     gap: 1rem;
     padding: .9rem 1.2rem;
-    background: rgba(255,255,255,.055);
-    border: 1px solid var(--hair);
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
     border-radius: 10px;
-    color: var(--white);
+    color: var(--cream);
     text-decoration: none;
-    font-size: .93rem;
-    font-weight: 600;
-    transition: background .16s ease, border-color .16s ease;
+    font-size: .95rem;
+    font-weight: 500;
+    transition: background .25s ease, border-color .25s ease,
+                transform .25s ease, box-shadow .25s ease;
   }
-  .other:hover { background: rgba(255,255,255,.1); border-color: var(--sky); }
-  .other:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .other:hover {
+    background: rgba(255,140,66,.15);
+    border-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255,140,66,.2);
+  }
+  .other:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
   .other .price { font-size: .78rem; font-weight: 400; color: var(--text-dim); white-space: nowrap; }
 
   .pending {
@@ -353,9 +359,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <footer>
-    &copy; <span id="yr"></span> That Friend &middot;
-    <a href="index.html">Home</a> &middot;
-    <a href="press.html">Press</a>
+    &copy; <span id="yr"></span> That Friend
+    <!-- Deliberately links nowhere. This is a standalone ad destination,
+         like social.html: no nav, not linked from the main site, and no
+         path back into pages that sit behind auth.js. -->
   </footer>
 
 </div>
