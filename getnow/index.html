@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--
+      PURCHASE PAGE — an ad destination. All storefronts — destination for the main campaign.
+
+      Standalone by design, like social.html: no auth.js, no nav, and nothing
+      on the main site links here. Do NOT add auth.js — Google requires an ad
+      destination be publicly reachable, and index.html is behind the gate.
+
+      Purchase URLs live in ONE place for all three pages:
+      /getnow/getnow.js -> STOREFRONTS
+    -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4641ZWTYSX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4641ZWTYSX');
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '26252798684369358');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=26252798684369358&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7RCZNFN');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch That Friend</title>
+    <meta name="description" content="That Friend — Official Selection, 2026 Tribeca Festival. Rent or buy now on Apple TV, Prime Video, Fandango at Home and Google TV.">
+    <link rel="canonical" href="https://thatfriendmovie.com/getnow">
+
+    <meta property="og:type" content="video.movie">
+    <meta property="og:title" content="Watch That Friend">
+    <meta property="og:description" content="That Friend — Official Selection, 2026 Tribeca Festival. Rent or buy now on Apple TV, Prime Video, Fandango at Home and Google TV.">
+    <meta property="og:image" content="https://thatfriendmovie.com/assets/poster.jpg">
+    <meta property="og:url" content="https://thatfriendmovie.com/getnow">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/getnow/getnow.css">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7RCZNFN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="wrap">
+
+  <div class="laurels">
+    <img src="/assets/tf26_laurel_os_W.png" alt="Official Selection, 2026 Tribeca Festival">
+  </div>
+
+  <h1>That Friend</h1>
+
+  <p class="logline">
+    <!-- TODO: replace with the final approved logline. -->
+    A reunion between old friends turns into a reckoning none of them saw coming.
+  </p>
+
+  <p class="meta">
+    <!-- TODO: confirm runtime + rating -->
+    Feature Film &middot; 2026
+  </p>
+
+  <div class="media">
+    <div class="ratio" id="trailerSlot"></div>
+  </div>
+
+  <p class="buy-label">Watch it now</p>
+
+  <div id="buyPrimary"></div>
+  <div class="others" id="buyOthers"></div>
+
+  <hr class="section-rule">
+
+  <p class="kicker">Starring</p>
+  <div class="cast">
+    <figure><img src="/assets/cast/harvey-g.jpeg"  alt="Harvey Guill&eacute;n"><figcaption>Harvey Guill&eacute;n</figcaption></figure>
+    <figure><img src="/assets/cast/josh-b.jpeg"    alt="Josh Brener"><figcaption>Josh Brener</figcaption></figure>
+    <figure><img src="/assets/cast/billie-l.jpeg"  alt="Billie Lourd"><figcaption>Billie Lourd</figcaption></figure>
+    <figure><img src="/assets/cast/retta.png"      alt="Retta"><figcaption>Retta</figcaption></figure>
+    <figure><img src="/assets/cast/neil-bjr.png"   alt="Neil Brown Jr."><figcaption>Neil Brown Jr.</figcaption></figure>
+    <figure><img src="/assets/cast/miles-gr.png"   alt="Miles Gutierrez-Riley"><figcaption>Miles Gutierrez-Riley</figcaption></figure>
+  </div>
+
+  <hr class="section-rule">
+
+  <p class="kicker">About the film</p>
+  <div class="synopsis">
+    <!-- TODO: replace with the final approved synopsis. Two short paragraphs
+         is right — enough that Google reads this as real content rather than
+         a thin page existing only to bounce people out. -->
+    <p>An Official Selection of the 2026 Tribeca Festival.</p>
+    <p>Full synopsis to come.</p>
+  </div>
+
+  <footer>
+    &copy; <span id="yr"></span> That Friend
+  </footer>
+
+</div>
+
+    <script>window.TF_ONLY = null;</script>
+    <script src="/getnow/getnow.js"></script>
+</body>
+</html>
