@@ -1,5 +1,14 @@
 # Bolo Media — Website
 
+> **⚠️ MOVED — this folder is legacy.**
+> The site's canonical home is now
+> **[`strawhutmedia/Bolo-Site`](https://github.com/strawhutmedia/Bolo-Site)**
+> and it is live at **https://www.bolo.media** (GitHub Pages, served from
+> that repo's `gh-pages` branch). Make all changes there — edits here do
+> not affect the live site. See that repo's `README.md` and `CLAUDE.md`
+> for deployment rules and context. This copy is kept only for the
+> original build history.
+
 Fun, light-gray branding site for Bolo Productions, LLC ("Bolo Media").
 Pure static HTML/CSS/JS — no frameworks, no build step, no dependencies.
 
@@ -51,20 +60,11 @@ bolo-media/
 
 Logo source: Dropbox `/Straw Hut Team Folder/2_CLIENTS/BOLO/Branding/BoloMedia_Logo_Folder/`
 
-## Moving to its own repo
+## Move to its own repo — DONE
 
-This folder is fully self-contained (relative paths only). To move it to a
-dedicated repo:
-
-1. Create the new repo (e.g. `strawhutmedia/bolo-media`).
-2. Copy the contents of this folder to the repo root.
-3. Enable GitHub Pages (Settings → Pages → deploy from `main`, root).
-4. Add a `CNAME` file containing the custom domain, and add an empty
-   `.nojekyll` file.
-
-## Loose ends
-
-- **Nav IMDb/Instagram** currently point at That Friend's pages as an
-  interim; swap for Bolo's own accounts when they exist.
-- **Team IMDb links** use IMDb name-search URLs; swap for exact
-  `imdb.com/name/nm…` profile URLs when handy.
+The move described in an earlier version of this README happened in
+August 2026: the site now lives in
+[`strawhutmedia/Bolo-Site`](https://github.com/strawhutmedia/Bolo-Site)
+and serves at https://www.bolo.media via GitHub Pages (`gh-pages` branch,
+`CNAME` = `www.bolo.media`, HTTPS enforced). All loose ends and TODOs are
+tracked in that repo's README/CLAUDE.md, not here.
